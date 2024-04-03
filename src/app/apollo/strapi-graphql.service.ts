@@ -3,6 +3,7 @@ import { Apollo } from "apollo-angular";
 import { map, Observable } from "rxjs";
 import { ApolloQueryResult, DocumentNode } from "@apollo/client/core";
 import gql from "graphql-tag";
+import { environment } from "../../enviroments/enviroment";
 
 interface DataStructure {
   [key: string]: {
@@ -57,15 +58,14 @@ export class StrapiGraphqlService {
       loading: data.loading,
     };
 
-    console.log(result.data)
     if (singleImages.length !== 0) {
       singleImages.forEach(image => {
         if (component) {
           for (let item of result.data) {
-            item[image] = this.getImageUrl(item[image])
+            item[image] = environment.url + this.getImageUrl(item[image])
           }
         } else {
-          result.data[`${image}`] = this.getImageUrl(result.data[image])
+          result.data[`${image}`] = environment.url +this.getImageUrl(result.data[image])
         }
       })
     }
@@ -73,7 +73,7 @@ export class StrapiGraphqlService {
       multipleImages.forEach(images => {
         const array:string[] = [];
         result.data[`${images}`].data.forEach((image: any) => {
-          array.push(image.attributes.url)
+          array.push(environment.url + image.attributes.url)
         });
         result.data[`${images}`] = array;
       });

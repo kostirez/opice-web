@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { MenuItem } from "../menu/menu.component";
 import { Router } from "@angular/router";
 import { SingleTypesService } from "../apollo/single-types.service";
-import { ImageService } from "../image.service";
-
 
 export type EshopItem = MenuItem & {img: string}
 
@@ -24,8 +22,7 @@ export class EshopComponent {
 
   constructor(
     private singleTypesService: SingleTypesService,
-    private router: Router,
-    private imageService: ImageService) {}
+    private router: Router) {}
 
   ngOnInit() {
     this.singleTypesService.getEshopData()
@@ -39,10 +36,6 @@ export class EshopComponent {
     // if(this.queryCategories){
     //   this.queryCategories.unsubscribe();
     // }
-  }
-
-  getImgBase(): string {
-    return this.imageService.getImageBase();
   }
 
   goTo(url: string) {
