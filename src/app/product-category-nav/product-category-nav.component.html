@@ -1,0 +1,10 @@
+<div class="flex text-center">
+  <a *ngFor="let item of navBtns"
+     class="p-3 border-b-4  w-[40%] flex justify-center cursor-pointer"
+     [ngClass]="item.label === actual ?
+                  'border-secondary-light text-secondary-light':
+                  'border-secondary-dark text-secondary-dark'"
+     [routerLink]="item.url">
+    <span class="mx-5">{{item.label}}</span>
+  </a>
+</div>

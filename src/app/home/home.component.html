@@ -1,0 +1,53 @@
+<div class="flex flex-col">
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 my-10 text-center sm:text-left">
+    <div class="flex flex-col p-5">
+      <span class="text-3xl sm:text-4xl font-bold text-primary-light mb-10">Spojujeme pěstovaní s 3D tiskem</span>
+      <span class="text-xl sm:text-2xl text-primary-dark">Naše produkty jsme pečlivě nadesignovali a vytiskli na 3D tiskárně.</span>
+    </div>
+    <img class="" src="assets/footer.JPG">
+  </div>
+
+  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Naše produkty</span>
+  <app-eshop></app-eshop>
+
+  <div class="flex flex-col text-center mt-20 p-5">
+    <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mb-10">Microgreens pro restaurace</span>
+    <div class="flex flex-wrap justify-around gap-5 sm:gap-10 my-5">
+      <div *ngFor="let item of restaurants"
+           class="max-w-[200px] sm:max-w-[300px] p-5 sm:p-12 bg-bg-light rounded-xl flex items-center shadow-2xl">
+        <span class="text-xl sm:text-2xl text-primary-dark">{{item}}</span>
+      </div>
+    </div>
+    <a routerLink="/pro-restaurace" class="my-10 sm:my-10">
+      <button class="mx-2 text-white text-xl sm:text-2xl font-bold rounded-md bg-primary-light py-4 sm:px-10 w-[270px]">
+        Zjistit vice
+      </button>
+    </a>
+  </div>
+
+  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Jak využít microgreens</span>
+  <div class="my-10 max-h-[600px] overflow-hidden">
+    <app-carousel [delay]="6000" [showBtns]="false" [slides]="slides"></app-carousel>
+  </div>
+
+
+<!--  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Vlastní design a výroba</span>-->
+
+
+
+  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Kontaktujte nás</span>
+  <div class="my-5 text-center flex flex-col">
+    <span class="text-xl text-primary-dark mb-3">Mail</span>
+    <span class="text-2xl font-bold text-primary-light">obchod&#64;zrzavaopice.cz</span>
+  </div>
+
+  <span class="text-center text-xl text-primary-dark mb-3">Sociální sítě</span>
+  <div class="grid grid-cols-3 max-w-[500px] mx-auto gap-5 mb-10">
+    <img class="m-auto px-2 cursor-pointer min-w-[100px]" src="assets/ig.svg" (click)="goTo('https://www.instagram.com/zrzavaopice/')">
+    <img class="m-auto px-2 cursor-pointer min-w-[100px]" src="assets/fb.svg" (click)="goTo('https://www.facebook.com/profile.php?id=61557278573442')">
+    <img class="m-auto px-2 cursor-pointer min-w-[100px]" src="assets/pi.svg" (click)="goTo('https://cz.pinterest.com/zrzavaopice/')">
+  </div>
+
+  <app-contact-form></app-contact-form>
+</div>

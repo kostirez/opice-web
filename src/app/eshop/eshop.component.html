@@ -1,0 +1,9 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-10 mb-10">
+  <div *ngFor="let item of eshopItems"
+       (click)="goTo(item.url)"
+       class="mx-auto my-5 relative col-span-1 w-[300px] sm:w-auto cursor-pointer border-4 border-primary-light rounded-xl">
+    <h2 class="text-center text-primary-dark text-2xl sm:text-3xl pt-[50px] z-10">{{item.name}}</h2>
+    <img class="w-[300px] sm:mx-auto z-[-10] p-1" [src]="item.img">
+    <div class="absolute top-0 w-full h-full opacity-15 z-10 bg-bg-light"></div>
+  </div>
+</div>

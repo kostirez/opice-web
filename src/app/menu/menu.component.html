@@ -1,1 +1,68 @@
-<p>menu works!</p>
+<div class="z-50 w-100 sm:hidden">
+  <div class="flex items-center justify-between h-[80px] p-5 bg-gradient-to-t from-bg-light to-white">
+    <div>
+      <a routerLink="/" (click)="closeNavBar()">
+        <img class="w-[60px] h-[60px]" src="assets/logo.svg">
+      </a>
+    </div>
+    <div>
+      <span class="text-2xl font-bold text-primary-light">{{currentPage}}</span>
+    </div>
+    <div>
+      <div *ngIf="navbarOpen" class="cursor-pointer pt-2" (click)="toggleNavbar()">
+        <svg class="stroke-primary-dark" width="30" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0.646447" y1="29.613" x2="28.9307" y2="1.32876"/>
+          <line x1="1.39408" y1="0.646447" x2="29.6784" y2="28.9307"/>
+        </svg>
+      </div>
+      <div *ngIf="!navbarOpen" class="cursor-pointer pt-2" (click)="toggleNavbar()">
+        <svg class="stroke-primary-dark" width="30" height="30" viewBox="0 0 40 31" fill="none">
+          <line y1="0.5" x2="40" y2="0.5" />
+          <line y1="15.5" x2="40" y2="15.5"/>
+          <line y1="30.5" x2="40" y2="30.5"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="w-100 flex justify-center ">
+    <div class="absolute top-0 h-dvh flex z-[-10] ">
+      <div *ngIf="navbarOpen" class="flex flex-col pt-[80px]">
+        <ul class="mx-auto">
+          <li *ngFor="let item of menuItems" class="flex justify-center">
+            <a class="p-2 m-2 font-bold text-primary-dark" (click)="toggleNavbar()" [routerLink]="item.url">{{item.name}}</a>
+          </li>
+        </ul>
+          <img class="mt-auto w-[100vw]" src="assets/footer.JPG">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="hidden sm:block">
+  <div class="flex py-5 w-fit mx-auto px-[15%]">
+    <a routerLink="/" (click)="closeNavBar()">
+      <img class="w-[10rem] h-[10rem]" src="assets/logo.svg">
+    </a>
+    <div class="flex flex-col h-[120px] justify-around">
+      <a class="text-6xl font-bold text-primary-light" routerLink="/">Zrzavá opice</a>
+      <div class="flex">
+        <ul class="mx-auto flex flex-wrap justify-around">
+          <li *ngFor="let item of menuItems.slice(1,7)">
+            <a class="text-xl mx-2 text-primary-dark" [routerLink]="item.url">{{item.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="!navbarOpen">
+  <div class="absolute top-0 sm:static z-[-10] min-h-[100vh] w-[100vw] flex flex-col">
+    <div class="pt-[80px] sm:pt-0 sm:px-[15%]">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="mt-auto">
+      <footer></footer>
+    </div>
+  </div>
+</ng-container>
+<app-basket-icon *ngIf="showBasketIcon" (click)="closeNavBar()"></app-basket-icon>

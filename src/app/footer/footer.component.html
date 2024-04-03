@@ -1,1 +1,28 @@
-<p>footer works!</p>
+<div class="grid grid-cols-3 pt-2 bg-gradient-to-b from-bg-light via-white sm:p-10">
+  <div class="text-center flex flex-col col-span-3 sm:col-span-1 sm:mt-[-20px]">
+    <a routerLink="/">
+      <img class="mx-auto w-[50%] sm:w-auto" src="assets/logo_text.svg">
+    </a>
+    <a class="p-1 text-primary-dark" routerLink="/eshop">e-shop</a>
+    <a class="p-1 text-primary-dark" routerLink="/pro-restaurace">pro restaurace</a>
+    <a class="p-1 text-primary-dark" routerLink="/o-mne">o mne</a>
+  </div>
+  <div class="text-center flex flex-col col-span-3 sm:col-span-1 mt-3">
+    <h2 class="text-primary-light font-bold">Kontakt</h2>
+    <span class="p-1 text-primary-dark">obchod&#64;zrzavaopice.cz</span>
+    <span class="p-1 text-primary-dark">720258660</span>
+    <span class="p-1 text-primary-dark">IČO: 13969200</span>
+    <div class="flex justify-center p-1">
+      <img class="px-2 cursor-pointer" src="assets/ig.svg" (click)="goToIg()">
+      <img class="px-2 cursor-pointer" src="assets/fb.svg" (click)="goToFb()">
+      <img class="px-2 cursor-pointer" src="assets/pi.svg" (click)="goToPi()">
+    </div>
+  </div>
+  <div class="text-center flex flex-col col-span-3 sm:col-span-1 mt-3 pb-2 ">
+    <h2 class="text-primary-light font-bold">Dokumenty</h2>
+    <span class="p-1 text-primary-dark">obchodni podminky</span>
+    <span class="p-1 text-primary-dark">gdpr</span>
+    <span class="p-1 text-primary-dark">reklamace</span>
+  </div>
+  <img class="col-span-3 sm:hidden" src="assets/footer.JPG">
+</div>

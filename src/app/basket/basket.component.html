@@ -1,0 +1,251 @@
+<div *ngIf="step<3" class="flex text-center m-5">
+  <div *ngFor="let item of basketSteps"
+       (click)="setStep(item.step)"
+       class="border-b-4 bg-bg-light h-[70px] w-1/3 p-3 flex items-center justify-center cursor-pointer"
+       [ngClass]="step === item.step ?
+                  'border-secondary-light text-secondary-light':
+                  'border-secondary-dark text-secondary-dark'">
+    <span>{{item.label}}</span>
+  </div>
+</div>
+
+<ng-container *ngIf="step === 0">
+  <div *ngIf="products.length===0"
+       class="m-20 flex flex-col text-center">
+    <span class="text-primary-dark">V kosiku nemate zadne zbozi</span>
+    <a class="p-3 m-3 bg-bg-light text-secondary-dark" routerLink="/eshop">Zpet do eshopu</a>
+
+  </div>
+  <div *ngIf="products.length>0" class="px-5">
+    <div class="flex flex-col mt-5">
+      <div *ngFor="let product of products"
+           class="grid grid-cols-6 bg-bg-light p-2 mt-4">
+        <span class="text-2xl font-bold text-primary-light col-span-5">{{product.name}}</span>
+        <div class="flex justify-end cursor-pointer p-1" (click)="removeProduct(product)">
+          <svg class="stroke-bg-dark" width="20" height="20" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0.646447" y1="29.613" x2="28.9307" y2="1.32876"/>
+            <line x1="1.39408" y1="0.646447" x2="29.6784" y2="28.9307"/>
+          </svg>
+        </div>
+        <div class="col-span-3 flex flex-col">
+          <span class="text-xs text-primary-dark">barva</span>
+          <span class="text-lg text-primary-light">{{product.color}}</span>
+        </div>
+        <div class="col-span-3 flex flex-col">
+          <span class="text-xs text-primary-dark">velikost</span>
+          <span class="text-lg text-primary-light">{{product.size}}</span>
+        </div>
+
+        <div class="col-span-2 flex flex-col">
+          <span class="text-xs text-primary-dark">pocet</span>
+          <span class="ttext-lg text-primary-light">{{product.count}}</span>
+        </div>
+
+        <div class="col-span-2 flex flex-col">
+          <span class="text-xs text-primary-dark">cena za jeden</span>
+          <span class="text-lg text-primary-light">{{product.priceForOne}}</span>
+        </div>
+
+        <div class="col-span-2 flex flex-col">
+          <span class="text-xs text-primary-dark">mezisoucet</span>
+          <span class="text-xl font-bold text-primary-light">{{product.count * product.priceForOne}}</span>
+        </div>
+      </div>
+    </div>
+<!--    <div class="flex justify-around bg-bg-dark mt-10 p-5">-->
+<!--      <span class="text-2xl text-primary-light">Cena celkem za zbozi</span>-->
+<!--      <span class="text-2xl text-danger">{{getProductsPrice()}}Kc</span>-->
+<!--    </div>-->
+<!--    <div class="flex justify-center">-->
+<!--      <button class="border-2 border-primary-light px-10 py-4 mt-5 mb-10"-->
+<!--              (click)="nextStep()"-->
+<!--      >-->
+<!--        Pokracovat-->
+<!--      </button>-->
+<!--    </div>-->
+  </div>
+</ng-container>
+
+<div class="flex flex-col px-5" *ngIf="step === 1">
+  <span class="text-2xl text-primary-light mx-auto mb-2">Doprava</span>
+  <div class="flex flex-col justify-center border-2 border-primary-dark">
+    <div *ngFor="let t of transport"
+         class="grid grid-cols-6 cursor-pointer border-2"
+         (click)="selectTransport(t.name)"
+         [ngClass]="t.name === selectedTransport ? ' border-primary-light' : 'border-primary-dark'"
+    >
+      <div class="bg-bg-light w-[20px] h-[20px] col-span-1 row-span-2 m-auto"
+           [ngClass]="t.name === selectedTransport ? 'bg-primary-light' : 'bg-primary-dark'"
+      ></div>
+      <span class="text-xl font-bold text-primary-dark col-span-4"
+            [ngClass]="t.name === selectedTransport ? 'text-primary-light' : 'text-primary-dark'"
+      >{{t.name}}</span>
+      <img class="col-span-1 row-span-1 px-2 cursor-pointer w-[40px] mx-auto" src="assets/pi.svg">
+      <span class="col-span-4 text-primary-dark"
+            [ngClass]="t.name === selectedTransport ? 'text-primary-light' : 'text-primary-dark'"
+      >{{t.detail}}</span>
+      <span class="col-span-1 row-span-1 text-center text-primary-light">{{getPriceText(t.price)}}</span>
+    </div>
+  </div>
+  <span class="text-2xl text-primary-light mx-auto mb-2 mt-5">Platba</span>
+  <div class="flex flex-col justify-center border-2 border-primary-dark">
+    <div *ngFor="let p of paymentMethods"
+         class="grid grid-cols-6 cursor-pointer border-2"
+         (click)="selectPayment(p.name)"
+         [ngClass]="p.name === selectedPayment ? ' border-primary-light' : 'border-primary-dark'"
+    >
+      <div class="bg-bg-light w-[20px] h-[20px] col-span-1 row-span-2 m-auto"
+           [ngClass]="p.name === selectedPayment ? 'bg-primary-light' : 'bg-primary-dark'"
+      ></div>
+      <span class="text-xl font-bold text-primary-dark col-span-4"
+            [ngClass]="p.name === selectedPayment ? 'text-primary-light' : 'text-primary-dark'"
+      >{{p.name}}</span>
+      <img class="col-span-1 row-span-1 px-2 cursor-pointer w-[40px] mx-auto" src="assets/pi.svg">
+      <span class="col-span-4 text-primary-dark"
+            [ngClass]="p.name === selectedPayment ? 'text-primary-light' : 'text-primary-dark'"
+      >{{p.detail}}</span>
+      <span class="col-span-1 row-span-1 text-center text-primary-light">{{getPriceText(p.price)}}</span>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="step === 2">
+  <div class="m-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div class="flex flex-col mx-auto">
+        <span class="text-xl font-bold text-primary-light">Osobni udaje</span>
+
+        <form class="max-w-sm py-3">
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="name" class="text-primary-dark my-auto">Jmeno a prijmeni:</label>
+            <input type="text" id="name" class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="Jan Novak" required />
+          </div>
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="email" class="text-primary-dark my-auto">E-mail:</label>
+            <input type="email" id="email" class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="novak@mail.cz" required />
+          </div>
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="tel" class="text-primary-dark my-auto">Telefon:</label>
+            <input type="tel" id="tel" class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="123123123" required />
+          </div>
+       </form>
+      </div>
+      <div class="flex flex-col mx-auto">
+        <span class="text-xl font-bold text-primary-light">Fakturacni udaje </span>
+        <form class="max-w-sm py-3">
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="address" class="text-primary-dark my-auto">Ulice a cislo domu</label>
+            <input type="text" id="address" class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="Narodni 120/15" required />
+          </div>
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="city" class="text-primary-dark my-auto">Mesto</label>
+            <input type="text" id="city" class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="Praha" required />
+          </div>
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="psc" class="text-primary-dark my-auto">PSC:</label>
+            <input type="number" id="psc" class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="170 00" required />
+          </div>
+        </form>
+      </div>
+      <span class="sm:col-span-2 text-xl text-primary-light font-bold mx-auto mb-2">Rekapitulace objednávky</span>
+      <div class="flex flex-col mx-auto sm:col-span-2 w-full border-4 border-primary-dark px-5 py-2">
+        <div *ngFor="let p of products" class="flex justify-between">
+          <div>
+            <span class="text-primary-light mr-2">{{p.count}} x </span>
+            <span class="text-primary-light mr-2">{{p.name}}</span>
+            <span class="text-primary-light mr-2"> - {{p.color}}</span>
+            <span class="text-primary-light"> - {{p.size}}</span>
+          </div>
+          <span class="text-primary-light align-self-end">{{p.count * p.priceForOne}} kc</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="step < 3">
+  <div class="border-4 border-primary-light mt-10 m-5">
+    <div class="flex justify-between py-2 px-5 ">
+      <span class="text-xl text-primary-dark">Cena celkem za zbozi</span>
+      <span class="text-xl text-primary-dark">{{getProductsPrice()}}Kc</span>
+    </div>
+    <div *ngIf="step>0" class="flex justify-between py-2 px-5">
+      <span class="text-xl text-primary-dark">Cena dopravy</span>
+      <span class="text-xl text-primary-dark">{{getTransportPrice() ?? ' - '}}Kc</span>
+    </div>
+    <div *ngIf="step>0" class="flex justify-between py-2 px-5">
+      <span class="text-xl text-primary-dark">Cena platby</span>
+      <span class="text-xl text-primary-dark">{{getPaymentPrice() ?? ' - '}}Kc</span>
+    </div>
+    <div *ngIf="step>0" class="flex justify-between py-2 px-5 border-t-2 border-primary-dark bg-bg-light">
+      <span class="text-xl text-primary-light">Cena celkem</span>
+      <span class="text-2xl font-bold text-primary-light">{{getPrice()}}Kc</span>
+    </div>
+  </div>
+  <div *ngIf="step===2" class="flex flex-col m-5">
+    <div class="flex h-5 mt-3">
+      <input id="terms" type="checkbox"
+             class="w-4 h-4 mt-auto" required />
+      <label for="terms" class="ml-3 text-primary-dark">
+        souhlasím s
+        <a href="/assets/documents/obchodni_podminky.pdf"
+           target="_blank"
+           class="hover:underline text-primary-light">
+          obchodními podmínkami
+        </a></label>
+    </div>
+    <div class="flex h-5 mt-3">
+      <input id="gdpr" type="checkbox"
+             class="w-4 h-4 mt-auto" required />
+      <label for="gdpr" class="ml-3 text-primary-dark">
+        souhlasím s
+        <a href="/assets/documents/gdpr.pdf"
+           target="_blank"
+           class="hover:underline text-primary-light">
+          Podmínkami ochrany osobních údajů.
+        </a></label>
+    </div>
+
+  </div>
+
+  <div class="flex flex-row justify-center">
+    <button class="px-10 py-4 m-5 mb-10 text-xs text-primary-dark"
+            (click)="stepBack()">
+      {{step===0 ? 'zpet do eshopu' : 'zpet'}}
+    </button>
+    <button class="border-2 border-primary-light text-primary-light text-2xl px-10 py-4 m-5 mb-10 rounded disabled:cursor-not-allowed"
+            [disabled]="disableNextStep()"
+            (click)="step===2 ? order() : nextStep()">
+      <b>{{step===2 ? 'Objednat' : 'Pokracovat'}}</b>
+      <span class="block text-sm">{{step===2 ? 's povinnosti platby' : ''}}</span>
+    </button>
+  </div>
+
+
+</ng-container>
+
+
+<div *ngIf="step === 3" class="flex flex-col my-10">
+  <span class="text-2xl font-bold text-center text-primary-light">Dekujeme za objednavku</span>
+  <span class="text-xl text-center text-primary-light mt-3">
+    Brzy vam prijde mail s potvrzenim objednavky
+  </span>
+  <span class="text-xl text-center text-primary-light mt-3">
+    Zvolili jste zpusob platby prevodem a proto vas zadame o zaplaceni xx na ucet xx
+  </span>
+  <div class="flex justify-center">
+    <button class="border-2 border-primary-light text-primary-light text-xl px-3 py-1 m-5 mb-10 rounded"
+            (click)="goToEshop()"> zpet do eshopu
+    </button>
+    <button class="border-2 border-primary-light text-primary-light text-xl px-3 py-1 m-5 mb-10 rounded"
+            (click)="goToHome()"> zpet na hlavni stranu
+    </button>
+  </div>
+</div>
+
