@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { importProvidersFrom, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,12 @@ import { DocumentsComponent } from './documents/documents.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { StepsComponent } from './steps/steps.component';
+import { HttpClientModule  } from "@angular/common/http";
+import { Apollo, APOLLO_OPTIONS } from "apollo-angular";
+import { HttpLink } from 'apollo-angular/http';
+import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/core';
+import { URI } from "./apollo/graphql.config";
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -43,14 +49,31 @@ import { StepsComponent } from './steps/steps.component';
     TranspotPaymentComponent,
     DocumentsComponent,
     ContactFormComponent,
-    StepsComponent
+    StepsComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+      importProvidersFrom(HttpClientModule),
+      {
+        provide: APOLLO_OPTIONS,
+        useFactory: (
+          httpLink: HttpLink,
+        ): ApolloClientOptions<unknown> => ({
+          link: ApolloLink.from([
+            httpLink.create({ uri: URI }),
+          ]),
+          cache: new InMemoryCache(),
+        }),
+        deps: [HttpLink],
+    },
+    Apollo,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

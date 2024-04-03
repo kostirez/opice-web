@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { MenuItem } from "../menu/menu.component";
 import { Router } from "@angular/router";
+import { SingleTypesService } from "../apollo/single-types.service";
+import { ImageService } from "../image.service";
 
 
-const ESHOP_ITEMS: (MenuItem & {img: string})[] = [
-  {name: 'Klíčící sklenice', url: '/eshop/sklenice', img: 'assets/sklenicka.JPG'},
-  {name: 'Klíčící misky', url: '/eshop/misky', img: 'assets/oval.JPG'},
-  {name: 'microgreens', url: '/eshop/microgreens', img: 'assets/oval.JPG'},
-];
+export type EshopItem = MenuItem & {img: string}
 
 @Component({
   selector: 'app-eshop',
@@ -15,10 +13,37 @@ const ESHOP_ITEMS: (MenuItem & {img: string})[] = [
   styleUrl: './eshop.component.scss'
 })
 export class EshopComponent {
-    eshopItems = ESHOP_ITEMS;
+  eshopItems: EshopItem[] = [];
+  data: any = {};
+  loading = true;
+  errors: any;
 
-    constructor(private router: Router) {
-    }
+  items: EshopItem[] = []
+
+  // private subscription: Subscription | null=null;
+
+  constructor(
+    private singleTypesService: SingleTypesService,
+    private router: Router,
+    private imageService: ImageService) {}
+
+  ngOnInit() {
+    this.singleTypesService.getEshopData()
+      .subscribe(result => {
+        this.loading = result.loading;
+        this.eshopItems = result.data;
+        console.log('data', this.items)
+      })
+  }
+  ngOnDestroy() {
+    // if(this.queryCategories){
+    //   this.queryCategories.unsubscribe();
+    // }
+  }
+
+  getImgBase(): string {
+    return this.imageService.getImageBase();
+  }
 
   goTo(url: string) {
     this.router.navigate([url]);
