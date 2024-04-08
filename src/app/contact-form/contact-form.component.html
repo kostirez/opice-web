@@ -1,29 +1,52 @@
-<div class="flex flex-col w-full max-w-[1000px] mx-auto p-10 bg-bg-light rounded-2xl shadow-2xl mb-20">
+<div class="relative flex flex-col w-full max-w-[1000px] mx-auto p-10 bg-bg-light rounded-2xl shadow-2xl mb-20">
   <span class="text-center text-xl text-primary-dark mb-3">Kontaktní formulář</span>
-  <form class=" flex flex-col w-full grid grid-cols-1 sm:grid-cols-3 gap-5">
+  <form [formGroup]="messageForm"
+        (ngSubmit)="onSubmit()"
+        class="flex flex-col w-full grid grid-cols-1 sm:grid-cols-3 gap-5">
     <div class="col-span-1">
       <div class="mt-2 w-full flex flex-col">
         <label for="mail" class="text-primary-dark">Mail</label>
-        <input type="text" id="mail" class="px-3 py-1 border-2 border-primary-dark rounded focus:ring-primary-light"
-               placeholder="muj@mail.cz" required />
+        <input type="email"
+               id="mail"
+               formControlName="mail"
+               class="px-3 py-1 border-2 border-primary-dark rounded focus:ring-primary-light"
+               placeholder="muj@mail.cz"/>
+        <div class="error" *ngIf="messageForm.get('mail').touched">
+          <p class="text-danger" *ngIf="messageForm.get('mail').errors?.['required']">Zadejte email</p>
+          <p class="text-danger" *ngIf="messageForm.get('mail').errors?.['email']">Zadejte email ve spravnem formatul</p>
+        </div>
       </div>
       <div class="mt-2 w-full flex flex-col">
         <label for="name" class="text-primary-dark">Jmeno/firma</label>
-        <input type="text" id="name" class="px-3 py-1 border-2 border-primary-dark rounded focus:ring-primary-light"
-               placeholder="Novak Martin" required />
+        <input type="text"
+               id="name"
+               formControlName="name"
+               class="px-3 py-1 border-2 border-primary-dark rounded focus:ring-primary-light"
+               placeholder="Novak Martin"/>
+        <div class="error" *ngIf="messageForm.get('name').touched">
+          <p class="text-danger" *ngIf="messageForm.get('name').errors?.['required']">Zadejte vase jmeno nebo jmeno firmy</p>
+        </div>
       </div>
     </div>
 
     <div class="mt-2 w-full col-span-2 flex flex-col">
-      <label for="message" class="text-primary-dark">Zpráva</label>
-      <textarea placeholder="Message*"
-                id="message"
+      <label for="text" class="text-primary-dark">Zpráva</label>
+      <textarea placeholder="text"
+                id="text"
+                formControlName="text"
                 class="h-full w-full px-3 py-1 border-2 border-primary-dark rounded focus:ring-primary-light">
-        </textarea>
+      </textarea>
+      <div class="error" *ngIf="messageForm.get('text').touched">
+        <p class="text-danger" *ngIf="messageForm.get('text').errors?.['required']">Zadejte zpravu</p>
+      </div>
     </div>
-  </form>
+    <div class="col-span-3 w-full flex justify-center">
+      <button class="uppercase font-bold bg-primary-light text-white p-3 mt-10 w-[10rem] rounded-lg"
+              type="submit">Odeslat</button>
+    </div>
 
-  <button class="uppercase font-bold bg-primary-light text-white p-3 mx-auto mt-10 w-[10rem] rounded-lg">
-    Odeslat
-  </button>
+  </form>
+  <div *ngIf="sent || loading" class="absolute top-0 left-0 w-full h-full flex items-center bg-bg-light opacity-80 rounded-2xl"></div>
+  <span *ngIf="sent" class="absolute top-[40%] text-center w-full h-full text-primary-dark text-3xl font-bold">{{sentMessage}}</span>
+  <app-loading *ngIf="loading"></app-loading>
 </div>

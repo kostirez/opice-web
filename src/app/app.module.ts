@@ -28,6 +28,7 @@ import { HttpLink } from 'apollo-angular/http';
 import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/core';
 import { URI } from "./apollo/graphql.config";
 import { LoadingComponent } from './loading/loading.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -57,6 +58,8 @@ import { LoadingComponent } from './loading/loading.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
       importProvidersFrom(HttpClientModule),
