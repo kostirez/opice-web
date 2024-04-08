@@ -1,25 +1,23 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, NavigationError, NavigationStart, Router } from "@angular/router";
+import { NavigationEnd, NavigationError, Router } from "@angular/router";
+import { MenuItem } from "../model/view";
 
-export interface MenuItem {
-  name: string;
-  url: string;
-}
+
 const DEFAULT_LABEL = "Zrzavá opice";
 
 const MENU_ITEMS: MenuItem[] = [
-  {name: DEFAULT_LABEL, url: '/'},
-  {name: 'eshop', url: '/eshop'},
-  {name: 'pro restaurace', url: '/pro-restaurace'},
-  {name: 'doprava a platba', url: '/doprava-a-platba'},
-  {name: 'kontakty', url: '/kontakty'},
-  {name: 'dokumenty', url: '/dokumenty'},
+  {head: DEFAULT_LABEL, url: '/'},
+  {head: 'eshop', url: '/eshop'},
+  {head: 'pro restaurace', url: '/pro-restaurace'},
+  {head: 'doprava a platba', url: '/doprava-a-platba'},
+  {head: 'kontakty', url: '/kontakty'},
+  {head: 'dokumenty', url: '/dokumenty'},
 ];
 
 const SUB_ITEMS: MenuItem[] = [
-  {name: 'sklenice', url: '/eshop/sklenice'},
-  {name: 'misky', url: '/eshop/misky'},
-  {name: 'microgreens', url: '/eshop/microgreens'},
+  {head: 'sklenice', url: '/eshop/sklenice'},
+  {head: 'misky', url: '/eshop/misky'},
+  {head: 'microgreens', url: '/eshop/microgreens'},
 ];
 
 @Component({
@@ -43,9 +41,9 @@ export class MenuComponent {
     this.router.events
     .subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.currentPage = this.menuItems.find(item => item.url === event.url)?.name ?? DEFAULT_LABEL;
+        this.currentPage = this.menuItems.find(item => item.url === event.url)?.head ?? DEFAULT_LABEL;
         if (this.currentPage == DEFAULT_LABEL) {
-          this.currentPage = this.menuSubItems.find(item => item.url === event.url)?.name ?? DEFAULT_LABEL;
+          this.currentPage = this.menuSubItems.find(item => item.url === event.url)?.head ?? DEFAULT_LABEL;
         }
         this.showBasketIcon = this.currentPage !== 'kosik';
       }

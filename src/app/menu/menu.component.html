@@ -29,7 +29,7 @@
       <div *ngIf="navbarOpen" class="flex flex-col pt-[80px]">
         <ul class="mx-auto">
           <li *ngFor="let item of menuItems" class="flex justify-center">
-            <a class="p-2 m-2 font-bold text-primary-dark" (click)="toggleNavbar()" [routerLink]="item.url">{{item.name}}</a>
+            <a class="p-2 m-2 font-bold text-primary-dark" (click)="toggleNavbar()" [routerLink]="item.url">{{item.head}}</a>
           </li>
         </ul>
           <img class="mt-auto w-[100vw]" src="assets/footer.JPG">
@@ -47,7 +47,7 @@
       <div class="flex">
         <ul class="mx-auto flex flex-wrap justify-around">
           <li *ngFor="let item of menuItems.slice(1,7)">
-            <a class="text-xl mx-2 text-primary-dark" [routerLink]="item.url">{{item.name}}</a>
+            <a class="text-xl mx-2 text-primary-dark" [routerLink]="item.url">{{item.head}}</a>
           </li>
         </ul>
       </div>

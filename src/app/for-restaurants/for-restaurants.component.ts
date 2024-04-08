@@ -1,84 +1,20 @@
-import { Component, ViewChild } from '@angular/core';
-import { ViewItem } from "../home/home.component";
+import { Component } from '@angular/core';
+import { map, Observable, of, tap } from "rxjs";
+import { SingleTypesService } from "../apollo/single-types.service";
+import { PicArray, PicItem, TextItem } from "../model/view";
+import { ImageService } from "../image.service";
 
-const FAQ: ViewItem[] = [
-  {
-    head: 'Ochutnejte',
-    description: 'Jako první krok Vám přivezeme náš ochutnávkový box se vším, co pěstujeme. Dodávka je zcela zdarma a vy si v klidu můžete rozmyslet co se vám líbí a chutná',
-    imgSrc: 'assets/hex.JPG',
-  },
-  {
-    head: 'Objednejte',
-    description: 'Vyberete o jaké druhy microgreens a v jakém množství máte zájem. Dohodneme data dodání a o nic dalšího se nemusíte starat',
-    imgSrc: 'assets/hex.JPG',
-  },
-  {
-    head: 'Dostávejte',
-    description: 'Domluvené množství microgreens vám budeme vozit až do vaší restaurace, přesně jak jsme se domluvili.',
-    imgSrc: 'assets/hex.JPG',
-  },
-  ];
 
-const FAQ_2: ViewItem[] = [
-  {
-    head: 'Pravidelný dovoz',
-    description: 'Pravidelně dovážet do vaší restaurace čerstvé microgreens',
-    imgSrc: 'assets/hex.JPG',
-  },
-  {
-    head: 'Jednorázové akce',
-    description: 'Napěstujeme microgreens pro vaší akci.',
-    imgSrc: 'assets/hex.JPG',
-  },
-  {
-    head: 'Rozvoz po centru prahy',
-    description: 'Microgreens rozvážíme v rámci centra prahy zdarma.',
-    imgSrc: 'assets/hex.JPG',
-  },
-  {
-    head: 'Pravidelný dovoz',
-    description: 'Pravidelně dovážet do vaší restaurace čerstvé microgreens',
-    imgSrc: 'assets/hex.JPG',
-  },
-  {
-    head: 'Jednorázové akce',
-    description: 'Napěstujeme microgreens pro vaší akci.',
-    imgSrc: 'assets/hex.JPG',
-  },
-  {
-    head: 'Rozvoz po centru prahy',
-    description: 'Microgreens rozvážíme v rámci centra prahy zdarma.',
-    imgSrc: 'assets/hex.JPG',
-  },
-];
-
-interface MicrogreensOption {
-  name: string;
-  picSrc: string;
+export type RestaurantData = {
+  head: string;
+  text: string;
+  head_2: string;
+  text_2: string;
+  main_img: string;
+  how_it_works: string;
+  meals: PicArray;
 }
 
-const MICROGREENS_OPTIONS: MicrogreensOption[] = [
-  {
-    name: 'Vojteska',
-    picSrc: 'assets/harvest/alfa.JPG',
-  },
-  {
-    name: 'Rericha',
-    picSrc: 'assets/harvest/rericha.JPG',
-  },
-  {
-    name: 'Rukola',
-    picSrc: 'assets/harvest/rukola.JPG',
-  },
-  {
-    name: 'redkvicka',
-    picSrc: 'assets/harvest/redkvicka.JPG',
-  },
-  {
-    name: 'Hrasek',
-    picSrc: 'assets/harvest/hrasek.JPG',
-  },
-]
 
 @Component({
   selector: 'app-for-restaurants',
@@ -87,15 +23,37 @@ const MICROGREENS_OPTIONS: MicrogreensOption[] = [
 })
 export class ForRestaurantsComponent {
 
-  slides = [
-    '/assets/meals/hrasek.jpg',
-    '/assets/meals/polevka.jpg',
-    '/assets/meals/salat.jpg',
-  ];
+  loading = true;
 
-  viewItems = FAQ;
-  viewItems_2 = FAQ_2;
+  restaurantData$: Observable<RestaurantData> =
+    this.singleTypesService.getRestaurantData<RestaurantData>()
+    .pipe(
+      tap(val => this.loading = val.loading),
+      map(d => d.data));
 
-  micrgreensOptions = MICROGREENS_OPTIONS
 
+  offers$: Observable<TextItem[]> =
+    this.singleTypesService.getRestaurantOfferData<{offers: TextItem[]}>()
+      .pipe(
+        map(d => d.data.offers));
+
+
+  growOptions$: Observable<PicItem[]> =
+    this.singleTypesService.getGrowOptionData<{items: PicItem[]}>()
+      .pipe(
+        map(d => d.data.items));
+
+  constructor(
+    private singleTypesService: SingleTypesService,
+    private imageService: ImageService,
+  ) {}
+
+
+  getBase(): string {
+    return this.imageService.getImageBase();
+  }
+
+  getObsSlides(slides: PicArray): Observable<PicArray> {
+    return of(slides);
+  }
 }

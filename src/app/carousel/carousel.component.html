@@ -1,9 +1,9 @@
 <div class="relative w-full h-0 pb-[56.25%]">
-  <div *ngFor="let slide of slides"
-       class="absolute top-0 left-0 z-1 w-full h-full">
-    <img *ngIf="selectedSlide=== slide"
-         class="m-auto"
-         [src]="slide" @carouselAnimation>
+  <div *ngFor="let slide of slides; let  i = index"
+       class="absolute top-0 left-0 z-1 object-contain">
+    <img *ngIf="i===step"
+         class="m-auto "
+         [src]="getBase() + slide.url" @carouselAnimation>
   </div>
   <button *ngIf="showBtns" class="absolute left-0 top-[50%] pr-[20%] pl-[10%] cursor-pointer" (click)="move(-1)">
     <svg class="" width="20" height="20" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">

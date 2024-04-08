@@ -1,34 +1,37 @@
-<div class="flex flex-col">
-
-  <div class="grid grid-cols-1 sm:grid-cols-2 my-10 text-center sm:text-left">
+<div *ngIf="homeData$ | async as homeData" class="flex flex-col">
+  <div *ngIf="homeData" class="grid grid-cols-1 sm:grid-cols-2 items-center my-10 text-center sm:text-left">
     <div class="flex flex-col p-5">
-      <span class="text-3xl sm:text-4xl font-bold text-primary-light mb-10">Spojujeme pěstovaní s 3D tiskem</span>
-      <span class="text-xl sm:text-2xl text-primary-dark">Naše produkty jsme pečlivě nadesignovali a vytiskli na 3D tiskárně.</span>
+      <span class="text-3xl sm:text-4xl font-bold text-primary-light mb-10">{{homeData.head}}</span>
+      <span class="text-xl sm:text-2xl text-primary-dark">{{homeData.text}}</span>
     </div>
-    <img class="" src="assets/footer.JPG">
+    <img class="max-w-[500px] mx-auto" [src]="getBase() + homeData.main_pic.url">
   </div>
 
   <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Naše produkty</span>
   <app-eshop></app-eshop>
 
-  <div class="flex flex-col text-center mt-20 p-5">
-    <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mb-10">Microgreens pro restaurace</span>
-    <div class="flex flex-wrap justify-around gap-5 sm:gap-10 my-5">
-      <div *ngFor="let item of restaurants"
-           class="max-w-[200px] sm:max-w-[300px] p-5 sm:p-12 bg-bg-light rounded-xl flex items-center shadow-2xl">
-        <span class="text-xl sm:text-2xl text-primary-dark">{{item}}</span>
-      </div>
+  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center my-10">
+    Microgreens pro restaurace
+  </span>
+  <div class="flex flex-wrap justify-around gap-5 sm:gap-10 my-5">
+    <div *ngFor="let item of offers$ | async"
+         class="max-w-[200px] sm:max-w-[300px] p-5 sm:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
+      <span class="text-2xl sm:text-3xl text-primary-light">{{item.head}}</span>
+      <span class="text-xl text-primary-dark pt-3">{{item.text}}</span>
     </div>
-    <a routerLink="/pro-restaurace" class="my-10 sm:my-10">
-      <button class="mx-2 text-white text-xl sm:text-2xl font-bold rounded-md bg-primary-light py-4 sm:px-10 w-[270px]">
-        Zjistit vice
-      </button>
-    </a>
+    <div class="w-full flex justify-center">
+      <a routerLink="/pro-restaurace" class="my-10 sm:my-10">
+        <button class="mx-2 text-white text-xl sm:text-2xl font-bold rounded-md bg-primary-light py-4 sm:px-10 w-[270px]">
+          Zjistit vice
+        </button>
+      </a>
+    </div>
   </div>
+
 
   <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Jak využít microgreens</span>
   <div class="my-10 max-h-[600px] overflow-hidden">
-    <app-carousel [delay]="6000" [showBtns]="false" [slides]="slides"></app-carousel>
+    <app-carousel [delay]="1000" [showBtns]="false" [slides$]="getObsSlides(homeData.microgreens_use)"></app-carousel>
   </div>
 
 
