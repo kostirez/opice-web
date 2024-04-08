@@ -1,31 +1,25 @@
-<div class="flex flex-col bg-gradient-to-t sm:bg-gradient-to-l from-gray-100 via-white p-5">
+<div class="mx-5 flex flex-col bg-gradient-to-t sm:bg-gradient-to-l from-bg-light  via-white shadow-2xl rounded-xl p-5">
   <div class="flex flex-col sm:flex-row text-center ">
     <div class="min-w-[50%] flex flex-col justify-between">
-      <app-carousel [delay]="0" [showBtns]="true" [slides]="slides"></app-carousel>
-      <div class="mt-5 hidden sm:block">
-        <button class="mx-auto color-primary-light border-2 border-secondary-dark py-1 mt-5 w-[200px]"
-                (click)="detailClick()">
-          {{detailText}} detail
-        </button>
-      </div>
+      <app-carousel [delay]="0" [showBtns]="true" [slides$]="getObsSlides(slides)"></app-carousel>
     </div>
-    <div class="flex flex-col text-center">
+    <div class="flex flex-col text-center sm:text-left sm:pl-10 w-full">
       <h1 class="text-2xl text-primary-light font-bold mt-3">{{productInfo.name}}</h1>
       <h4 class="text-xl text-primary-light mt-3">{{productInfo.description}}</h4>
       <div class="sm:hidden">
-        <button class="mx-auto color-primary-light border-2 border-secondary-dark py-1 mt-5 w-[200px]" (click)="detailClick()">{{detailText}} detail</button>
-        <div *ngIf="showDetail" class="mt-5">
-          <span class="text-sm">{{productInfo.detail}}</span>
-        </div>
+<!--        <button class="mx-auto color-primary-light border-2 border-secondary-dark py-1 mt-5 w-[200px]" (click)="detailClick()">{{detailText}} detail</button>-->
+<!--        <div *ngIf="showDetail" class="mt-5">-->
+<!--          <span class="text-sm">{{productInfo.detail}}</span>-->
+<!--        </div>-->
       </div>
 
-
+      <!--         size       -->
       <ng-container *ngIf="sizeLabel">
         <span class="text-xl text-primary-dark mt-5">{{sizeLabel}}</span>
-        <div class="flex justify-center mt-3">
+        <div class="flex justify-center sm:justify-start mt-3">
           <div *ngFor="let size of productInfo.sizes"
-               class="mx-2  max-w-[40%] border-2 border-primary-dark relative cursor-pointer"
-               [ngClass]="size.name === selectedSize ? 'border-primary-light' : 'border-secondary-dark'"
+               class="mx-2 sm:ml-0 sm:mr-3 p-2 max-w-[40%] border-2 border-primary-dark relative cursor-pointer"
+               [ngClass]="size.name === selectedSize ? 'border-primary-light' : 'border-primary-dark'"
                (click)="selectSize(size.name)">
             <span class="text-center text-primary-light text-2xl ">{{size.name}}</span>
             <img class="absolute top-0" [src]="size.picSrc">
@@ -33,21 +27,23 @@
         </div>
         <span class="text-danger">{{sizeErr}}</span>
       </ng-container>
+
+      <!--         color       -->
       <ng-container *ngIf="productInfo.colors.length > 0">
         <h3 class="text-xl text-primary-dark mt-5">Barevne varianty</h3>
-        <div  class="flex justify-center mt-3">
+        <div  class="flex justify-center sm:justify-start mt-3">
           <div *ngFor="let color of productInfo.colors"
-               class="w-[40px] h-[40px] mx-2 border-2 cursor-pointer"
+               class="mx-2 sm:ml-0 sm:mr-3 w-[40px] h-[40px] mx-2 border-2 cursor-pointer"
                [ngStyle]="{'background-color': color.code}"
-               [ngClass]="color.name === selectedColor ? 'border-primary-light' : 'border-secondary-dark'"
+               [ngClass]="color.name === selectedColor ? 'border-primary-light' : 'border-primary-dark'"
                (click)="selectColor(color.name)"></div>
         </div>
         <span class="text-danger">{{colorErr}}</span>
       </ng-container>
 
-      <div class="flex justify-center mt-5">
-        <span class="text-2xl text-center w-[150px] my-auto">{{productInfo.price}}</span>
-        <button (click)="addToBasket(productInfo)" class="mx-2 color-primary-light border-2 border-secondary-dark py-4 w-[150px]">Pridat do kosiku</button>
+      <div class="flex justify-center sm:justify-between mt-5 w-full h-[4rem]">
+        <span class="text-2xl text-center text-primary-light mx-5 my-auto">{{productInfo.price}} Kč</span>
+        <button (click)="addToBasket(productInfo)" class="mx-2 text-primary-dark hover:text-primary-light font-bold border-2 hover:border-4 border-primary-dark rounded-xl py-4 w-[150px]">Pridat do kosiku</button>
       </div>
     </div>
 

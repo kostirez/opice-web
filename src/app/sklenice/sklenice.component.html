@@ -1,4 +1,6 @@
-<div>
-  <app-product-category-nav [actual]="'sklenice'"></app-product-category-nav>
-  <product-box *ngFor="let product of products" [productInfo]="product"></product-box>
+<div class="flex flex-col gap-10 mb-10 min-h-[100vh]">
+  <product-box *ngFor="let product of products$ | async"
+               [productInfo]="product"
+               [sizeLabel]="'velikost'">
+  </product-box>
 </div>

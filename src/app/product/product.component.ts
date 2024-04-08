@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BasketService } from "../basket.service";
+import { PicArray } from "../model/view";
+import { Observable, of } from "rxjs";
 
 export interface Color {
   name: string;
@@ -19,7 +21,7 @@ export interface ProductInfo {
   colors: Color[];
   sizes: Size[];
   price: number;
-  picSrc: string[];
+  pictures: PicArray;
 }
 
 export interface ProductSummary {
@@ -43,7 +45,7 @@ export class ProductComponent implements OnInit{
   showDetail = false;
   detailText: string = 'zobrazit';
 
-  slides: string[] = [];
+  slides: PicArray = [];
 
   selectedColor: string | null = null;
   selectedSize: string | null = null;
@@ -56,7 +58,7 @@ export class ProductComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.slides = this.productInfo.picSrc;
+    this.slides = this.productInfo.pictures;
   }
 
 
@@ -95,6 +97,10 @@ export class ProductComponent implements OnInit{
   selectSize(sizeName: string) {
     this.selectedSize = sizeName;
     this.sizeErr = '';
+  }
+
+  getObsSlides(slides: PicArray): Observable<PicArray> {
+    return of(slides);
   }
 
 

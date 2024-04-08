@@ -11,7 +11,6 @@ import { SkleniceComponent } from './sklenice/sklenice.component';
 import { MiskyComponent } from './misky/misky.component';
 import { MicrogreensComponent } from './microgreens/microgreens.component';
 import { ProductComponent } from './product/product.component';
-import { ProductCategoryNavComponent } from './product-category-nav/product-category-nav.component';
 import { BasketComponent } from './basket/basket.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { BasketIconComponent } from './basket-icon/basket-icon.component';
@@ -41,7 +40,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MiskyComponent,
     MicrogreensComponent,
     ProductComponent,
-    ProductCategoryNavComponent,
     BasketComponent,
     CarouselComponent,
     BasketIconComponent,

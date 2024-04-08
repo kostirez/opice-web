@@ -13,10 +13,12 @@ import { DocumentsComponent } from "./documents/documents.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'eshop', component: EshopComponent},
-  { path: 'eshop/sklenice', component: SkleniceComponent},
-  { path: 'eshop/misky', component: MiskyComponent},
-  { path: 'eshop/microgreens', component: MicrogreensComponent},
+  { path: 'eshop', component: EshopComponent,
+    children: [
+      {path: 'sklenice', component: SkleniceComponent},
+      {path: 'misky', component: MiskyComponent},
+      {path: 'microgreens', component: MicrogreensComponent}
+    ]},
   { path: 'kosik', component: BasketComponent},
   { path: 'pro-restaurace', component: ForRestaurantsComponent},
   { path: 'kontakty', component: ContactComponent},
