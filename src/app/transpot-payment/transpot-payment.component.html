@@ -1,48 +1,29 @@
-<div class="flex flex-col my-10 px-5">
-  <span class="text-2xl text-primary-light text-center">Platba</span>
-  <div class="mt-5 flex flex-col">
-    <span><span class="font-extrabold">Převodem na účet: </span>
-    Platby nám zasílejte na náš bankovní účet 2602805796/2010 společně s variabilním symbolem, který se shoduje s číslem objednávky. Podrobnosti k platbě se Vám zobrazí bezprostředně po odeslání objednávky a také Vám je zašleme mailem.
-    </span>
-    <span class="mt-3"><span class="font-extrabold">Hotově při osobním vyzvednutí: </span>
-      Pokud si zvolíte osobní vyzvednutí můžete nám zaplatit při převzetí zboží. Upozorňujeme, že při osobním vyzvednutí není možné platit kartou!
-    </span>
-    <span class="mt-3"><span class="font-extrabold">Dobírkou: </span>
-      U některých typů dopravy je možné zaplatit při převzetí zboží. Tato možnost je zpoplatněna částkou 30 Kč.
-    </span>
+<div class="flex flex-col my-10 px-5 mb-20">
+  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center my-10">
+    Platba
+  </span>
+  <div class="flex flex-wrap justify-around gap-5 sm:gap-10 my-5">
+    <div *ngFor="let item of payment$ | async"
+         class="max-w-[200px] sm:max-w-[300px] p-5 sm:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
+      <span class="text-2xl sm:text-3xl text-primary-light">{{item.head}}</span>
+      <span class="text-xl text-primary-dark pt-3">{{item.text}}</span>
+      <span class="text-xl text-primary-dark pt-3">{{item.price==0 ? 'zdarma' : item.price + ' Kč'}}</span>
+    </div>
   </div>
 
-  <span class="text-2xl text-primary-light text-center mt-5">Doprava</span>
-  <span class="text-primary-dark mt-3">
+  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center my-10">
+    Doprava
+  </span>
+  <span class="text-primary-dark text-center my-5">
     Při balení produktů recyklujeme již použité materiály, abychom  zbytečně nevytvářeli další odpad. Objednávka Vám tak může přijí v krabici od jiného výrobce (například v obalu od filamentů, ze kterých tiskneme).
   </span>
-  <div class="mt-5 flex flex-col">
-
-
-    <span class="font-extrabold text-xl">Osobní odběr: </span>
-    <span>
-      Objednávku si můžete zdarma vyzvednout osobně na adrese Veletržní 41 Praha 7.  Lze tak učinit po předchozí domluvě. Po odeslání objednávky Vám pošleme mail, kde Vás budeme informovat o časových možnostech pro vyzvednutí v následujících 2 týdnech.
-    </span>
-
-    <span class="font-extrabold text-xl mt-3">Česká pošta: </span>
-    <span>
-      <span class="font-extrabold mt-2">Balík do ruky: </span>
-      Balík příjde až k Vám domu, pokud vás pošťák nezastihne doma bude balík uložen na nejbližší poště. cena: 115 Kč.
-    </span>
-    <span>
-      <span class="font-extrabold mt-2">Balíkovna: </span>
-      Balík bude doručen do Vámi zvolené balíkovny. cena: 68 Kč
-    </span>
-
-    <span class="font-extrabold text-xl mt-3">Zásilkovna: </span>
-    <span>
-      <span class="font-extrabold mt-2">Doručení na adresu: </span>
-      Přepravní služba Vám doručí balík až domů. O předpokládaném příjezdu Vás bude informovat. cena: 95 Kč
-    </span>
-    <span>
-      <span class="font-extrabold mt-2">Z-point: </span>
-      Balík bude doručen do Vámi zvoleného výdejního místa. cena: 75 Kč
-    </span>
+  <div class="flex flex-wrap justify-around gap-5 sm:gap-10 my-5">
+    <div *ngFor="let item of transport$ | async"
+         class="max-w-[200px] sm:max-w-[300px] p-5 sm:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
+      <span class="text-2xl sm:text-3xl text-primary-light">{{item.head}}</span>
+      <span class="text-xl text-primary-dark pt-3">{{item.text}}</span>
+      <span class="text-xl text-primary-dark pt-3">{{item.price==0 ? 'zdarma' : item.price + ' Kč'}}</span>
+    </div>
   </div>
 </div>
 
