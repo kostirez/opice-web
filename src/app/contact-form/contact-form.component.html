@@ -2,34 +2,34 @@
   <span class="text-center text-xl text-primary-dark mb-3">Kontaktní formulář</span>
   <form [formGroup]="messageForm"
         (ngSubmit)="onSubmit()"
-        class="flex flex-col w-full grid grid-cols-1 sm:grid-cols-3 gap-5">
-    <div class="col-span-1">
+        class="w-full grid grid-cols-3 gap-5">
+    <div class="col-span-3 sm:col-span-1">
       <div class="mt-2 w-full flex flex-col">
-        <label for="mail" class="text-primary-dark">Mail</label>
+        <label for="mail" class="text-primary-dark">E-mail</label>
         <input type="email"
                id="mail"
                formControlName="mail"
                class="px-3 py-1 border-2 border-primary-dark rounded focus:ring-primary-light"
                placeholder="muj@mail.cz"/>
         <div class="error" *ngIf="messageForm.get('mail').touched">
-          <p class="text-danger" *ngIf="messageForm.get('mail').errors?.['required']">Zadejte email</p>
-          <p class="text-danger" *ngIf="messageForm.get('mail').errors?.['email']">Zadejte email ve spravnem formatul</p>
+          <p class="text-danger" *ngIf="messageForm.get('mail').errors?.['required']">Zadejte e-mail</p>
+          <p class="text-danger" *ngIf="messageForm.get('mail').errors?.['email']">Zadejte e-mail ve správném tvaru</p>
         </div>
       </div>
       <div class="mt-2 w-full flex flex-col">
-        <label for="name" class="text-primary-dark">Jmeno/firma</label>
+        <label for="name" class="text-primary-dark">Jméno/firma</label>
         <input type="text"
                id="name"
                formControlName="name"
                class="px-3 py-1 border-2 border-primary-dark rounded focus:ring-primary-light"
                placeholder="Novak Martin"/>
         <div class="error" *ngIf="messageForm.get('name').touched">
-          <p class="text-danger" *ngIf="messageForm.get('name').errors?.['required']">Zadejte vase jmeno nebo jmeno firmy</p>
+          <p class="text-danger" *ngIf="messageForm.get('name').errors?.['required']">Zadejte vaše jméno nebo název firmy</p>
         </div>
       </div>
     </div>
 
-    <div class="mt-2 w-full col-span-2 flex flex-col">
+    <div class="mt-2 w-full col-span-3 sm:col-span-2 flex flex-col">
       <label for="text" class="text-primary-dark">Zpráva</label>
       <textarea placeholder="text"
                 id="text"
@@ -37,7 +37,7 @@
                 class="h-full w-full px-3 py-1 border-2 border-primary-dark rounded focus:ring-primary-light">
       </textarea>
       <div class="error" *ngIf="messageForm.get('text').touched">
-        <p class="text-danger" *ngIf="messageForm.get('text').errors?.['required']">Zadejte zpravu</p>
+        <p class="text-danger" *ngIf="messageForm.get('text').errors?.['required']">Zadejte zprávu</p>
       </div>
     </div>
     <div class="col-span-3 w-full flex justify-center">

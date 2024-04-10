@@ -58,8 +58,9 @@ export class ContactFormComponent {
   }
 
   private handleError(error: HttpErrorResponse): Observable<HttpErrorResponse> {
-    this.sentMessage = 'neco se pokazilo zkuste nam poslat mail';
+    this.sentMessage = 'Omlouváme se, něco se pokazilo. Pošlete nám prosím dotaz přes e-mail';
     this.sent = true;
+    this.loading = false;
     return throwError(error);
   }
 }
