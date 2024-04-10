@@ -1,16 +1,16 @@
-<div class="grid grid-cols-3 pt-2 bg-gradient-to-b from-bg-light via-white sm:p-10">
-  <div class="text-center flex flex-col col-span-3 sm:col-span-1 sm:mt-[-20px]">
+<div class="grid grid-cols-3 pt-2 bg-gradient-to-b from-bg-light via-white sm:px-[15%] sm:py-5">
+  <div class="text-center flex flex-col col-span-3 sm:col-span-1 mt-3">
     <a routerLink="/">
-      <img class="mx-auto w-[50%] sm:w-auto" src="assets/logo_text.svg">
+      <img class="mx-auto w-[50%] sm:hidden" src="assets/logo_text.svg">
     </a>
-    <a class="p-1 text-primary-dark" routerLink="/eshop">e-shop</a>
-    <a class="p-1 text-primary-dark" routerLink="/pro-restaurace">pro restaurace</a>
-    <a class="p-1 text-primary-dark" routerLink="/o-mne">o mne</a>
+    <h2 class="text-primary-light text-2xl font-bold cursor-pointer hidden sm:block" routerLink="/">Zrzavá opice</h2>
+    <a class="p-1 text-primary-dark" routerLink="/">Úvod</a>
+    <a class="p-1 text-primary-dark" routerLink="/eshop">E-shop</a>
+    <a class="p-1 text-primary-dark" routerLink="/pro-restaurace">Pro restaurace</a>
   </div>
   <div class="text-center flex flex-col col-span-3 sm:col-span-1 mt-3">
-    <h2 class="text-primary-light font-bold">Kontakt</h2>
+    <h2 class="text-primary-light text-2xl font-bold cursor-pointer" routerLink="/kontakty" >Kontakt</h2>
     <span class="p-1 text-primary-dark">obchod&#64;zrzavaopice.cz</span>
-    <span class="p-1 text-primary-dark">720258660</span>
     <span class="p-1 text-primary-dark">IČO: 13969200</span>
     <div class="flex justify-center p-1">
       <img class="px-2 cursor-pointer" src="assets/ig.svg" (click)="goToIg()">
@@ -19,10 +19,14 @@
     </div>
   </div>
   <div class="text-center flex flex-col col-span-3 sm:col-span-1 mt-3 pb-2 ">
-    <h2 class="text-primary-light font-bold">Dokumenty</h2>
-    <span class="p-1 text-primary-dark">obchodni podminky</span>
-    <span class="p-1 text-primary-dark">gdpr</span>
-    <span class="p-1 text-primary-dark">reklamace</span>
+    <h2 class="text-primary-light font-bold text-2xl">Dokumenty</h2>
+    <a class="p-1 text-primary-dark cursor-pointer"
+       href="/assets/documents/obchodni_podminky.pdf"
+       target="_blank">Obchodní podmínky</a>
+    <a class="p-1 text-primary-dark cursor-pointer"
+       href="/assets/documents/gdpr.pdf"
+       target="_blank">GDPR</a>
+    <a class="p-1 text-primary-dark" routerLink="/dokumenty">reklamace</a>
   </div>
   <img class="col-span-3 sm:hidden" src="assets/footer.JPG">
 </div>
