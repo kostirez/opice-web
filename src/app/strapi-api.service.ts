@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Message } from "./contact-form/contact-form.component";
 import { Order } from "./basket/basket.service";
 import { Observable } from "rxjs";
+import { environment } from "../environments/environment";
 
 
 
@@ -23,7 +24,7 @@ export class StrapiApiService {
   sendOrder(order: Order): Observable<{data: {attributes: Order}}> {
     return this.http
       .post<{data: {attributes: Order}}>(
-        "http://localhost:1337/api/orders",
+        environment.apiUrl + "/orders",
         {data: order},
         {headers: this.headers}
       );
@@ -32,7 +33,7 @@ export class StrapiApiService {
   sendMessage(message: Message) {
     return this.http
       .post(
-        "http://localhost:1337/api/messages",
+        environment.apiUrl + "/messages",
         {data: message},
         {headers: this.headers}
       );
