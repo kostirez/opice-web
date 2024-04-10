@@ -1,3 +1,3 @@
-import { environment } from "../../enviroments/enviroment";
+import { environment } from "../../environments/enviroment";
 
 export const URI = environment.graphQL;
