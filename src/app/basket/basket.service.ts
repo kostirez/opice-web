@@ -32,15 +32,7 @@ const BASKET_URLS = ['prehled', 'doprava-a-platba', 'souhrn'];
 })
 export class BasketService {
 
-  private products: ProductSummary[] = [
-    {
-      name: 'name',
-      color: 'color',
-      size: "size",
-      count: 2,
-      priceForOne: 234,
-    }
-  ];
+  private products: ProductSummary[] = [];
 
   private stateSubject: Subject<number> = new Subject<number>();
   state$: Observable<number> = this.stateSubject.asObservable();
