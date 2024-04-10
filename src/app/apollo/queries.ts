@@ -111,6 +111,50 @@ export const GROW: QueryParams = {
 };
 
 
+export const PAYMENT: QueryParams = {
+  colection: 'payTransport',
+  filtr: '',
+  items: [
+    {
+      compName: 'paymentMethods',
+      params: [
+        'head',
+        'text',
+        'code',
+        'price',
+        {
+          colection: 'icon',
+          filtr: '',
+          items: [ 'url' ],
+        },
+      ]
+    }
+  ]
+};
+
+
+export const TRANSPORT: QueryParams = {
+  colection: 'payTransport',
+  filtr: '',
+  items: [
+    {
+      compName: 'transportMethods',
+      params: [
+        'head',
+        'text',
+        'code',
+        'price',
+        {
+          colection: 'icon',
+          filtr: '',
+          items: [ 'url' ],
+        },
+      ]
+    }
+  ]
+};
+
+
 
 export const PRODUCTS = {
   colection: 'products',

@@ -1,0 +1,96 @@
+<div>
+  <div class="m-5">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div class="flex flex-col mx-auto">
+        <span class="text-xl font-bold text-primary-light">Osobni udaje</span>
+
+        <form [formGroup]="infoForm" class="max-w-sm py-3">
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="name" class="text-primary-dark my-auto">Jmeno a prijmeni:</label>
+            <input type="text"
+                   id="name"
+                   formControlName="name"
+                   class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="Jan Novak"/>
+            <div class="error" *ngIf="infoForm.get('name').touched">
+              <p class="text-danger" *ngIf="infoForm.get('name').errors?.['required']">Zadejte vase jmeno</p>
+            </div>
+          </div>
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="email" class="text-primary-dark my-auto">E-mail:</label>
+            <input type="email"
+                   id="email"
+                   formControlName="email"
+                   class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="novak@mail.cz"/>
+            <div class="error" *ngIf="infoForm.get('email').touched">
+              <p class="text-danger" *ngIf="infoForm.get('email').errors?.['required']">Zadejte vas email</p>
+            </div>
+          </div>
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="tel" class="text-primary-dark my-auto">Telefon:</label>
+            <input type="tel"
+                   id="tel"
+                   formControlName="tel"
+                   class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="123123123" required />
+            <div class="error" *ngIf="infoForm.get('tel').touched">
+              <p class="text-danger" *ngIf="infoForm.get('tel').errors?.['required']">Zadejte vas telefon</p>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="flex flex-col mx-auto">
+        <span class="text-xl font-bold text-primary-light">Fakturacni udaje </span>
+        <form [formGroup]="infoForm" class="max-w-sm py-3">
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="address" class="text-primary-dark my-auto">Ulice a cislo domu</label>
+            <input type="text"
+                   id="address"
+                   formControlName="street"
+                   class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="Narodni 120/15"/>
+            <div class="error" *ngIf="infoForm.get('street').touched">
+              <p class="text-danger" *ngIf="infoForm.get('street').errors?.['required']">Zadejte vasi adresu</p>
+            </div>
+          </div>
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="city" class="text-primary-dark my-auto">Mesto</label>
+            <input type="text"
+                   id="city"
+                   formControlName="city"
+                   class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="Praha" />
+            <div class="error" *ngIf="infoForm.get('city').touched">
+              <p class="text-danger" *ngIf="infoForm.get('city').errors?.['required']">Zadejte mesto</p>
+            </div>
+          </div>
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="psc" class="text-primary-dark my-auto">PSC:</label>
+            <input type="number"
+                   id="psc"
+                   formControlName="postCode"
+                   class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
+                   placeholder="170 00"/>
+            <div class="error" *ngIf="infoForm.get('postCode').touched">
+              <p class="text-danger" *ngIf="infoForm.get('postCode').errors?.['required']">Zadejte psc</p>
+            </div>
+          </div>
+        </form>
+      </div>
+      <span class="sm:col-span-2 text-xl text-primary-light font-bold mx-auto mb-2">Rekapitulace objednávky</span>
+      <div class="flex flex-col mx-auto sm:col-span-2 w-full border-4 border-primary-dark px-5 py-2">
+        <div *ngFor="let p of products" class="flex justify-between">
+          <div>
+            <span class="text-primary-light mr-2">{{p.count}} x </span>
+            <span class="text-primary-light mr-2">{{p.name}}</span>
+            <span class="text-primary-light mr-2"> - {{p.color}}</span>
+            <span class="text-primary-light"> - {{p.size}}</span>
+          </div>
+          <span class="text-primary-light align-self-end">{{p.count * p.priceForOne}} kc</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

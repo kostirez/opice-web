@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Order } from "./basket.service";
 import { Message } from "./contact-form/contact-form.component";
+import { Order } from "./basket/basket.service";
+import { Observable } from "rxjs";
 
 
 
@@ -19,9 +20,9 @@ export class StrapiApiService {
   }
 
 
-  sendOrder(order: Order) {
+  sendOrder(order: Order): Observable<Order> {
     return this.http
-      .post(
+      .post<Order>(
         "http://localhost:1337/api/orders",
         {data: order},
         {headers: this.headers}

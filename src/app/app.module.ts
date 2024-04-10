@@ -11,9 +11,9 @@ import { SkleniceComponent } from './sklenice/sklenice.component';
 import { MiskyComponent } from './misky/misky.component';
 import { MicrogreensComponent } from './microgreens/microgreens.component';
 import { ProductComponent } from './product/product.component';
-import { BasketComponent } from './basket/basket.component';
+import { BasketComponent } from './basket/basket/basket.component';
 import { CarouselComponent } from './carousel/carousel.component';
-import { BasketIconComponent } from './basket-icon/basket-icon.component';
+import { BasketIconComponent } from './basket/basket-icon/basket-icon.component';
 import { ForRestaurantsComponent } from './for-restaurants/for-restaurants.component';
 import { ContactComponent } from './contact/contact.component';
 import { TranspotPaymentComponent } from './transpot-payment/transpot-payment.component';
@@ -28,6 +28,9 @@ import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/c
 import { URI } from "./apollo/graphql.config";
 import { LoadingComponent } from './loading/loading.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BasketOverviewComponent } from './basket/basket-overview/basket-overview.component';
+import { BasketPayTransComponent } from './basket/basket-pay-trans/basket-pay-trans.component';
+import { BasketSummaryComponent } from './basket/basket-summary/basket-summary.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     DocumentsComponent,
     ContactFormComponent,
     StepsComponent,
-    LoadingComponent
+    LoadingComponent,
+    BasketOverviewComponent,
+    BasketPayTransComponent,
+    BasketSummaryComponent,
   ],
   imports: [
     BrowserModule,

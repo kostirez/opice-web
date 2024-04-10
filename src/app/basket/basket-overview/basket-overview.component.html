@@ -1,0 +1,45 @@
+<div>
+  <div *ngIf="products.length===0"
+       class="m-20 flex flex-col text-center">
+    <span class="text-primary-dark">V kosiku nemate zadne zbozi</span>
+    <a class="p-3 m-3 bg-bg-light text-secondary-dark" routerLink="/eshop">Zpet do eshopu</a>
+
+  </div>
+  <div *ngIf="products.length>0" class="px-5">
+    <div class="flex flex-col mt-5">
+      <div *ngFor="let product of products"
+           class="grid grid-cols-6 bg-bg-light p-2 mt-4">
+        <span class="text-2xl font-bold text-primary-light col-span-5">{{product.name}}</span>
+        <div class="flex justify-end cursor-pointer p-1" (click)="removeProduct(product)">
+          <svg class="stroke-bg-dark" width="20" height="20" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0.646447" y1="29.613" x2="28.9307" y2="1.32876"/>
+            <line x1="1.39408" y1="0.646447" x2="29.6784" y2="28.9307"/>
+          </svg>
+        </div>
+        <div class="col-span-3 flex flex-col">
+          <span class="text-xs text-primary-dark">barva</span>
+          <span class="text-lg text-primary-light">{{product.color}}</span>
+        </div>
+        <div class="col-span-3 flex flex-col">
+          <span class="text-xs text-primary-dark">velikost</span>
+          <span class="text-lg text-primary-light">{{product.size}}</span>
+        </div>
+
+        <div class="col-span-2 flex flex-col">
+          <span class="text-xs text-primary-dark">pocet</span>
+          <span class="ttext-lg text-primary-light">{{product.count}}</span>
+        </div>
+
+        <div class="col-span-2 flex flex-col">
+          <span class="text-xs text-primary-dark">cena za jeden</span>
+          <span class="text-lg text-primary-light">{{product.priceForOne}}</span>
+        </div>
+
+        <div class="col-span-2 flex flex-col">
+          <span class="text-xs text-primary-dark">mezisoucet</span>
+          <span class="text-xl font-bold text-primary-light">{{product.count * product.priceForOne}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

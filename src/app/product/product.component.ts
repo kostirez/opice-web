@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BasketService } from "../basket.service";
+import { BasketService } from "../basket/basket.service";
 import { PicArray } from "../model/view";
 import { Observable, of } from "rxjs";
 

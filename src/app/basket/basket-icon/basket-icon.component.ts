@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BasketService } from "../basket.service";
-import { ProductSummary } from "../product/product.component";
+import { ProductSummary } from "../../product/product.component";
 
 @Component({
   selector: 'app-basket-icon',
