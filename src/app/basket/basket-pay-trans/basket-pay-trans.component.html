@@ -27,6 +27,42 @@
       </div>
     </div>
 
+
+    <ng-container *ngIf="payTransForm.get('transportCode').value === 'CP_B'" >
+      <span class="text-3xl text-primary-light mx-auto my-3 ">Místo doručení</span>
+      <div class="w-full border-4 border-primary-dark flex justify-around items-center">
+        <div *ngIf="payTransForm.get('transportPlace').value">
+          <p class="text-primary-light text-xl">{{payTransForm.get('transportPlace').value.name}}</p>
+          <p class="text-primary-dark text-md">{{payTransForm.get('transportPlace').value.address}}</p>
+        </div>
+        <button class="m-5 w-[200px] text-2xl text-primary-light "
+                (click)="openTransportModal()"
+        >
+          {{!payTransForm.get('transportPlace').value ? 'Vyberte místo doručení' : 'Změnit místo doručení'}}
+        </button>
+
+      </div>
+
+      <div *ngIf="openModal"
+           class="fixed top-0 left-0 z-50 w-full h-full flex flex-col">
+        <div class="bg-bg-light h-full w-full opacity-80"
+             (click)="openModal=false"></div>
+        <div class="absolute top-[20%] left-[5%] sm:left-[20%] w-[90%] sm:w-[60%] h-[75%] sm:h-[60%] flex
+                    flex-col bg-bg-light rounded-md border-4 border-primary-dark">
+          <h2 class="text-center text-primary-light text-2xl my-5">Vyberte, kam chcete zásilku poslat</h2>
+          <iframe
+            class="w-full h-full"
+            title="Výběr místa pro vyzvednutí zásilky"
+            src="https://b2c.cpost.cz/locations/?type=BALIKOVNY"
+            allow="geolocation"></iframe>
+        </div>
+      </div>
+    </ng-container>
+
+
+
+
+
     <span class="text-3xl text-primary-light mx-auto my-3">Platba</span>
     <div class="flex flex-col justify-center border-2 border-primary-dark">
       <div *ngFor="let p of paymentMethods$ | async"

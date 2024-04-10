@@ -87,10 +87,13 @@
     <span class="text-xl text-center text-primary-light mt-3">
       Brzy vam prijde mail s potvrzenim objednavky {{orderResponse.paymentCode}} {{orderResponse.invoice_id}}
     </span>
-    <ng-container *ngIf="paymentType==='PRE'">
-      <span class="text-xl text-center text-primary-light mt-3">
-      Zvolili jste zpusob platby prevodem a proto vas zadame o zaplaceni xx na ucet xx
-    </span>
+    <ng-container *ngIf="payment.type==='PRE'">
+      <span class="text-xl text-center text-primary-dark mt-3">
+        Zpusob platby prevodem
+      </span>
+      <span class="text-xl text-center text-primary-dark mt-3">
+        Prosime zaplatte na ucet xx s variabilnim symbolem {{payment.invoiceId}}
+      </span>
     </ng-container>
 
     <div class="flex justify-center">

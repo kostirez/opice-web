@@ -20,9 +20,9 @@ export class StrapiApiService {
   }
 
 
-  sendOrder(order: Order): Observable<Order> {
+  sendOrder(order: Order): Observable<{data: {attributes: Order}}> {
     return this.http
-      .post<Order>(
+      .post<{data: {attributes: Order}}>(
         "http://localhost:1337/api/orders",
         {data: order},
         {headers: this.headers}

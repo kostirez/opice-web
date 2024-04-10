@@ -9,6 +9,7 @@ export interface Order {
     invoice_id: number;
     products: ProductSummary[];
     transportCode: string;
+    transportPlace: {};
     paymentCode: string;
     gdpr: boolean;
     obchodniPodminky: boolean;
@@ -145,7 +146,7 @@ export class BasketService {
   }
 
 
-  order(): Observable<Order> | null {
+  order(): Observable<{data: {attributes: Order}}> | null {
     let error = false;
 
     if(!this.payTransForm || !this.payTransForm.valid){
@@ -158,10 +159,10 @@ export class BasketService {
       error = true;
     }
 
-    if(!this.infoForm.valid) {
-      this.infoForm.markAllAsTouched();
-      error = true;
-    }
+    // if(!this.infoForm.valid) {
+    //   this.infoForm.markAllAsTouched();
+    //   error = true;
+    // }
 
     if (error) {
       return null;
@@ -170,6 +171,7 @@ export class BasketService {
       invoice_id: 0,
       products: this.products,
       transportCode: this.payTransForm.value.transportCode,
+      transportPlace: this.payTransForm.value.transportPlace,
       paymentCode: this.payTransForm.value.paymentCode,
       gdpr: true,
       obchodniPodminky: true,

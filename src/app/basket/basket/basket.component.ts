@@ -25,7 +25,7 @@ export class BasketComponent {
   products: ProductSummary[] = [];
   basketSteps = BASKET_STEPS;
   orderResponse: Order | null;
-  paymentType: string = '';
+  payment: {type: string, invoiceId: number};
 
   termsForm =  this.formBuilder.group({
     term: [ ,[ Validators.required ]],
@@ -104,8 +104,10 @@ export class BasketComponent {
     const order$ = this.basketService.order();
     if (order$){
       order$.subscribe(o => {
-        this.orderResponse = o;
-        this.paymentType = o.paymentCode;
+        this.orderResponse = o.data.attributes;
+        console.log('order', o.data.attributes);
+        this.payment = {type: this.orderResponse.paymentCode, invoiceId: this.orderResponse.invoice_id};
+        console.log('payment', this.payment);
         this.basketService.moveForward();
         this.basketService.deleteBasket()
       })

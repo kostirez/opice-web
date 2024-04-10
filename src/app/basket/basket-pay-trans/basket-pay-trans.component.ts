@@ -19,8 +19,17 @@ export interface PayTransMethod {
 })
 export class BasketPayTransComponent {
 
+  openModal = false;
+
+  @HostListener('window:message', ['$event.data.point'])
+  onClick(data) {
+    this.openModal = false;
+    this.payTransForm.patchValue({transportPlace: data})
+  }
+
   payTransForm =  this.formBuilder.group({
     transportCode: [ , Validators.required],
+    transportPlace: [],
     paymentCode: [ , Validators.required ],
   });
 
@@ -56,5 +65,9 @@ export class BasketPayTransComponent {
 
   getBase(): string {
     return this.imageService.getImageBase();
+  }
+
+  openTransportModal(): void {
+    this.openModal = true;
   }
 }
