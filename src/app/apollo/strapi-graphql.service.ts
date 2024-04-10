@@ -3,7 +3,7 @@ import { Apollo } from "apollo-angular";
 import { map, Observable } from "rxjs";
 import { ApolloQueryResult, DocumentNode } from "@apollo/client/core";
 import gql from "graphql-tag";
-import { environment } from "../../environments/enviroment";
+import { environment } from "../../environments/environment";
 
 interface SingleDataStructure {
   [key: string]: {
