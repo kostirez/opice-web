@@ -36,6 +36,7 @@ module.exports = {
           dark: '#A69F99',
         },
         success: '#ffaf43',
+        success2: '#ffcca1',
         warning: "#f6be73",
         danger: "#7e0000",
       },

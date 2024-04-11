@@ -52,7 +52,7 @@ export class BasketPayTransComponent {
   }
 
   getPriceText(price: number): string {
-    return price > 0 ? price + 'Kc' : 'Zdarma';
+    return price > 0 ? price + ' Kč' : 'Zdarma';
   }
 
   setPaymentPrice(price): void {
