@@ -20,6 +20,7 @@ export interface ProductInfo {
   detail: string;
   colors: Color[];
   sizes: Size[];
+  sizeLabel: string;
   price: number;
   pictures: PicArray;
 }
@@ -52,10 +53,10 @@ export class ProductComponent implements OnInit{
 
   colorErr: string = '';
   sizeErr: string = '';
+  justAdded = false;
 
   constructor(private basketService: BasketService) {
   }
-
 
   ngOnInit(): void {
     this.slides = this.productInfo.pictures;
@@ -69,10 +70,10 @@ export class ProductComponent implements OnInit{
 
   addToBasket(product: ProductInfo) {
     if(!this.selectedColor) {
-      this.colorErr = 'vyber barvu';
+      this.colorErr = 'Vyberte barvu';
     }
-    if(!this.selectedSize && this.sizeLabel) {
-      this.sizeErr = 'vyber velikost';
+    if(!this.selectedSize && this.productInfo.sizeLabel) {
+      this.sizeErr = 'Vyberte velikost';
     }
     if (this.colorErr || this.sizeErr) {
       return;
@@ -85,7 +86,8 @@ export class ProductComponent implements OnInit{
           count: 1,
           priceForOne: product.price,
         }
-      )
+      );
+      this.justAddedAnimation()
     }
   }
 
@@ -103,5 +105,10 @@ export class ProductComponent implements OnInit{
     return of(slides);
   }
 
-
+  justAddedAnimation(){
+    this.justAdded = true;
+    window.setTimeout(() =>{
+        this.justAdded = false;
+    }, 1000);
+  }
 }

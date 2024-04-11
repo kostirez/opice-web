@@ -63,7 +63,6 @@ export class BasketService {
       this.products[index].count += 1;
     }
     this.productsSubject.next(this.products)
-    console.log('product added', this.products)
   }
 
   getAllProdct(): ProductSummary[] {
