@@ -1,4 +1,4 @@
-<div *ngIf="restaurantData$ | async as restaurantData" class="flex flex-col px-5">
+<div *ngIf="restaurantData$ | async as restaurantData else LOADING" class="flex flex-col px-5">
   <div class="grid grid-cols-1 sm:grid-cols-2 my-10 text-center sm:text-left">
     <div class="flex flex-col p-5">
       <span class="text-3xl sm:text-4xl font-bold text-primary-light mb-10">{{restaurantData.head}}</span>
@@ -65,6 +65,8 @@
     <span class="text-xl sm:text-2xl font-bold text-primary-light">obchod&#64;zrzavaopice.cz</span>
   </div>
   <app-contact-form></app-contact-form>
-
-
 </div>
+
+<ng-template #LOADING>
+  <app-loading class="min-h-full"></app-loading>
+</ng-template>
