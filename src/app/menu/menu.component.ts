@@ -41,11 +41,14 @@ export class MenuComponent {
     this.router.events
     .subscribe((event) => {
       if (event instanceof NavigationEnd) {
+        this.showBasketIcon =
+          event.url !== '/kosik/prehled' &&
+          event.url !== '/kosik/souhrn' &&
+          event.url !== '/kosik/doprava-a-platba';
         this.currentPage = this.menuItems.find(item => item.url === event.url)?.head ?? DEFAULT_LABEL;
         if (this.currentPage == DEFAULT_LABEL) {
           this.currentPage = this.menuSubItems.find(item => item.url === event.url)?.head ?? DEFAULT_LABEL;
         }
-        this.showBasketIcon = this.currentPage !== 'kosik';
       }
       if (event instanceof NavigationError) {
         console.log(event.error);

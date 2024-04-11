@@ -5,7 +5,8 @@ module.exports = {
   ],
   theme: {
     screens: {
-      sm: '840px'
+      sm: '840px',
+      md: '1260px',
     },
     fontFamily: {
       sans: ["podkova", "sans-serif"],
