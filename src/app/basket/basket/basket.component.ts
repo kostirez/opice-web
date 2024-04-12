@@ -105,9 +105,7 @@ export class BasketComponent {
     if (order$){
       order$.subscribe(o => {
         this.orderResponse = o.data.attributes;
-        console.log('order', o.data.attributes);
         this.payment = {type: this.orderResponse.paymentCode, invoiceId: this.orderResponse.invoice_id};
-        console.log('payment', this.payment);
         this.basketService.moveForward();
         this.basketService.deleteBasket()
       })

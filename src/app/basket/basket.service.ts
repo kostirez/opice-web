@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { ProductSummary } from "../product/product.component";
-import { Observable, Subject } from "rxjs";
+import { Observable, Subject, Subscription } from "rxjs";
 import { FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { StrapiApiService } from "../strapi-api.service";
@@ -30,17 +30,9 @@ const BASKET_URLS = ['prehled', 'doprava-a-platba', 'souhrn'];
 @Injectable({
   providedIn: 'root'
 })
-export class BasketService {
+export class BasketService implements OnDestroy{
 
-  private products: ProductSummary[] = [
-    {
-      name: 'string',
-      color: 'string',
-      size: 'string',
-      count: 2,
-      priceForOne: 23,
-    }
-  ];
+  private products: ProductSummary[] = [];
 
   private stateSubject: Subject<number> = new Subject<number>();
   state$: Observable<number> = this.stateSubject.asObservable();
@@ -55,12 +47,15 @@ export class BasketService {
 
   private productsSubject: Subject<ProductSummary[]> = new Subject<ProductSummary[]>();
   public productsObs: Observable<ProductSummary[]> = this.productsSubject.asObservable();
+
+  private subs: Subscription[] = [];
   constructor(
     private router: Router,
     private strapiApiService: StrapiApiService,
   ) {
     this.productsSubject.next([]);
-    this.state$.subscribe(s => this.state = s);
+    this.subs.push(this.state$.subscribe(s => this.state = s));
+    this.subs.push(this.productsObs.subscribe(p => this.products = p));
   }
 
   addProduct(product: ProductSummary) {
@@ -190,5 +185,9 @@ export class BasketService {
 
   deleteBasket() {
     this.productsSubject.next([])
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(s => s.unsubscribe());
   }
 }
