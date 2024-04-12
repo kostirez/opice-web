@@ -32,7 +32,15 @@ const BASKET_URLS = ['prehled', 'doprava-a-platba', 'souhrn'];
 })
 export class BasketService {
 
-  private products: ProductSummary[] = [];
+  private products: ProductSummary[] = [
+    {
+      name: 'string',
+      color: 'string',
+      size: 'string',
+      count: 2,
+      priceForOne: 23,
+    }
+  ];
 
   private stateSubject: Subject<number> = new Subject<number>();
   state$: Observable<number> = this.stateSubject.asObservable();
@@ -150,10 +158,10 @@ export class BasketService {
       error = true;
     }
 
-    // if(!this.infoForm.valid) {
-    //   this.infoForm.markAllAsTouched();
-    //   error = true;
-    // }
+    if(!this.infoForm.valid) {
+      this.infoForm.markAllAsTouched();
+      error = true;
+    }
 
     if (error) {
       return null;
@@ -162,7 +170,7 @@ export class BasketService {
       invoice_id: 0,
       products: this.products,
       transportCode: this.payTransForm.value.transportCode,
-      transportPlace: this.payTransForm.value.transportPlace,
+      transportPlace: this.payTransForm.value.transportPlace ?? {},
       paymentCode: this.payTransForm.value.paymentCode,
       gdpr: true,
       obchodniPodminky: true,

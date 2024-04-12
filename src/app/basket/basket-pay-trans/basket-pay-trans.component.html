@@ -23,26 +23,34 @@
           </label>
 
          </div>
-        <div class="text-center w-full" *ngIf="payTransForm.get('transportCode').touched">
-          <p class="text-danger my-5 text-3xl font-bold" *ngIf="payTransForm.get('transportCode').errors?.['required']">Vyberte typ dopravy</p>
+        <div class="text-center w-full"
+             *ngIf="payTransForm.get('transportCode').touched">
+          <p class="text-danger my-5 text-xl sm:text-2xl font-bold"
+             *ngIf="payTransForm.get('transportCode').errors?.['required']">Vyberte typ dopravy</p>
         </div>
       </ng-container>
     </div>
 
-    <ng-container *ngIf="payTransForm.get('transportCode').value === 'BAL_B'" >
+    <ng-container *ngIf="transportPlaceArray.controls.length!==0" >
       <span class="text-3xl text-primary-light mx-auto my-3 ">Místo doručení</span>
       <div class="w-full border-4 border-primary-dark flex justify-around items-center">
-        <div *ngIf="payTransForm.get('transportPlace').value">
-          <p class="text-primary-light text-xl">{{payTransForm.get('transportPlace').value.name}}</p>
-          <p class="text-primary-dark text-md">{{payTransForm.get('transportPlace').value.address}}</p>
+        <div *ngIf="transportPlaceArray.controls[0] && transportPlaceArray.controls[0].value">
+          <p class="text-primary-light text-xl">{{transportPlaceArray.controls[0].value.name}}</p>
+          <p class="text-primary-dark text-md">{{transportPlaceArray.controls[0].value.address}}</p>
         </div>
-        <button class="m-5 w-[200px] text-2xl text-primary-light "
+        <button class="m-5 w-[200px] text-xl sm:text-2xl text-primary-light "
                 (click)="openTransportModal()"
         >
-          {{!payTransForm.get('transportPlace').value ? 'Vyberte místo doručení' : 'Změnit místo doručení'}}
+          {{!transportPlaceArray.controls[0].value ? 'Vyberte místo doručení' : 'Změnit místo doručení'}}
         </button>
 
       </div>
+      <div class="text-center w-full"
+           *ngIf="transportPlaceArray.controls[0].touched">
+        <p class="text-danger my-5 text-xl sm:text-2xl font-bold"
+           *ngIf="transportPlaceArray.controls[0].errors?.['required']">Vyberte místo doručení</p>
+      </div>
+
 
       <div *ngIf="openModal"
            class="fixed top-0 left-0 z-50 w-full h-full flex flex-col">
@@ -59,9 +67,6 @@
         </div>
       </div>
     </ng-container>
-
-
-
 
 
     <span class="text-3xl text-primary-light mx-auto my-3">Platba</span>
@@ -86,8 +91,10 @@
             </div>
           </label>
         </div>
-        <div class="text-center w-full " *ngIf="payTransForm.get('paymentCode').touched">
-          <p class="text-danger my-5 text-3xl font-bold" *ngIf="payTransForm.get('paymentCode').errors?.['required']">Vyberte typ platby</p>
+        <div class="text-center w-full"
+             *ngIf="payTransForm.get('paymentCode').touched">
+          <p class="text-danger my-5 text-xl sm:text-2xl font-bold"
+             *ngIf="payTransForm.get('paymentCode').errors?.['required']">Vyberte typ platby</p>
         </div>
       </ng-container>
     </div>

@@ -1,5 +1,5 @@
-import { Component, HostListener } from '@angular/core';
-import { FormBuilder, Validators } from "@angular/forms";
+import { Component, HostListener, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, Validators } from "@angular/forms";
 import { BasketService } from "../basket.service";
 import { map, Observable } from "rxjs";
 import { SingleTypesService } from "../../apollo/single-types.service";
@@ -17,19 +17,21 @@ export interface PayTransMethod {
   selector: 'app-basket-pay-trans',
   templateUrl: './basket-pay-trans.component.html',
 })
-export class BasketPayTransComponent {
+export class BasketPayTransComponent implements OnInit {
 
   openModal = false;
 
   @HostListener('window:message', ['$event.data.point'])
   onClick(data) {
     this.openModal = false;
-    this.payTransForm.patchValue({transportPlace: data})
+    if (this.transportPlaceArray.controls[0]) {
+      this.transportPlaceArray.controls[0].setValue(data)
+    }
   }
 
   payTransForm =  this.formBuilder.group({
     transportCode: [ , Validators.required],
-    transportPlace: [],
+    transportPlaceArray: this.formBuilder.array([]),
     paymentCode: [ , Validators.required ],
   });
 
@@ -49,6 +51,21 @@ export class BasketPayTransComponent {
     private imageService: ImageService,
   ) {
     this.basketService.setPayTransForm(this.payTransForm);
+  }
+
+  ngOnInit(): void {
+    const a = this.payTransForm.controls['transportCode']
+      .valueChanges.subscribe(val => {
+        if (val === 'BAL_B') {
+          this.transportPlaceArray.push(this.formBuilder.control(undefined, Validators.required));
+        } else {
+          this.transportPlaceArray.clear();
+        }
+    });
+  }
+
+  get transportPlaceArray() {
+    return this.payTransForm.get('transportPlaceArray') as FormArray;
   }
 
   getPriceText(price: number): string {
