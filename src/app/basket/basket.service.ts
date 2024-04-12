@@ -25,6 +25,14 @@ export interface Order {
     }
 }
 
+export interface OrderResponse {
+  id: number;
+  transportCode: string;
+  paymentCode: string;
+  totalPrice: number;
+  invoiceId: number;
+}
+
 const BASKET_URLS = ['prehled', 'doprava-a-platba', 'souhrn'];
 
 @Injectable({
@@ -36,7 +44,7 @@ export class BasketService implements OnDestroy{
 
   private stateSubject: Subject<number> = new Subject<number>();
   state$: Observable<number> = this.stateSubject.asObservable();
-  orderResponse: Order | null;
+  orderResponse: OrderResponse | null;
   state = 0;
   payTransForm:  FormGroup;
   infoForm:  FormGroup;
@@ -140,7 +148,7 @@ export class BasketService implements OnDestroy{
   }
 
 
-  order(): Observable<{data: {attributes: Order}}> | null {
+  order(): Observable<OrderResponse> | null {
     let error = false;
 
     if(!this.payTransForm || !this.payTransForm.valid){

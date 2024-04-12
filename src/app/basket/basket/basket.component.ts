@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BasketService, Order } from "../basket.service";
+import { BasketService, OrderResponse } from "../basket.service";
 import { ProductSummary } from "../../product/product.component";
 import { Router } from "@angular/router";
 import { FormBuilder, Validators } from "@angular/forms";
@@ -24,8 +24,7 @@ export class BasketComponent {
   step: number = 0;
   products: ProductSummary[] = [];
   basketSteps = BASKET_STEPS;
-  orderResponse: Order | null;
-  payment: {type: string, invoiceId: number};
+  orderResponse: OrderResponse | null;
 
   termsForm =  this.formBuilder.group({
     term: [ ,[ Validators.required ]],
@@ -103,9 +102,8 @@ export class BasketComponent {
   order() {
     const order$ = this.basketService.order();
     if (order$){
-      order$.subscribe(o => {
-        this.orderResponse = o.data.attributes;
-        this.payment = {type: this.orderResponse.paymentCode, invoiceId: this.orderResponse.invoice_id};
+      order$.subscribe(orderResponse => {
+        this.orderResponse = orderResponse;
         this.basketService.moveForward();
         this.basketService.deleteBasket()
       })

@@ -83,18 +83,22 @@
 
 <div *ngIf="step === 3" class="flex flex-col my-10">
   <ng-container *ngIf="orderResponse">
-    <span class="text-2xl font-bold text-center text-primary-light">Dekujeme za objednavku</span>
+    <span class="text-2xl font-bold text-center text-primary-light">Děkujeme za nákup</span>
     <span class="text-xl text-center text-primary-light mt-3">
-      Brzy vam prijde mail s potvrzenim objednavky {{orderResponse.paymentCode}} {{orderResponse.invoice_id}}
+      Brzy Vám příjde e-mail s potvrzením objednavky číslo:{{orderResponse.invoiceId}}.
     </span>
-    <ng-container *ngIf="payment.type==='PRE'">
-      <span class="text-xl text-center text-primary-dark mt-3">
-        Zpusob platby prevodem
+    <div *ngIf="orderResponse.paymentCode==='PRE'"
+         class="flex flex-col text-xl text-center text-primary-dark mt-3">
+      <span class="mt-3">
+        Prosíme o úhradu částky {{orderResponse.totalPrice}} Kč na náš účet.
       </span>
-      <span class="text-xl text-center text-primary-dark mt-3">
-        Prosime zaplatte na ucet xx s variabilnim symbolem {{payment.invoiceId}}
+      <span class="mt-3">
+        Číslo účtu: <b>2602805796/2010</b>.
       </span>
-    </ng-container>
+      <span class="mt-3">
+        Variabilní symbol: <b>{{orderResponse.invoiceId}}</b>.
+      </span>
+    </div>
 
     <div class="flex justify-center">
       <button class="border-2 border-primary-light text-primary-light text-xl px-3 py-1 m-5 mb-10 rounded"
