@@ -8,7 +8,7 @@
                     'border-primary-light text-primary-light':
                     'border-primary-dark text-primary-dark',
                      step >= item.step ? 'cursor-pointer' : 'cursor-not-allowed']">
-      <span>{{item.label}}</span>
+      <span class="text-md sm:text-xl">{{item.label}}</span>
     </div>
   </div>
 
@@ -17,28 +17,28 @@
 
   <div class="border-4 border-primary-light mt-10 m-5">
     <div class="flex justify-between py-2 px-5 ">
-      <span class="text-xl text-primary-dark">Cena celkem za zbozi</span>
-      <span class="text-xl text-primary-dark">{{getProductsPrice()}}Kc</span>
+      <span class="text-md sm:text-xl text-primary-dark">Cena celkem za zbozi</span>
+      <span class="text-md sm:text-xl text-primary-dark">{{getProductsPrice()}}Kc</span>
     </div>
     <div *ngIf="step>0" class="flex justify-between py-2 px-5">
-      <span class="text-xl text-primary-dark">Cena dopravy</span>
-      <span class="text-xl text-primary-dark">{{getTransportPrice() ?? ' - '}}Kc</span>
+      <span class="text-md sm:text-xl text-primary-dark">Cena dopravy</span>
+      <span class="text-md sm:text-xl text-primary-dark">{{getTransportPrice() ?? ' - '}}Kc</span>
     </div>
     <div *ngIf="step>0" class="flex justify-between py-2 px-5">
-      <span class="text-xl text-primary-dark">Cena platby</span>
-      <span class="text-xl text-primary-dark">{{getPaymentPrice() ?? ' - '}}Kc</span>
+      <span class="text-md sm:text-xl text-primary-dark">Cena platby</span>
+      <span class="text-md sm:text-xl text-primary-dark">{{getPaymentPrice() ?? ' - '}}Kc</span>
     </div>
     <div *ngIf="step>0" class="flex justify-between py-2 px-5 border-t-2 border-primary-dark bg-bg-light">
-      <span class="text-xl text-primary-light">Cena celkem</span>
-      <span class="text-2xl font-bold text-primary-light">{{getPrice()}}Kc</span>
+      <span class="text-md sm:text-xl text-primary-light">Cena celkem</span>
+      <span class="text-xl sm:text-2xl font-bold text-primary-light">{{getPrice()}}Kc</span>
     </div>
   </div>
   <form *ngIf="step===2" [formGroup]="termsForm" class="flex flex-col m-5">
-    <div class="flex h-5 mt-3">
+    <div class="flex mt-3">
       <input id="terms"
              type="checkbox"
              formControlName="term"
-             class="w-4 h-4 mt-auto"/>
+             class="w-4 h-4 my-auto"/>
       <label for="terms" class="ml-3 text-primary-dark">
         souhlasím s
         <a href="/assets/documents/obchodni_podminky.pdf"
@@ -49,13 +49,13 @@
 
     </div>
     <div class="w-full my-5" *ngIf="termsForm.get('term').touched">
-      <p class="text-danger text-2xl font-bold" *ngIf="termsForm.get('term').errors?.['required']">Musite souhlasit s podminkami</p>
+      <p class="text-danger text-2xl font-bold" *ngIf="termsForm.get('term').errors?.['required']">Potvrďte souhlas s podminkami</p>
     </div>
-    <div class="flex h-5 mt-3">
+    <div class="flex mt-3">
       <input id="gdpr"
              type="checkbox"
              formControlName="gdpr"
-             class="w-4 h-4 mt-auto"/>
+             class="w-4 h-4 my-auto"/>
       <label for="gdpr" class="ml-3 text-primary-dark">
         souhlasím s
         <a href="/assets/documents/gdpr.pdf"
@@ -68,14 +68,14 @@
   </form>
 
   <div class="flex flex-row justify-center">
-    <button class="px-10 py-4 m-5 mb-10 text-xs text-primary-dark"
+    <button class="px-5 sm:px-10 py-4 m-2 sm:m-5 mb-10 text-xs text-primary-dark"
             (click)="stepBack()">
       {{step===0 ? 'zpet do eshopu' : 'zpet'}}
     </button>
-    <button class="border-2 border-primary-light text-primary-light text-2xl px-10 py-4 m-5 mb-10 rounded disabled:cursor-not-allowed"
+    <button class="border-2 border-primary-light px-2 sm:px-10 py-4 m-2 sm:m-5 mb-10 rounded"
             (click)="step===2 ? order() : nextStep()">
-      <b>{{step===2 ? 'Objednat' : 'Pokracovat'}}</b>
-      <span class="block text-sm">{{step===2 ? 's povinnosti platby' : ''}}</span>
+      <span class="text-primary-light font-bold text-xl sm:text-2xl">{{step===2 ? 'Objednat' : 'Pokracovat'}}</span>
+      <span class="block text-primary-dark text-xs sm:text-md">{{step===2 ? 's povinnosti platby' : ''}}</span>
     </button>
   </div>
 </ng-container>
