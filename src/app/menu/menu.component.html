@@ -31,6 +31,15 @@
           <li *ngFor="let item of menuItems" class="flex justify-center">
             <a class="p-2 m-2 font-bold text-primary-dark" (click)="toggleNavbar()" [routerLink]="item.url">{{item.head}}</a>
           </li>
+          <li class="flex justify-center"
+              *ngIf="itemsCount!==0">
+            <a class="relative p-2 m-2 font-bold text-primary-dark" routerLink="/kosik">
+              <span>košík</span>
+              <div class="absolute top-[25%] left-[-30%] w-[20px] h-[20px] bg-danger rounded-full text-center text-warning">
+                <h2 class="text-[13px]">{{itemsCount}}</h2>
+              </div>
+            </a>
+          </li>
         </ul>
           <img class="mt-auto w-[100vw]" src="assets/footer.jpg">
       </div>

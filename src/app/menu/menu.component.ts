@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, NavigationError, Router } from "@angular/router";
 import { MenuItem } from "../model/view";
+import { BasketService } from "../basket/basket.service";
+import { ProductSummary } from "../product/product.component";
 
 
 const DEFAULT_LABEL = "Zrzavá opice";
@@ -35,16 +37,19 @@ export class MenuComponent {
 
   showBasketIcon = false;
 
-  constructor(private router: Router) {}
+  itemsCount = 0;
+
+  constructor(
+    private router: Router,
+    private basketService: BasketService,
+  ) {}
 
   ngOnInit() {
     this.router.events
     .subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showBasketIcon =
-          event.url !== '/kosik/prehled' &&
-          event.url !== '/kosik/souhrn' &&
-          event.url !== '/kosik/doprava-a-platba';
+          event.url !== '/kosik';
         this.currentPage = this.menuItems.find(item => item.url === event.url)?.head ?? DEFAULT_LABEL;
         if (this.currentPage == DEFAULT_LABEL) {
           this.currentPage = this.menuSubItems.find(item => item.url === event.url)?.head ?? DEFAULT_LABEL;
@@ -54,10 +59,19 @@ export class MenuComponent {
         console.log(event.error);
       }
     });
+    this.basketService.productsObs
+      .subscribe(items => {
+        this.itemsCount = this.calculateProductCount(items);
+      });
+  }
+
+  calculateProductCount(summary: ProductSummary[]): number {
+    return this.basketService.calculateProductCount(summary);
   }
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
+    this.showBasketIcon = !this.navbarOpen;
   }
 
   closeNavBar() {

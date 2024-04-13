@@ -194,4 +194,8 @@ export class BasketService implements OnDestroy{
   ngOnDestroy(): void {
     this.subs.forEach(s => s.unsubscribe());
   }
+
+  calculateProductCount(summary: ProductSummary[]): number {
+    return summary.reduce((sum, current) => sum + current.count, 0);
+  }
 }

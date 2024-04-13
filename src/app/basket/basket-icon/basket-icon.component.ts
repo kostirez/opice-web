@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BasketService } from "../basket.service";
-import { ProductInfo, ProductSummary } from "../../product/product.component";
+import { ProductSummary } from "../../product/product.component";
 
 @Component({
   selector: 'app-basket-icon',
@@ -19,6 +19,6 @@ export class BasketIconComponent {
   }
 
   calculateProductCount(summary: ProductSummary[]): number {
-    return summary.reduce((sum, current) => sum + current.count, 0);
+    return this.basketService.calculateProductCount(summary);
   }
 }
