@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
+import { NavigationEnd, Router } from "@angular/router";
 import { SingleTypesService } from "../apollo/single-types.service";
 import { MenuPicItem } from "../model/view";
 import { Subscription } from "rxjs";
@@ -15,7 +15,6 @@ export interface EshopData {
 @Component({
   selector: 'app-eshop',
   templateUrl: './eshop.component.html',
-  styleUrl: './eshop.component.scss',
   animations: [
     trigger("fadeAnimation", [
       transition("void => *", [useAnimation(fadeIn, {params: { time: '1500ms' }} )]),
@@ -33,7 +32,7 @@ export class EshopComponent {
 
   items: MenuPicItem[] = []
 
-  private subscription: Subscription | null=null;
+  private subscription: Subscription[] = [];
 
   constructor(
     private singleTypesService: SingleTypesService,
@@ -43,17 +42,23 @@ export class EshopComponent {
 
   ngOnInit() {
     this.actualUrl = this.router.url;
-
-    this.subscription = this.singleTypesService.getEshopData<EshopData>()
+    if (this.actualUrl === '/eshop/sklenice' || this.actualUrl === '/eshop/misky') {
+      this.productsOpen = true;
+    }
+    this.subscription.push(this.singleTypesService.getEshopData<EshopData>()
       .subscribe(result => {
         this.loading = result.loading;
         this.eshopItems = result.data.items;
-      })
+      }));
+    this.subscription.push(this.router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.productsOpen = event.url!=='/eshop'
+        }
+      }));
   }
   ngOnDestroy() {
-    if(this.subscription){
-      this.subscription.unsubscribe();
-    }
+    this.subscription.forEach(s => s.unsubscribe());
   }
 
   goTo(url: string) {
