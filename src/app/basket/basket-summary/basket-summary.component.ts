@@ -28,6 +28,6 @@ export class BasketSummaryComponent {
 
   ngOnInit() {
     this.products = this.basketService.getAllProdct();
-    this.basketService.setInfoForm(this.infoForm);
+    this.infoForm = this.basketService.setInfoForm(this.infoForm);
   }
 }

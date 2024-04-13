@@ -50,7 +50,7 @@ export class BasketPayTransComponent implements OnInit {
     private singleTypesService: SingleTypesService,
     private imageService: ImageService,
   ) {
-    this.basketService.setPayTransForm(this.payTransForm);
+    this.payTransForm = this.basketService.setPayTransForm(this.payTransForm);
   }
 
   ngOnInit(): void {

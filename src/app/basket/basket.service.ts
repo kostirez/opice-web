@@ -91,12 +91,18 @@ export class BasketService implements OnDestroy{
     this.productsSubject.next(this.products);
   }
 
-  setPayTransForm(form: FormGroup) {
-    this.payTransForm = form;
+  setPayTransForm(form: FormGroup): FormGroup{
+    if (!this.payTransForm) {
+      this.payTransForm = form;
+    }
+    return this.payTransForm;
   }
 
   setInfoForm(form: FormGroup) {
-    this.infoForm = form;
+    if (!this.infoForm) {
+      this.infoForm = form;
+    }
+    return this.infoForm;
   }
 
   setTermForm(form: FormGroup) {
