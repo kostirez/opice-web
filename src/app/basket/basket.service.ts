@@ -129,22 +129,12 @@ export class BasketService implements OnDestroy{
   }
 
   setState(state: number): void {
-    if (state<3){
-      this.router.navigate(['kosik', BASKET_URLS[state]])
-        .then(() => this.stateSubject.next(state));
-    } else {
-      this.stateSubject.next(state)
-    }
+    this.stateSubject.next(state)
 
   }
 
   initState(): void {
-    const lastPath = this.router.url.split('/').pop();
-    if (lastPath==='kosik') {
-      this.setState(0)
-    } else {
-      this.setState(BASKET_URLS.findIndex(u=> u=== lastPath));
-    }
+    this.setState(0)
   }
 
 

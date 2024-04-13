@@ -11,7 +11,7 @@ interface BasketStep {
 }
 
 const BASKET_STEPS: BasketStep[] = [
-  {label: "Prehled", url: 'prehled', step: 0},
+  {label: "Přehled", url: 'prehled', step: 0},
   {label: "Doprava a platba", url: 'doprava-a-platba', step: 1},
   {label: "Souhrn", url: 'souhrn', step: 2},
 ]

@@ -1,8 +1,8 @@
 <div>
   <div *ngIf="products.length===0"
        class="m-20 flex flex-col text-center">
-    <span class="text-primary-dark">V kosiku nemate zadne zbozi</span>
-    <a class="p-3 m-3 bg-bg-light text-secondary-dark" routerLink="/eshop">Zpet do eshopu</a>
+    <span class="text-primary-dark">V košíku nemáte žádné zboží</span>
+    <a class="p-3 m-3 bg-bg-light text-secondary-dark" routerLink="/eshop">Zpět do e-shopu</a>
 
   </div>
   <div *ngIf="products.length>0" class="px-5">
@@ -17,26 +17,26 @@
           </svg>
         </div>
         <div class="col-span-3 flex flex-col">
-          <span class="text-xs text-primary-dark">barva</span>
+          <span class="text-xs text-primary-dark">Barva</span>
           <span class="text-lg text-primary-light">{{product.color}}</span>
         </div>
         <div class="col-span-3 flex flex-col">
-          <span class="text-xs text-primary-dark">velikost</span>
+          <span class="text-xs text-primary-dark">Velikost</span>
           <span class="text-lg text-primary-light">{{product.size}}</span>
         </div>
 
         <div class="col-span-2 flex flex-col">
-          <span class="text-xs text-primary-dark">pocet</span>
+          <span class="text-xs text-primary-dark">Počet</span>
           <span class="ttext-lg text-primary-light">{{product.count}}</span>
         </div>
 
         <div class="col-span-2 flex flex-col">
-          <span class="text-xs text-primary-dark">cena za jeden</span>
+          <span class="text-xs text-primary-dark">Cena za jeden</span>
           <span class="text-lg text-primary-light">{{product.priceForOne}}</span>
         </div>
 
         <div class="col-span-2 flex flex-col">
-          <span class="text-xs text-primary-dark">mezisoucet</span>
+          <span class="text-xs text-primary-dark">Mezisoučet</span>
           <span class="text-xl font-bold text-primary-light">{{product.count * product.priceForOne}}</span>
         </div>
       </div>

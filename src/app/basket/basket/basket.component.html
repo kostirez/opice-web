@@ -13,24 +13,26 @@
   </div>
 
 
-  <router-outlet></router-outlet>
+  <ng-container *ngIf="step==0"><app-basket-overview></app-basket-overview></ng-container>
+  <ng-container *ngIf="step==1"><app-basket-pay-trans></app-basket-pay-trans></ng-container>
+  <ng-container *ngIf="step==2"><app-basket-summary></app-basket-summary></ng-container>
 
   <div class="border-4 border-primary-light mt-10 m-5">
     <div class="flex justify-between py-2 px-5 ">
       <span class="text-md sm:text-xl text-primary-dark">Cena celkem za zbozi</span>
-      <span class="text-md sm:text-xl text-primary-dark">{{getProductsPrice()}}Kc</span>
+      <span class="text-md sm:text-xl text-primary-dark">{{getProductsPrice()}} Kč</span>
     </div>
     <div *ngIf="step>0" class="flex justify-between py-2 px-5">
       <span class="text-md sm:text-xl text-primary-dark">Cena dopravy</span>
-      <span class="text-md sm:text-xl text-primary-dark">{{getTransportPrice() ?? ' - '}}Kc</span>
+      <span class="text-md sm:text-xl text-primary-dark">{{getTransportPrice() ?? ' - '}} Kč</span>
     </div>
     <div *ngIf="step>0" class="flex justify-between py-2 px-5">
       <span class="text-md sm:text-xl text-primary-dark">Cena platby</span>
-      <span class="text-md sm:text-xl text-primary-dark">{{getPaymentPrice() ?? ' - '}}Kc</span>
+      <span class="text-md sm:text-xl text-primary-dark">{{getPaymentPrice() ?? ' - '}} Kč</span>
     </div>
     <div *ngIf="step>0" class="flex justify-between py-2 px-5 border-t-2 border-primary-dark bg-bg-light">
       <span class="text-md sm:text-xl text-primary-light">Cena celkem</span>
-      <span class="text-xl sm:text-2xl font-bold text-primary-light">{{getPrice()}}Kc</span>
+      <span class="text-xl sm:text-2xl font-bold text-primary-light">{{getPrice()}} Kč</span>
     </div>
   </div>
   <form *ngIf="step===2" [formGroup]="termsForm" class="flex flex-col m-5">
@@ -70,12 +72,12 @@
   <div class="flex flex-row justify-center">
     <button class="px-5 sm:px-10 py-4 m-2 sm:m-5 mb-10 text-xs text-primary-dark"
             (click)="stepBack()">
-      {{step===0 ? 'zpet do eshopu' : 'zpet'}}
+      {{step===0 ? 'zpět do e-shopu' : 'zpět'}}
     </button>
     <button class="border-2 border-primary-light px-2 sm:px-10 py-4 m-2 sm:m-5 mb-10 rounded"
             (click)="step===2 ? order() : nextStep()">
-      <span class="text-primary-light font-bold text-xl sm:text-2xl">{{step===2 ? 'Objednat' : 'Pokracovat'}}</span>
-      <span class="block text-primary-dark text-xs sm:text-md">{{step===2 ? 's povinnosti platby' : ''}}</span>
+      <span class="text-primary-light font-bold text-xl sm:text-2xl">{{step===2 ? 'Objednat' : 'Pokračovat'}}</span>
+      <span class="block text-primary-dark text-xs sm:text-md">{{step===2 ? 's povinností platby' : ''}}</span>
     </button>
   </div>
 </ng-container>
@@ -85,7 +87,7 @@
   <ng-container *ngIf="orderResponse">
     <span class="text-2xl font-bold text-center text-primary-light">Děkujeme za nákup</span>
     <span class="text-xl text-center text-primary-light mt-3">
-      Brzy Vám příjde e-mail s potvrzením objednavky číslo:{{orderResponse.invoiceId}}.
+      Brzy Vám příjde e-mail s potvrzením objednavky číslo: {{orderResponse.invoiceId}}.
     </span>
     <div *ngIf="orderResponse.paymentCode==='PRE'"
          class="flex flex-col text-xl text-center text-primary-dark mt-3">

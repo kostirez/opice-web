@@ -2,18 +2,18 @@
   <div class="m-5">
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
       <div class="flex flex-col mx-auto">
-        <span class="text-xl font-bold text-primary-light">Osobni udaje</span>
+        <span class="text-xl font-bold text-primary-light">Osobí údaje</span>
 
         <form [formGroup]="infoForm" class="max-w-sm py-3">
           <div class="mt-2 w-full grid grid-cols-2">
-            <label for="name" class="text-primary-dark my-auto">Jmeno a prijmeni:</label>
+            <label for="name" class="text-primary-dark my-auto">Jméno a příjmení:</label>
             <input type="text"
                    id="name"
                    formControlName="name"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
                    placeholder="Jan Novak"/>
             <div class="error" *ngIf="infoForm.get('name').touched">
-              <p class="text-danger" *ngIf="infoForm.get('name').errors?.['required']">Zadejte vase jmeno</p>
+              <p class="text-danger" *ngIf="infoForm.get('name').errors?.['required']">Zadejte Vaše jmeno</p>
             </div>
           </div>
           <div class="mt-2 w-full grid grid-cols-2">
@@ -24,7 +24,7 @@
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
                    placeholder="novak@mail.cz"/>
             <div class="error" *ngIf="infoForm.get('email').touched">
-              <p class="text-danger" *ngIf="infoForm.get('email').errors?.['required']">Zadejte vas email</p>
+              <p class="text-danger" *ngIf="infoForm.get('email').errors?.['required']">Zadejte Váš e-mail</p>
             </div>
           </div>
           <div class="mt-2 w-full grid grid-cols-2">
@@ -35,46 +35,46 @@
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
                    placeholder="123123123" required />
             <div class="error" *ngIf="infoForm.get('tel').touched">
-              <p class="text-danger" *ngIf="infoForm.get('tel').errors?.['required']">Zadejte vas telefon</p>
+              <p class="text-danger" *ngIf="infoForm.get('tel').errors?.['required']">Zadejte Váš telefon</p>
             </div>
           </div>
 
         </form>
       </div>
       <div class="flex flex-col mx-auto">
-        <span class="text-xl font-bold text-primary-light">Fakturacni udaje </span>
+        <span class="text-xl font-bold text-primary-light">Fakturační údaje </span>
         <form [formGroup]="infoForm" class="max-w-sm py-3">
           <div class="mt-2 w-full grid grid-cols-2">
-            <label for="address" class="text-primary-dark my-auto">Ulice a cislo domu</label>
+            <label for="address" class="text-primary-dark my-auto">Ulice a číslo domu</label>
             <input type="text"
                    id="address"
                    formControlName="street"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
                    placeholder="Narodni 120/15"/>
             <div class="error" *ngIf="infoForm.get('street').touched">
-              <p class="text-danger" *ngIf="infoForm.get('street').errors?.['required']">Zadejte vasi adresu</p>
+              <p class="text-danger" *ngIf="infoForm.get('street').errors?.['required']">Zadejte Vaší adresu</p>
             </div>
           </div>
           <div class="mt-2 w-full grid grid-cols-2">
-            <label for="city" class="text-primary-dark my-auto">Mesto</label>
+            <label for="city" class="text-primary-dark my-auto">Město</label>
             <input type="text"
                    id="city"
                    formControlName="city"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
                    placeholder="Praha" />
             <div class="error" *ngIf="infoForm.get('city').touched">
-              <p class="text-danger" *ngIf="infoForm.get('city').errors?.['required']">Zadejte mesto</p>
+              <p class="text-danger" *ngIf="infoForm.get('city').errors?.['required']">Zadejte město</p>
             </div>
           </div>
           <div class="mt-2 w-full grid grid-cols-2">
-            <label for="psc" class="text-primary-dark my-auto">PSC:</label>
+            <label for="psc" class="text-primary-dark my-auto">PSČ:</label>
             <input type="number"
                    id="psc"
                    formControlName="postCode"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
                    placeholder="170 00"/>
             <div class="error" *ngIf="infoForm.get('postCode').touched">
-              <p class="text-danger" *ngIf="infoForm.get('postCode').errors?.['required']">Zadejte psc</p>
+              <p class="text-danger" *ngIf="infoForm.get('postCode').errors?.['required']">Zadejte psč</p>
             </div>
           </div>
         </form>
