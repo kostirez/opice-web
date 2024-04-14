@@ -19,7 +19,6 @@ export type RestaurantData = {
 @Component({
   selector: 'app-for-restaurants',
   templateUrl: './for-restaurants.component.html',
-  styleUrl: './for-restaurants.component.scss'
 })
 export class ForRestaurantsComponent {
 
@@ -55,5 +54,10 @@ export class ForRestaurantsComponent {
 
   getObsSlides(slides: PicArray): Observable<PicArray> {
     return of(slides);
+  }
+
+  scrollToElement($element): void {
+    console.log($element);
+    $element.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
   }
 }
