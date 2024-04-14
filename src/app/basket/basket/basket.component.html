@@ -19,7 +19,7 @@
 
   <div class="border-4 border-primary-light mt-10 m-5">
     <div class="flex justify-between py-2 px-5 ">
-      <span class="text-md sm:text-xl text-primary-dark">Cena celkem za zbozi</span>
+      <span class="text-md sm:text-xl text-primary-dark">Cena celkem za zboží</span>
       <span class="text-md sm:text-xl text-primary-dark">{{getProductsPrice()}} Kč</span>
     </div>
     <div *ngIf="step>0" class="flex justify-between py-2 px-5">
@@ -87,7 +87,7 @@
   <ng-container *ngIf="orderResponse">
     <span class="text-2xl font-bold text-center text-primary-light">Děkujeme za nákup</span>
     <span class="text-xl text-center text-primary-light mt-3">
-      Brzy Vám příjde e-mail s potvrzením objednavky číslo: {{orderResponse.invoiceId}}.
+      Brzy Vám příjde e-mail s potvrzením objednávky číslo: {{orderResponse.invoiceId}}.
     </span>
     <div *ngIf="orderResponse.paymentCode==='PRE'"
          class="flex flex-col text-xl text-center text-primary-dark mt-3">
@@ -104,10 +104,10 @@
 
     <div class="flex justify-center">
       <button class="border-2 border-primary-light text-primary-light text-xl px-3 py-1 m-5 mb-10 rounded"
-              (click)="goToEshop()"> zpet do eshopu
+              (click)="goToEshop()"> zpět do e-shopu
       </button>
       <button class="border-2 border-primary-light text-primary-light text-xl px-3 py-1 m-5 mb-10 rounded"
-              (click)="goToHome()"> zpet na hlavni stranu
+              (click)="goToHome()"> zpět na hlavní stránku
       </button>
     </div>
   </ng-container>
