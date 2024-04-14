@@ -4,7 +4,6 @@ import { DOCUMENT } from "@angular/common";
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.scss'
 })
 export class ContactComponent {
   constructor(@Inject(DOCUMENT) private document: Document) { }
