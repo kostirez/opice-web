@@ -13,6 +13,11 @@ export interface Size {
   picSrc: string;
 }
 
+export interface ProductDetail {
+  name: string;
+  text: string;
+  pics: PicArray;
+}
 
 export interface ProductInfo {
   name: string;
@@ -23,6 +28,7 @@ export interface ProductInfo {
   sizeLabel: string;
   price: number;
   pictures: PicArray;
+  details: ProductDetail[];
 }
 
 export interface ProductSummary {
@@ -37,36 +43,30 @@ export interface ProductSummary {
 @Component({
   selector: 'product-box',
   templateUrl: './product.component.html',
-  styleUrl: './product.component.scss'
 })
 export class ProductComponent implements OnInit{
   @Input({ required: true }) productInfo!: ProductInfo;
   @Input() sizeLabel: string = '';
 
-  showDetail = false;
-  detailText: string = 'zobrazit';
-
   slides: PicArray = [];
 
   selectedColor: string | null = null;
   selectedSize: string | null = null;
+  selectedDetail: ProductDetail | null = null;
 
   colorErr: string = '';
   sizeErr: string = '';
   justAdded = false;
 
-  constructor(private basketService: BasketService) {
+  constructor(
+    private basketService: BasketService,
+    ) {
   }
 
   ngOnInit(): void {
     this.slides = this.productInfo.pictures;
   }
 
-
-  detailClick() {
-    this.showDetail=!this.showDetail;
-    this.detailText = this.showDetail ? "skryt" : "zobrazit";
-  }
 
   addToBasket(product: ProductInfo) {
     if(!this.selectedColor) {
@@ -110,5 +110,13 @@ export class ProductComponent implements OnInit{
     window.setTimeout(() =>{
         this.justAdded = false;
     }, 1000);
+  }
+
+  detailBtnClick(btn: ProductDetail): void {
+    this.selectedDetail = btn;
+  }
+
+  closeDetail() {
+    this.selectedDetail = null;
   }
 }

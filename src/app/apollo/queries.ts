@@ -162,7 +162,6 @@ export const PRODUCTS = {
   items: [
     'name',
     'description',
-    'detail',
     'sizeLabel',
     'price',
     'category',
@@ -180,6 +179,18 @@ export const PRODUCTS = {
       colection: 'pictures',
       filtr: '',
       items: ['url']
+    },
+    {
+      compName: 'details',
+      params: [
+        'name',
+        'text',
+        {
+          colection: 'pics',
+          filtr: '',
+          items: ['url']
+        },
+      ]
     },
   ]
 };
