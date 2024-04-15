@@ -70,14 +70,14 @@
   </form>
 
   <div class="flex flex-row justify-center">
-    <button class="px-5 sm:px-10 py-4 m-2 sm:m-5 mb-10 text-xs text-primary-dark"
+    <button class="px-5 sm:px-10 py-4 m-2 sm:m-5 mb-10 text-base text-primary-dark"
             (click)="stepBack()">
       {{step===0 ? 'zpět do e-shopu' : 'zpět'}}
     </button>
     <button class="border-2 border-primary-light px-2 sm:px-10 py-4 m-2 sm:m-5 mb-10 rounded"
             (click)="step===2 ? order() : nextStep()">
       <span class="text-primary-light font-bold text-xl sm:text-2xl">{{step===2 ? 'Objednat' : 'Pokračovat'}}</span>
-      <span class="block text-primary-dark text-xs sm:text-md">{{step===2 ? 's povinností platby' : ''}}</span>
+      <span class="block text-primary-dark text-base sm:text-md">{{step===2 ? 's povinností platby' : ''}}</span>
     </button>
   </div>
 </ng-container>

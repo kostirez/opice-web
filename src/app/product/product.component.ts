@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { BasketService } from "../basket/basket.service";
 import { PicArray } from "../model/view";
 import { Observable, of } from "rxjs";
+import { ImageService } from "../image.service";
 
 export interface Color {
   name: string;
@@ -60,6 +61,7 @@ export class ProductComponent implements OnInit{
 
   constructor(
     private basketService: BasketService,
+    private imageService: ImageService,
     ) {
   }
 
@@ -118,5 +120,9 @@ export class ProductComponent implements OnInit{
 
   closeDetail() {
     this.selectedDetail = null;
+  }
+
+  getBase(): string {
+    return this.imageService.getImageBase();
   }
 }
