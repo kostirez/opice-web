@@ -15,7 +15,7 @@
   </div>
 
 
-  <div class="my-10 sm:mt-20 flex flex-col sm:flex-row text-center items-center">
+  <div class="my-10 sm:mt-20 flex flex-col sm:flex-row text-center">
     <div class="sm:w-[50%] flex flex-col px-5 sm:px-20">
       <span class="text-3xl sm:text-4xl font-bold text-primary-light ">
         {{restaurantData.head_2}}
@@ -50,15 +50,15 @@
   <img class="" [src]="getBase()+restaurantData.how_it_works.url">
 
 
-  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">
-     Co pěstujeme
-   </span>
-  <div class="flex flex-wrap justify-center my-5">
-    <div *ngFor="let option of growOptions$ | async" class="text-center max-w-[25%] m-5 ">
-      <img class="" [src]="getBase()+option.pic.url">
-      <span class="text-xl text-primary-dark">{{option.head}}</span>
-    </div>
-  </div>
+<!--  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">-->
+<!--     Co pěstujeme-->
+<!--   </span>-->
+<!--  <div class="flex flex-wrap justify-center my-5">-->
+<!--    <div *ngFor="let option of growOptions$ | async" class="text-center max-w-[25%] m-5 ">-->
+<!--      <img class="" [src]="getBase()+option.pic.url">-->
+<!--      <span class="text-xl text-primary-dark">{{option.head}}</span>-->
+<!--    </div>-->
+<!--  </div>-->
 
 
   <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Kontaktujte nás</span>
