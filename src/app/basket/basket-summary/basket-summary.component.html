@@ -11,7 +11,7 @@
                    id="name"
                    formControlName="name"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
-                   placeholder="Jan Novak"/>
+                   placeholder=""/>
             <div class="error" *ngIf="infoForm.get('name').touched">
               <p class="text-danger" *ngIf="infoForm.get('name').errors?.['required']">Zadejte Vaše jméno</p>
             </div>
@@ -22,7 +22,7 @@
                    id="email"
                    formControlName="email"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
-                   placeholder="novak@mail.cz"/>
+                   placeholder=""/>
             <div class="error" *ngIf="infoForm.get('email').touched">
               <p class="text-danger" *ngIf="infoForm.get('email').errors?.['required']">Zadejte Váš e-mail</p>
             </div>
@@ -33,7 +33,7 @@
                    id="tel"
                    formControlName="tel"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
-                   placeholder="123123123" required />
+                   placeholder="" required />
             <div class="error" *ngIf="infoForm.get('tel').touched">
               <p class="text-danger" *ngIf="infoForm.get('tel').errors?.['required']">Zadejte Váš telefon</p>
             </div>
@@ -50,7 +50,7 @@
                    id="address"
                    formControlName="street"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
-                   placeholder="Narodni 120/15"/>
+                   placeholder=""/>
             <div class="error" *ngIf="infoForm.get('street').touched">
               <p class="text-danger" *ngIf="infoForm.get('street').errors?.['required']">Zadejte Vaší adresu</p>
             </div>
@@ -61,7 +61,7 @@
                    id="city"
                    formControlName="city"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
-                   placeholder="Praha" />
+                   placeholder="" />
             <div class="error" *ngIf="infoForm.get('city').touched">
               <p class="text-danger" *ngIf="infoForm.get('city').errors?.['required']">Zadejte město</p>
             </div>
@@ -72,7 +72,7 @@
                    id="psc"
                    formControlName="postCode"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
-                   placeholder="170 00"/>
+                   placeholder=""/>
             <div class="error" *ngIf="infoForm.get('postCode').touched">
               <p class="text-danger" *ngIf="infoForm.get('postCode').errors?.['required']">Zadejte psč</p>
             </div>
@@ -88,7 +88,7 @@
             <span class="text-primary-light mr-2"> - {{p.color}}</span>
             <span class="text-primary-light"> - {{p.size}}</span>
           </div>
-          <span class="text-primary-light align-self-end">{{p.count * p.priceForOne}} kc</span>
+          <span class="text-primary-light align-self-end">{{p.count * p.priceForOne}} Kč</span>
         </div>
       </div>
     </div>
