@@ -1,5 +1,5 @@
 <div class="mx-5">
-  <div class="relative flex flex-col bg-gradient-to-t sm:bg-gradient-to-l from-bg-light  via-white shadow-2xl rounded-t-xl rounded-bl-xl p-5">
+  <div class="relative flex flex-col bg-gradient-to-t sm:bg-gradient-to-l from-bg-light  via-white shadow-2xl rounded-xl sm:rounded-b-none p-5">
     <div class="flex flex-col sm:flex-row text-center ">
       <div class="min-w-[50%] flex flex-col justify-between overflow-hidden">
         <app-carousel [delay]="0" [showBtns]="true" [slides$]="getObsSlides(slides)"></app-carousel>
@@ -68,12 +68,19 @@
       <div class="absolute top-0 left-0 w-full h-full bg-success opacity-70 rounded-xl"></div>
       <div class="absolute top-[45%] left-0 w-full text-center text-3xl font-bold text-white">Přidáno do košíku</div>
     </div>
-
+    <div class="flex flex-wrap mt-3 sm:hidden w-full justify-around  gap-3">
+      <button *ngFor="let btn of productInfo.details"
+              (click)="detailBtnClick(btn)"
+              class="px-2 py-3 mt-0 mx-0 text-white text-xs font-bold rounded-xl shadow-2xl"
+              [ngClass]="selectedDetail && btn.name === selectedDetail.name ? 'bg-primary-light' : 'bg-primary-dark'">
+        {{btn.name}}
+      </button>
+    </div>
   </div>
-  <div class="flex w-full justify-end gap-3">
+  <div class="hidden sm:flex w-full justify-end gap-3">
     <button *ngFor="let btn of productInfo.details"
             (click)="detailBtnClick(btn)"
-            class="px-0 sm:px-5 py-3 mt-0 mx-0 text-white text-xs sm:text-xl rounded-b-xl shadow-2xl"
+            class="px-5 py-3 mt-0 mx-0 text-white text-base md:text-xl font-bold rounded-b-xl shadow-2xl"
             [ngClass]="selectedDetail && btn.name === selectedDetail.name ? 'bg-primary-light' : 'bg-primary-dark'">
       {{btn.name}}
     </button>
