@@ -214,5 +214,12 @@ export const INSTRUCTIONS = {
         'text',
       ]
     },
+    {
+      compName: 'steps_sitka',
+      params: [
+        'head',
+        'text',
+      ]
+    },
   ]
 };

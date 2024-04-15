@@ -4,31 +4,31 @@
     <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-3 sm:mt-10">
       {{instruction.head}}
     </span>
-    <span class="text-xl text-center text-primary-dark pt-3">{{instruction.text}}</span>
+    <span class="text-xl text-center max-w-[600px] mx-auto text-primary-dark pt-3">{{instruction.text}}</span>
 
     <span class="text-2xl sm:text-3xl font-bold text-primary-light text-center mt-3 sm:mt-10">
       {{instruction.head_2}}
     </span>
-    <span class="text-md sm:text-xl text-center text-primary-dark pt-1 sm:pt-3">{{instruction.text_2}}</span>
+    <span class="text-md sm:text-xl mx-auto max-w-[600px]  text-center text-primary-dark pt-1 sm:pt-3">{{instruction.text_2}}</span>
 
-    <span class="text-2xl sm:text-3xl font-bold text-primary-light text-center mt-3 sm:mt-10">
+    <span class="text-2xl sm:text-3xl font-bold text-primary-light text-center my-3 sm:my-10">
       {{instruction.headSklenice}}
     </span>
-    <div class="flex flex-col sm:flex-row">
+    <div class="flex flex-wrap gap-y-5 sm:gap-y-10">
       <div *ngFor="let item of instruction.steps_sklenice"
-           class="max-w-[200px] sm:max-w-[300px] mx-auto p-5 sm:p-12 flex flex-col items-center text-center">
-        <span class="text-2xl sm:text-3xl text-primary-light">{{item.head}}</span>
-        <span class="text-xl text-primary-dark pt-3">{{item.text}}</span>
+           class="max-w-[400px] mx-auto p-5 bg-bg-light rounded-xl flex flex-col items-center text-center">
+        <span class="text-xl sm:text-2xl text-primary-light">{{item.head}}</span>
+        <span class="text-md sm:text-xl text-primary-dark pt-3">{{item.text}}</span>
       </div>
     </div>
-    <span class="text-2xl sm:text-3xl font-bold text-primary-light text-center mt-3 sm:mt-10">
+    <span class="text-2xl sm:text-3xl font-bold text-primary-light text-center my-3 sm:my-10">
       {{instruction.headMisky}}
     </span>
-    <div class="flex flex-col sm:flex-row">
-      <div *ngFor="let item of instruction.steps_misky"
-           class="max-w-[200px] sm:max-w-[300px] mx-auto p-5 sm:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
-        <span class="text-2xl sm:text-3xl text-primary-light">{{item.head}}</span>
-        <span class="text-xl text-primary-dark pt-3">{{item.text}}</span>
+    <div class="flex flex-wrap gap-y-5 sm:gap-y-10">
+      <div *ngFor="let item of instruction.steps_sitka"
+           class="max-w-[400px]  mx-auto p-5 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
+        <span class="text-xl sm:text-2xl text-primary-light">{{item.head}}</span>
+        <span class="text-md sm:text-xl text-primary-dark pt-3">{{item.text}}</span>
       </div>
     </div>
   </ng-container>

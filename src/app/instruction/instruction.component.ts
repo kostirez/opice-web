@@ -8,7 +8,6 @@ interface InstructionData {
   text: string;
   head_2: string;
   text_2: string;
-  text_3: string;
   steps_sklenice: TextItem[];
   steps_sitka: TextItem[];
   headSklenice: string;
