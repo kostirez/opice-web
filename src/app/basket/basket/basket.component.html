@@ -74,10 +74,14 @@
             (click)="stepBack()">
       {{step===0 ? 'zpět do e-shopu' : 'zpět'}}
     </button>
-    <button class="border-2 border-primary-light px-2 sm:px-10 py-4 m-2 sm:m-5 mb-10 rounded"
+    <button *ngIf="products && products.length >0"
+            class="relative border-2 border-primary-light px-2 sm:px-10 py-4 m-2 sm:m-5 mb-10 rounded"
             (click)="step===2 ? order() : nextStep()">
       <span class="text-primary-light font-bold text-xl sm:text-2xl">{{step===2 ? 'Objednat' : 'Pokračovat'}}</span>
       <span class="block text-primary-dark text-base sm:text-md">{{step===2 ? 's povinností platby' : ''}}</span>
+      <ng-container *ngIf="loading">
+        <app-loading class="h-full w-full"></app-loading>
+      </ng-container>
     </button>
   </div>
 </ng-container>
@@ -110,10 +114,6 @@
               (click)="goToHome()"> zpět na hlavní stránku
       </button>
     </div>
-  </ng-container>
-  <ng-container *ngIf="!orderResponse">
-    <app-loading class="h-full"></app-loading>
-    <p>{{orderResponse.paymentCode}}</p>
   </ng-container>
 </div>
 

@@ -25,6 +25,7 @@ export class BasketComponent {
   products: ProductSummary[] = [];
   basketSteps = BASKET_STEPS;
   orderResponse: OrderResponse | null;
+  loading = false;
 
   termsForm =  this.formBuilder.group({
     term: [ ,[ Validators.required ]],
@@ -43,13 +44,6 @@ export class BasketComponent {
     this.basketService.state$.subscribe(s => this.step = s);
     this.basketService.setTermForm(this.termsForm);
     this.orderResponse = this.basketService.orderResponse;
-
-    // this.router.events
-    //   .subscribe((event) => {
-    //     if (event instanceof NavigationEnd) {
-    //        todo tlacitko zpet v browsru
-    //     }
-    //   });
   }
 
   menuClick(step:number) {
@@ -96,13 +90,15 @@ export class BasketComponent {
   }
 
   getPriceText(price: number): string {
-    return price > 0 ? price + 'Kc' : 'Zdarma';
+    return price > 0 ? price + 'Kč' : 'Zdarma';
   }
 
   order() {
     const order$ = this.basketService.order();
+    this.loading = true;
     if (order$){
       order$.subscribe(orderResponse => {
+        this.loading = false;
         this.orderResponse = orderResponse;
         this.basketService.moveForward();
         this.basketService.deleteBasket()
