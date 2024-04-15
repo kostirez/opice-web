@@ -11,7 +11,7 @@
                  [value]="t.code"
                  formControlName="transportCode"
                  class="hidden peer"/>
-          <label [for]="t.code" class="w-full flex justify-between items-center peer-checked:bg-success2">
+          <label [for]="t.code" class="w-full flex justify-between items-center peer-checked:bg-success2 cursor-pointer">
             <div class="mx-1 sm:mx-5">
               <h4 class="text-2xl text-primary-light">{{t.head}}</h4>
               <p class="text-sm text-primary-dark">{{t.text}}</p>
@@ -74,13 +74,13 @@
       <ng-container *ngIf="paymentMethods$ | async as paymentMethods; else LOADING">
         <div *ngFor="let p of paymentMethods"
              (click)="setPaymentPrice(p.price)"
-             class="flex cursor-pointer  border-2 border-primary-dark">
+             class="flex   border-2 border-primary-dark">
           <input type="radio"
                  [id]="p.code"
                  [value]="p.code"
                  formControlName="paymentCode"
                  class="hidden peer"/>
-          <label [for]="p.code" class="w-full flex justify-between items-center peer-checked:bg-success2">
+          <label [for]="p.code" class="w-full flex justify-between items-center peer-checked:bg-success2 cursor-pointer">
             <div class="mx-5">
               <h4 class="text-2xl text-primary-light">{{p.head}}</h4>
               <p class="text-sm text-primary-dark">{{p.text}}</p>
