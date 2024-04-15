@@ -10,6 +10,7 @@ import { ContactComponent } from "./contact/contact.component";
 import { TranspotPaymentComponent } from "./transpot-payment/transpot-payment.component";
 import { DocumentsComponent } from "./documents/documents.component";
 import { BasketComponent } from "./basket/basket/basket.component";
+import { InstructionComponent } from "./instruction/instruction.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
     ]
   },
   { path: 'kosik', component: BasketComponent,},
+  { path: 'navody', component: InstructionComponent,},
   { path: 'pro-restaurace', component: ForRestaurantsComponent},
   { path: 'kontakty', component: ContactComponent},
   { path: 'doprava-a-platba', component: TranspotPaymentComponent},

@@ -31,6 +31,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BasketOverviewComponent } from './basket/basket-overview/basket-overview.component';
 import { BasketPayTransComponent } from './basket/basket-pay-trans/basket-pay-trans.component';
 import { BasketSummaryComponent } from './basket/basket-summary/basket-summary.component';
+import { InstructionComponent } from './instruction/instruction.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { BasketSummaryComponent } from './basket/basket-summary/basket-summary.c
     BasketOverviewComponent,
     BasketPayTransComponent,
     BasketSummaryComponent,
+    InstructionComponent,
   ],
   imports: [
     BrowserModule,

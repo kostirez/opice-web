@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { StrapiGraphqlService, StrapiResult } from "./strapi-graphql.service";
 import { Observable } from "rxjs";
-import { ESHOP_MAIN, GROW, HOME, OFFERS, PAYMENT, RESTAURANT, TRANSPORT } from "./queries";
+import { ESHOP_MAIN, GROW, HOME, INSTRUCTIONS, OFFERS, PAYMENT, RESTAURANT, TRANSPORT } from "./queries";
 
 
 @Injectable({
@@ -37,5 +37,9 @@ export class SingleTypesService {
 
   getTransportData<T>(): Observable<StrapiResult<T>>{
     return this.strapiGraphqlService.fetch<T>(TRANSPORT)
+  }
+
+  getInstructionData<T>(): Observable<StrapiResult<T>>{
+    return this.strapiGraphqlService.fetch<T>(INSTRUCTIONS)
   }
 }

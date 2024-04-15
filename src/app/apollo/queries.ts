@@ -194,3 +194,25 @@ export const PRODUCTS = {
     },
   ]
 };
+
+
+
+export const INSTRUCTIONS = {
+  colection: 'instruction',
+  filtr: '',
+  items: [
+    'head',
+    'text',
+    'head_2',
+    'text_2',
+    'headSklenice',
+    'headMisky',
+    {
+      compName: 'steps_sklenice',
+      params: [
+        'head',
+        'text',
+      ]
+    },
+  ]
+};
