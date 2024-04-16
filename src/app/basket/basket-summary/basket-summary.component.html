@@ -14,6 +14,7 @@
                    placeholder=""/>
             <div class="error" *ngIf="infoForm.get('name').touched">
               <p class="text-danger" *ngIf="infoForm.get('name').errors?.['required']">Zadejte Vaše jméno</p>
+              <p class="text-danger" *ngIf="infoForm.get('name').errors?.['pattern']">Nepoužívejte speciální znaky ani čísla</p>
             </div>
           </div>
           <div class="mt-2 w-full grid grid-cols-2">
@@ -25,6 +26,7 @@
                    placeholder=""/>
             <div class="error" *ngIf="infoForm.get('email').touched">
               <p class="text-danger" *ngIf="infoForm.get('email').errors?.['required']">Zadejte Váš e-mail</p>
+              <p class="text-danger" *ngIf="infoForm.get('email').errors?.['email']">Zadejte Váš e-mail ve správném tvaru</p>
             </div>
           </div>
           <div class="mt-2 w-full grid grid-cols-2">
@@ -36,6 +38,9 @@
                    placeholder="" required />
             <div class="error" *ngIf="infoForm.get('tel').touched">
               <p class="text-danger" *ngIf="infoForm.get('tel').errors?.['required']">Zadejte Váš telefon</p>
+              <p class="text-danger" *ngIf="infoForm.get('tel').errors?.['pattern']">Zadejte pouze číslo bez předvolby</p>
+              <p class="text-danger" *ngIf="infoForm.get('tel').errors?.['minlength']">Příliš krátké číslo</p>
+              <p class="text-danger" *ngIf="infoForm.get('tel').errors?.['maxlength']">Příliš dlouhé číslo (Zadejte číslo bez předvolby)</p>
             </div>
           </div>
 
@@ -68,13 +73,16 @@
           </div>
           <div class="mt-2 w-full grid grid-cols-2">
             <label for="psc" class="text-primary-dark my-auto">PSČ:</label>
-            <input type="number"
+            <input type="text"
                    id="psc"
                    formControlName="postCode"
                    class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light"
                    placeholder=""/>
             <div class="error" *ngIf="infoForm.get('postCode').touched">
               <p class="text-danger" *ngIf="infoForm.get('postCode').errors?.['required']">Zadejte psč</p>
+              <p class="text-danger" *ngIf="infoForm.get('postCode').errors?.['pattern']">Zadávejte pouze čísla bez mezer a jiných znaků</p>
+              <p class="text-danger" *ngIf="infoForm.get('postCode').errors?.['minlength']">Příliš krátké číslo</p>
+              <p class="text-danger" *ngIf="infoForm.get('postCode').errors?.['maxlength']">Příliš dlouhé číslo</p>
             </div>
           </div>
         </form>

@@ -95,8 +95,8 @@ export class BasketComponent {
 
   order() {
     const order$ = this.basketService.order();
-    this.loading = true;
     if (order$){
+      this.loading = true;
       order$.subscribe(orderResponse => {
         this.loading = false;
         this.orderResponse = orderResponse;

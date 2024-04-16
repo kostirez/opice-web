@@ -13,10 +13,12 @@ export class BasketSummaryComponent {
   infoForm =  this.formBuilder.group({
     street: [ '', [Validators.required] ],
     city: [ '', Validators.required ],
-    postCode: [ '', Validators.required ],
+    postCode: [ '', [Validators.required, Validators.pattern("^[0-9]*$"),
+      Validators.minLength(4), Validators.maxLength(6)]],
     email: [ '', [Validators.required,  Validators.email]],
-    name: [ '', Validators.required ],
-    tel: [ '', Validators.required ],
+    name: [ '', [Validators.required, Validators.pattern("[a-zA-ZÀ-ž]*")]],
+    tel: [ '', [Validators.required, Validators.pattern("^[0-9]*$"),
+      Validators.minLength(8), Validators.maxLength(12)]],
   });
 
   products: ProductSummary[] = [];
