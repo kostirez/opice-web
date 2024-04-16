@@ -11,7 +11,7 @@
         </div>
 
         <!--         size       -->
-        <ng-container *ngIf="sizeLabel">
+        <ng-container *ngIf="productInfo.sizeLabel">
           <span class="text-xl text-primary-dark mt-5">{{productInfo.sizeLabel}}</span>
           <div class="flex justify-center sm:justify-start mt-3">
             <div *ngFor="let size of productInfo.sizes"

@@ -47,7 +47,6 @@ export interface ProductSummary {
 })
 export class ProductComponent implements OnInit{
   @Input({ required: true }) productInfo!: ProductInfo;
-  @Input() sizeLabel: string = '';
 
   slides: PicArray = [];
 
