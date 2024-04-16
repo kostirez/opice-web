@@ -19,6 +19,7 @@ export class BasketSummaryComponent {
     name: [ '', [Validators.required, Validators.pattern("[a-zA-ZÀ-ž]*")]],
     tel: [ '', [Validators.required, Validators.pattern("^[0-9]*$"),
       Validators.minLength(8), Validators.maxLength(12)]],
+    note: [''],
   });
 
   products: ProductSummary[] = [];

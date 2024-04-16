@@ -23,6 +23,7 @@ export interface Order {
       email: string;
       tel: number;
     }
+    note: string;
 }
 
 export interface OrderResponse {
@@ -165,14 +166,15 @@ export class BasketService implements OnDestroy{
     if (error) {
       return null;
     }
+    console.log('order', this.payTransForm.value.transportPlaceArray);
     const order: Order = {
       invoice_id: 0,
       products: this.products,
       transportCode: this.payTransForm.value.transportCode,
-      transportPlace: this.payTransForm.value.transportPlace ?? {},
+      transportPlace: this.payTransForm.value.transportPlaceArray[0] ?? {},
       paymentCode: this.payTransForm.value.paymentCode,
-      gdpr: true,
-      obchodniPodminky: true,
+      gdpr: !!this.termForm.value.gdpr,
+      obchodniPodminky: !!this.termForm.value.term,
       address: {
         street: this.infoForm.value.street,
         city: this.infoForm.value.city,
@@ -182,7 +184,8 @@ export class BasketService implements OnDestroy{
         name: this.infoForm.value.name,
         email: this.infoForm.value.email,
         tel: 0,
-      }
+      },
+      note: this.infoForm.value.note,
     }
     return this.strapiApiService.sendOrder(order)
   }

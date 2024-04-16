@@ -87,6 +87,18 @@
           </div>
         </form>
       </div>
+      <div class="flex flex-col mx-auto">
+        <span class="text-xl font-bold text-primary-light">Doplňující údaje</span>
+        <form [formGroup]="infoForm" class="max-w-sm py-3">
+          <div class="mt-2 w-full grid grid-cols-2">
+            <label for="text" class="text-primary-dark my-auto">Poznámka k objednávce</label>
+            <textarea id="text"
+                      formControlName="note"
+                      class="px-3 py-1 border-2 border-primary-dark rounded-sm focus:ring-primary-light">
+            </textarea>
+          </div>
+        </form>
+      </div>
       <span class="sm:col-span-2 text-xl text-primary-light font-bold mx-auto mb-2">Rekapitulace objednávky</span>
       <div class="flex flex-col mx-auto sm:col-span-2 w-full border-4 border-primary-dark px-5 py-2">
         <div *ngFor="let p of products" class="flex justify-between">
