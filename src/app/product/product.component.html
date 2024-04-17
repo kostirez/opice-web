@@ -6,19 +6,19 @@
       </div>
       <div class="flex flex-col text-center sm:text-left sm:pl-10 w-full">
         <h1 class="text-2xl sm:text-3xl text-primary-light font-bold mt-3">{{productInfo.name}}</h1>
-        <h4 class="text-xl text-primary-light mt-3">{{productInfo.description}}</h4>
+        <h4 class="text-sm sm:text-xl text-primary-dark mt-3">{{productInfo.description}}</h4>
         <div class="sm:hidden">
         </div>
 
         <!--         size       -->
         <ng-container *ngIf="productInfo.sizeLabel">
-          <span class="text-xl text-primary-dark mt-5">{{productInfo.sizeLabel}}</span>
+          <span class="text-xl text-primary-light mt-5">{{productInfo.sizeLabel}}</span>
           <div class="flex justify-center sm:justify-start mt-3">
             <div *ngFor="let size of productInfo.sizes"
                  class="mx-2 sm:ml-0 sm:mr-3 p-2 max-w-[40%] border-2 border-primary-dark relative cursor-pointer"
                  [ngClass]="size.name === selectedSize ? 'border-success border-4' : 'border-primary-dark'"
                  (click)="selectSize(size.name)">
-              <span class="text-center text-primary-light text-base sm:text-xl ">{{size.name}}</span>
+              <span class="text-center text-primary-dark text-base sm:text-xl ">{{size.name}}</span>
               <img class="absolute top-0" [src]="size.picSrc">
             </div>
           </div>
@@ -27,7 +27,7 @@
 
         <!--         color       -->
         <ng-container *ngIf="productInfo.colors.length > 0">
-          <h3 class="text-xl text-primary-dark mt-5">Barevné varianty</h3>
+          <h3 class="text-xl text-primary-light mt-5">Barevné varianty:</h3>
           <div  class="flex justify-center sm:justify-start mt-3">
             <div *ngFor="let color of productInfo.colors"
                  class="mx-2 sm:ml-0 sm:mr-3 w-[40px] h-[40px] mx-2 border-2 rounded-md cursor-pointer"
@@ -50,7 +50,7 @@
          class="">
       <div class="w-full my-5 flex justify-center border-y-2 border-primary-dark border-dotted">
         <button (click)="closeDetail()"
-                class="w-[200px] text-primary-dark text-md my-2">zavřít detail</button>
+                class="w-[200px] text-primary-dark text-sm sm:text-base my-2">zavřít detail</button>
       </div>
       <div class="mt-5 flex flex-col sm:flex-row">
         <div class="w-full sm:w-[50%]">
@@ -58,7 +58,7 @@
         </div>
         <div class="w-full sm:w-[50%] overflow-x-auto">
           <h2 class="mt-5 mx-2 text-primary-light text-xl sm:text-2xl font-bold">{{selectedDetail.name}}</h2>
-          <div class="mt-5 mx-2 text-primary-dark" [innerHTML]="selectedDetail.text"></div>
+          <div class="mt-5 mx-2 text-primary-dark text-sm sm:text-base" [innerHTML]="selectedDetail.text"></div>
         </div>
       </div>
     </div>
