@@ -54,10 +54,20 @@ export class BasketComponent {
 
   nextStep() {
     this.basketService.moveForward();
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
   stepBack() {
-    this.basketService.moveBack()
+    this.basketService.moveBack();
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
   goToEshop() {
@@ -99,6 +109,11 @@ export class BasketComponent {
       this.loading = true;
       order$.subscribe(orderResponse => {
         this.loading = false;
+        window.scroll({
+          top: 0,
+          left: 0,
+          behavior: 'smooth'
+        });
         this.orderResponse = orderResponse;
         this.basketService.moveForward();
         this.basketService.deleteBasket()
