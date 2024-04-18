@@ -116,13 +116,18 @@ export class BasketService implements OnDestroy{
       return;
     }
     if (this.state === 1) {
-      if(this.payTransForm.valid) {
-        console.log('valid', this.payTransForm.valid)
-        this.setState(2);
-        return;
+      if (this.payTransForm.get('paymentCode').value==='HOT' &&
+        this.payTransForm.get('transportCode').value!=='OSOB') {
+        this.payTransForm.controls['paymentCode'].setErrors({'match': true});
       } else {
-        this.payTransForm.markAllAsTouched()
-        return;
+        this.payTransForm.controls['paymentCode'].setErrors({'match': null});
+        this.payTransForm.controls['paymentCode'].updateValueAndValidity();
+        this.payTransForm.controls['transportPlaceArray'].updateValueAndValidity();
+      }
+      if(this.payTransForm.valid) {
+        this.setState(2);
+      } else {
+        this.payTransForm.markAllAsTouched();
       }
     }
   }

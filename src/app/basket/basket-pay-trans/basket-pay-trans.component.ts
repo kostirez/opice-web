@@ -57,7 +57,9 @@ export class BasketPayTransComponent implements OnInit {
     const a = this.payTransForm.controls['transportCode']
       .valueChanges.subscribe(val => {
         if (val === 'BAL_B') {
-          this.transportPlaceArray.push(this.formBuilder.control(undefined, Validators.required));
+          if (this.transportPlaceArray.length == 0) {
+            this.transportPlaceArray.push(this.formBuilder.control(undefined, Validators.required));
+          }
         } else {
           this.transportPlaceArray.clear();
         }

@@ -95,6 +95,8 @@
              *ngIf="payTransForm.get('paymentCode').touched">
           <p class="text-danger my-5 text-xl sm:text-2xl font-bold"
              *ngIf="payTransForm.get('paymentCode').errors?.['required']">Vyberte typ platby</p>
+          <p class="text-danger my-5 text-xl sm:text-2xl font-bold"
+             *ngIf="payTransForm.get('paymentCode').errors?.['match']">Hotově lze platit pouze při osobním vyzvednutí</p>
         </div>
       </ng-container>
     </div>
