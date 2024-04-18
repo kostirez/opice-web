@@ -1,24 +1,24 @@
-<div *ngIf="!productsOpen" class="flex flex-wrap gap-10 my-10 mx-10 sm:mx-0 sm:my-20">
+<div *ngIf="!productsOpen" class="flex flex-wrap gap-10 my-10 mx-10 md:mx-0 md:my-20">
   <div *ngFor="let item of eshopItems"
        (click)="goTo(item.url)"
-       class="mx-auto relative sm:w-auto cursor-pointer border-4 rounded-xl "
+       class="mx-auto relative md:w-auto cursor-pointer border-4 rounded-xl "
        [ngClass]="actualUrl === item.url ?
-                  'border-primary-light text-primary-light':
-                  'border-primary-dark text-primary-dark'"
+                  'border-primary text-primary':
+                  'border-secondary text-secondary'"
        @fadeAnimation>
-    <h2 class="text-center my-5 mx-10 text-2xl sm:text-3xl z-10">{{item.head}}</h2>
-    <img class="w-[300px] sm:mx-auto z-[-10] p-1" [src]="getBase() + item.pic.url">
+    <h3 class="text-center my-5 mx-10">{{item.head}}</h3>
+    <img class="w-[300px] md:mx-auto z-[-10] p-1" [src]="getBase() + item.pic.url">
     <div class="absolute top-0 w-full h-full opacity-15 z-10 bg-bg-light"></div>
   </div>
 </div>
-<div *ngIf="productsOpen" class="w-full flex justify-around my-10 sm:my-20">
+<div *ngIf="productsOpen" class="w-full flex justify-around my-10 md:my-20">
   <div *ngFor="let item of eshopItems"
        (click)="goTo(item.url)"
-       class="min-w-[100px] py-3 sm:py-5 px-5 sm:px-10 cursor-pointer border-4 rounded-xl "
+       class="min-w-[100px] py-3 md:py-5 px-5 md:px-10 cursor-pointer border-4 rounded-xl "
        [ngClass]="actualUrl === item.url ?
-                  'border-primary-light text-primary-light':
-                  'border-primary-dark text-primary-dark'">
-    <span class="mx-auto text-xl sm:text-2xl font-bold">{{item.head}}</span>
+                  'border-primary text-primary':
+                  'border-secondary text-secondary'">
+    <h4 class="mx-auto mb-0">{{item.head}}</h4>
   </div>
 </div>
 <app-loading *ngIf="loading"></app-loading>

@@ -1,4 +1,4 @@
-<div class="z-30 w-100 sm:hidden">
+<div class="z-30 w-100 md:hidden">
   <div class="flex items-center justify-between h-[80px] p-5 bg-gradient-to-t from-bg-light to-white">
     <div>
       <a routerLink="/" (click)="closeNavBar()">
@@ -6,17 +6,17 @@
       </a>
     </div>
     <div>
-      <span class="text-2xl font-bold text-primary-light">{{currentPage}}</span>
+      <h3 class="mb-0">{{currentPage}}</h3>
     </div>
     <div>
       <div *ngIf="navbarOpen" class="cursor-pointer pt-2" (click)="toggleNavbar()">
-        <svg class="stroke-primary-dark" width="30" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="stroke-secondary" width="30" height="30" viewBox="0 0 31 30" fill="none" xmlns="http://www.w3.org/2000/svg">
           <line x1="0.646447" y1="29.613" x2="28.9307" y2="1.32876"/>
           <line x1="1.39408" y1="0.646447" x2="29.6784" y2="28.9307"/>
         </svg>
       </div>
       <div *ngIf="!navbarOpen" class="cursor-pointer pt-2" (click)="toggleNavbar()">
-        <svg class="stroke-primary-dark" width="30" height="30" viewBox="0 0 40 31" fill="none">
+        <svg class="stroke-secondary" width="30" height="30" viewBox="0 0 40 31" fill="none">
           <line y1="0.5" x2="40" y2="0.5" />
           <line y1="15.5" x2="40" y2="15.5"/>
           <line y1="30.5" x2="40" y2="30.5"/>
@@ -29,14 +29,16 @@
       <div *ngIf="navbarOpen" class="flex flex-col pt-[80px]">
         <ul class="mx-auto">
           <li *ngFor="let item of menuItems" class="flex justify-center">
-            <a class="p-2 m-2 font-bold text-primary-dark" (click)="toggleNavbar()" [routerLink]="item.url">{{item.head}}</a>
+            <a class="p-2 m-2" (click)="toggleNavbar()" [routerLink]="item.url">
+              <h5 class="mb-0">{{item.head}}</h5>
+            </a>
           </li>
           <li class="flex justify-center"
               *ngIf="itemsCount!==0">
-            <a class="relative p-2 m-2 font-bold text-primary-dark" routerLink="/kosik">
-              <span>košík</span>
+            <a class="relative p-2 m-2 font-bold text-secondary" routerLink="/kosik">
+              <h2 class="mb-0">košík</h2>
               <div class="absolute top-[25%] left-[-30%] w-[20px] h-[20px] bg-danger rounded-full text-center text-warning">
-                <h2 class="text-[13px]">{{itemsCount}}</h2>
+                <span class="text-[13px]">{{itemsCount}}</span>
               </div>
             </a>
           </li>
@@ -46,32 +48,36 @@
     </div>
   </div>
 </div>
-<div class="hidden sm:block">
+<div class="hidden md:block">
   <div class="flex py-5 w-fit mx-auto px-[15%]">
     <a routerLink="/" (click)="closeNavBar()">
       <img class="w-[10rem] h-[10rem]" src="assets/logo/logo.svg">
     </a>
     <div class="flex flex-col h-[120px] justify-around">
-      <a class="text-5xl md:text-6xl font-bold text-primary-light" routerLink="/">Zrzavá opice</a>
-      <div class="flex">
+      <a class="" routerLink="/">
+        <h1 class="mb-0">Zrzavá opice</h1>
+      </a>
+      <nav class="flex">
         <ul class="mx-auto flex flex-wrap justify-around">
           <li *ngFor="let item of menuItems.slice(1,7)">
-            <a class="text-xl mx-2 text-primary-dark" [routerLink]="item.url">{{item.head}}</a>
+            <a  [routerLink]="item.url">
+              <h6 class="mx-2 mb-0">{{item.head}}</h6>
+            </a>
           </li>
         </ul>
-      </div>
+      </nav>
     </div>
   </div>
 </div>
 
 <ng-container *ngIf="!navbarOpen">
-  <div class="absolute top-0 sm:static z-[-10] min-h-[100vh] w-[100vw] flex flex-col">
-    <div class="relative pt-[80px] sm:pt-0 sm:px-[15%]">
+  <div class="absolute top-0 md:static z-[-10] min-h-[100vh] w-[100vw] flex flex-col">
+    <main class="relative pt-[80px] md:pt-0 md:px-[15%]">
       <router-outlet></router-outlet>
-    </div>
-    <div class="mt-auto">
+    </main>
+    <footer class="mt-auto">
       <footer></footer>
-    </div>
+    </footer>
   </div>
 </ng-container>
 <app-basket-icon *ngIf="showBasketIcon" (click)="closeNavBar()"></app-basket-icon>

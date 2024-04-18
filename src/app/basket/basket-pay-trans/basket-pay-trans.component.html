@@ -1,44 +1,44 @@
 <div>
   <form [formGroup]="payTransForm" class="flex flex-col px-5">
-    <span class="text-3xl text-primary-light mx-auto my-3">Doprava</span>
-      <div class="relative flex flex-col justify-center border-2 border-primary-dark">
+    <h3 class="mx-auto my-3">Doprava</h3>
+      <div class="relative flex flex-col justify-center border-2 border-secondary">
         <ng-container *ngIf="transportMethods$ | async as transportMethods; else LOADING">
         <div *ngFor="let t of transportMethods"
              (click)="setTransportPrice(t.price)"
-             class="flex cursor-pointer  border-2 border-primary-dark">
+             class="flex cursor-pointer  border-2 border-secondary">
           <input type="radio"
                  [id]="t.code"
                  [value]="t.code"
                  formControlName="transportCode"
                  class="hidden peer"/>
-          <label [for]="t.code" class="w-full flex justify-between items-center peer-checked:bg-success2 cursor-pointer">
-            <div class="mx-1 sm:mx-5">
-              <h4 class="text-2xl text-primary-light">{{t.head}}</h4>
-              <p class="text-sm text-primary-dark">{{t.text}}</p>
+          <label [for]="t.code" class="mb-0 w-full flex justify-between items-center peer-checked:bg-success2 cursor-pointer">
+            <div class="mx-1 md:mx-5">
+              <h4 class="mb-0">{{t.head}}</h4>
+              <p class="">{{t.text}}</p>
             </div>
             <div class="my-3 mr-5">
               <img class="w-[100px] h-[30px] object-contain" [src]="getBase()+t.icon.url">
-              <p class="my-2 w-max ml-auto text-xl text-primary-light">{{getPriceText(t.price)}}</p>
+              <h4 class="my-2 w-max ml-auto">{{getPriceText(t.price)}}</h4>
             </div>
           </label>
 
          </div>
         <div class="text-center w-full"
              *ngIf="payTransForm.get('transportCode').touched">
-          <p class="text-danger my-5 text-xl sm:text-2xl font-bold"
+          <p class="text-danger my-5"
              *ngIf="payTransForm.get('transportCode').errors?.['required']">Vyberte typ dopravy</p>
         </div>
       </ng-container>
     </div>
 
     <ng-container *ngIf="transportPlaceArray.controls.length!==0" >
-      <span class="text-3xl text-primary-light mx-auto my-3 ">Místo doručení</span>
-      <div class="w-full border-4 border-primary-dark flex justify-around items-center">
+      <h3 class="mx-auto my-3">Místo doručení</h3>
+      <div class="w-full border-4 border-secondary flex justify-around items-center">
         <div *ngIf="transportPlaceArray.controls[0] && transportPlaceArray.controls[0].value">
-          <p class="text-primary-light text-xl">{{transportPlaceArray.controls[0].value.name}}</p>
-          <p class="text-primary-dark text-md">{{transportPlaceArray.controls[0].value.address}}</p>
+          <p class="">{{transportPlaceArray.controls[0].value.name}}</p>
+          <p class="">{{transportPlaceArray.controls[0].value.address}}</p>
         </div>
-        <button class="m-5 w-[200px] text-xl sm:text-2xl text-primary-light "
+        <button class="m-5 w-[200px] text-xl md:text-2xl text-primary"
                 (click)="openTransportModal()"
         >
           {{!transportPlaceArray.controls[0].value ? 'Vyberte místo doručení' : 'Změnit místo doručení'}}
@@ -47,7 +47,7 @@
       </div>
       <div class="text-center w-full"
            *ngIf="transportPlaceArray.controls[0].touched">
-        <p class="text-danger my-5 text-xl sm:text-2xl font-bold"
+        <p class="text-danger my-5"
            *ngIf="transportPlaceArray.controls[0].errors?.['required']">Vyberte místo doručení</p>
       </div>
 
@@ -56,9 +56,9 @@
            class="fixed top-0 left-0 z-50 w-full h-full flex flex-col">
         <div class="bg-bg-light h-full w-full opacity-80"
              (click)="openModal=false"></div>
-        <div class="absolute top-[5%] left-[5%] sm:left-[20%] w-[90%] sm:w-[60%] h-[90%] sm:h-[80%] flex
-                    flex-col bg-bg-light rounded-md border-4 border-primary-dark">
-          <h2 class="text-center text-primary-light text-sm sm:text-2xl m-y-1 sm:my-5">Vyberte, kam chcete zásilku poslat</h2>
+        <div class="absolute top-[5%] left-[5%] md:left-[20%] w-[90%] md:w-[60%] h-[90%] md:h-[80%] flex
+                    flex-col bg-bg-light rounded-md border-4 border-secondary">
+          <h6 class="text-center">Vyberte, kam chcete zásilku poslat</h6>
           <iframe
             class="w-full h-full"
             title="Výběr místa pro vyzvednutí zásilky"
@@ -69,21 +69,21 @@
     </ng-container>
 
 
-    <span class="text-3xl text-primary-light mx-auto my-3">Platba</span>
-    <div class="relative flex flex-col justify-center border-2 border-primary-dark">
+    <h3 class="mx-auto my-3">Platba</h3>
+    <div class="relative flex flex-col justify-center border-2 border-secondary">
       <ng-container *ngIf="paymentMethods$ | async as paymentMethods; else LOADING">
         <div *ngFor="let p of paymentMethods"
              (click)="setPaymentPrice(p.price)"
-             class="flex   border-2 border-primary-dark">
+             class="flex border-2 border-secondary">
           <input type="radio"
                  [id]="p.code"
                  [value]="p.code"
                  formControlName="paymentCode"
                  class="hidden peer"/>
-          <label [for]="p.code" class="w-full flex justify-between items-center peer-checked:bg-success2 cursor-pointer">
+          <label [for]="p.code" class="mb-0 w-full flex justify-between items-center peer-checked:bg-success2 cursor-pointer">
             <div class="mx-5">
-              <h4 class="text-2xl text-primary-light">{{p.head}}</h4>
-              <p class="text-sm text-primary-dark">{{p.text}}</p>
+              <h4 class="mb-0">{{p.head}}</h4>
+              <p class="">{{p.text}}</p>
             </div>
             <div class="my-3 mr-5">
               <img class="w-[30px] mx-auto" [src]="getBase()+p.icon.url">
@@ -93,9 +93,9 @@
         </div>
         <div class="text-center w-full"
              *ngIf="payTransForm.get('paymentCode').touched">
-          <p class="text-danger my-5 text-xl sm:text-2xl font-bold"
+          <p class="text-danger my-5"
              *ngIf="payTransForm.get('paymentCode').errors?.['required']">Vyberte typ platby</p>
-          <p class="text-danger my-5 text-xl sm:text-2xl font-bold"
+          <p class="text-danger my-5"
              *ngIf="payTransForm.get('paymentCode').errors?.['match']">Hotově lze platit pouze při osobním vyzvednutí</p>
         </div>
       </ng-container>

@@ -1,54 +1,50 @@
 <div *ngIf="restaurantData$ | async as restaurantData else LOADING" class="flex flex-col px-5">
-  <div class="grid grid-cols-1 sm:grid-cols-2 my-10 text-center sm:text-left">
-    <div class="flex flex-col p-5">
-      <span class="text-3xl sm:text-4xl font-bold text-primary-light mb-10">{{restaurantData.head}}</span>
-      <span class="text-xl sm:text-2xl text-primary-dark">{{restaurantData.text}}</span>
-
+  <article class="grid grid-cols-1 md:grid-cols-2 text-center md:text-left">
+    <div class="flex flex-col">
+      <h2>{{restaurantData.head}}</h2>
+      <h5>{{restaurantData.text}}</h5>
       <button  (click)="scrollToElement(target)"
-               class="mt-10 mx-auto sm:mx-0 text-white text-xl sm:text-2xl font-bold rounded-md bg-primary-light py-4 px-5 sm:px-10 w-[100%] sm:w-[350px]">
+               class="btn m-auto md:ml-0">
         Objednat ochutnávku
       </button>
     </div>
     <div class="flex flex-col p-5">
       <img [src]="getBase()+restaurantData.main_img.url">
     </div>
-  </div>
+  </article>
 
 
-  <div class="my-10 sm:mt-20 flex flex-col sm:flex-row text-center">
-    <div class="sm:w-[50%] flex flex-col px-5 sm:px-20">
-      <span class="text-3xl sm:text-4xl font-bold text-primary-light ">
-        {{restaurantData.head_2}}
-      </span>
-      <span class="text-2xl text-primary-dark mt-3">
-        {{restaurantData.text_2}}
-      </span>
+  <article class="flex flex-col md:flex-row text-center">
+    <div class="md:w-[50%] flex flex-col px-5 md:px-20">
+      <h3 class="">{{restaurantData.head_2}}</h3>
+      <h6 class="">{{restaurantData.text_2}}</h6>
     </div>
-    <div class="w-full sm:w-[50%] mt-5 sm:mt-0 sm:order-first">
+    <div class="w-full md:w-[50%] mt-5 md:mt-0 md:order-first">
       <app-carousel  class="m-auto"
                      [delay]="4000"
                      [showBtns]="false"
                      [slides$]="getObsSlides(restaurantData.meals)">
       </app-carousel>
     </div>
-  </div>
+  </article>
 
-  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">
-     Co nabízíme
-  </span>
-  <div class="flex flex-wrap justify-around gap-5 sm:gap-10 my-5">
-    <div *ngFor="let item of offers$ | async"
-         class="max-w-[200px] sm:max-w-[300px] p-5 sm:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
-      <span class="text-2xl sm:text-3xl text-primary-light">{{item.head}}</span>
-      <span class="text-xl text-primary-dark pt-3">{{item.text}}</span>
+  <article>
+    <h3 class="text-center">Co nabízíme</h3>
+    <div class="flex flex-wrap justify-around gap-5 md:gap-10 my-5">
+      <div *ngFor="let item of offers$ | async"
+           class="max-w-[200px] md:max-w-[300px] p-5 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
+        <h4 class="mb-5">{{item.head}}</h4>
+        <p class="mb-0">{{item.text}}</p>
+      </div>
     </div>
-  </div>
+  </article>
 
-  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">
-     Jak to funguje
-  </span>
-  <img class="" [src]="getBase()+restaurantData.how_it_works.url">
-
+  <article>
+    <h3 class="text-center">
+       Jak to funguje
+    </h3>
+    <img class="" [src]="getBase()+restaurantData.how_it_works.url">
+  </article>
 
 <!--  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">-->
 <!--     Co pěstujeme-->
@@ -61,14 +57,16 @@
 <!--  </div>-->
 
 
-  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Kontaktujte nás</span>
-  <div class="mb-5 text-center flex flex-col">
-    <span class="text-xl text-primary-dark mb-3">Mail</span>
-    <span class="text-xl sm:text-2xl font-bold text-primary-light">obchod&#64;zrzavaopice.cz</span>
-  </div>
-  <div #target>
-    <app-contact-form ></app-contact-form>
-  </div>
+  <article>
+    <h3 class="text-center">Kontaktujte nás</h3>
+    <div class="my-5 text-center flex flex-col">
+      <h6 class="mb-3">Mail</h6>
+      <h4 class="mb-5">obchod&#64;zrzavaopice.cz</h4>
+    </div>
+    <div #target>
+      <app-contact-form ></app-contact-form>
+    </div>
+  </article>
 </div>
 
 <ng-template #LOADING>

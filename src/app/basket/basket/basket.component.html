@@ -5,10 +5,10 @@
          class="border-b-4 bg-bg-light h-[70px] w-1/3 p-3 flex items-center justify-center"
          (click)="menuClick(item.step)"
          [ngClass]="[step === item.step ?
-                    'border-primary-light text-primary-light':
-                    'border-primary-dark text-primary-dark',
+                    'border-primary text-primary':
+                    'border-secondary text-secondary',
                      step >= item.step ? 'cursor-pointer' : 'cursor-not-allowed']">
-      <span class="text-md sm:text-xl">{{item.label}}</span>
+      <p class="mb-0">{{item.label}}</p>
     </div>
   </div>
 
@@ -17,22 +17,22 @@
   <ng-container *ngIf="step==1"><app-basket-pay-trans></app-basket-pay-trans></ng-container>
   <ng-container *ngIf="step==2"><app-basket-summary></app-basket-summary></ng-container>
 
-  <div class="border-4 border-primary-light mt-10 m-5">
+  <div class="border-4 border-primary mt-10 m-5">
     <div class="flex justify-between py-2 px-5 ">
-      <span class="text-md sm:text-xl text-primary-dark">Cena celkem za zboží</span>
-      <span class="text-md sm:text-xl text-primary-dark">{{getProductsPrice()}} Kč</span>
+      <h5 class="mb-0">Cena celkem za zboží</h5>
+      <h4 class="mb-0">{{getProductsPrice()}} Kč</h4>
     </div>
     <div *ngIf="step>0" class="flex justify-between py-2 px-5">
-      <span class="text-md sm:text-xl text-primary-dark">Cena dopravy</span>
-      <span class="text-md sm:text-xl text-primary-dark">{{getTransportPrice() ?? ' - '}} Kč</span>
+      <h5 class="mb-0">Cena dopravy</h5>
+      <h4 class="mb-0">{{getTransportPrice() ?? ' - '}} Kč</h4>
     </div>
     <div *ngIf="step>0" class="flex justify-between py-2 px-5">
-      <span class="text-md sm:text-xl text-primary-dark">Cena platby</span>
-      <span class="text-md sm:text-xl text-primary-dark">{{getPaymentPrice() ?? ' - '}} Kč</span>
+      <h5 class="mb-0">Cena platby</h5>
+      <h4 class="mb-0">{{getPaymentPrice() ?? ' - '}} Kč</h4>
     </div>
-    <div *ngIf="step>0" class="flex justify-between py-2 px-5 border-t-2 border-primary-dark bg-bg-light">
-      <span class="text-md sm:text-xl text-primary-light">Cena celkem</span>
-      <span class="text-xl sm:text-2xl font-bold text-primary-light">{{getPrice()}} Kč</span>
+    <div *ngIf="step>0" class="flex justify-between py-2 px-5 border-t-2 border-secondary bg-bg-light">
+      <h5 class="mb-0">Cena celkem</h5>
+      <h4 class="mb-0">{{getPrice()}} Kč</h4>
     </div>
   </div>
   <form *ngIf="step===2" [formGroup]="termsForm" class="flex flex-col m-5">
@@ -41,28 +41,28 @@
              type="checkbox"
              formControlName="term"
              class="w-4 h-4 my-auto"/>
-      <label for="terms" class="ml-3 text-primary-dark">
+      <label for="terms" class="ml-3 my-auto">
         souhlasím s
         <a href="/assets/documents/obchodni_podminky.pdf"
            target="_blank"
-           class="hover:underline text-primary-light">
+           class="hover:underline text-primary">
           obchodními podmínkami
         </a></label>
 
     </div>
     <div class="w-full " *ngIf="termsForm.get('term').touched">
-      <p class="text-danger my-5 text-2xl font-bold" *ngIf="termsForm.get('term').errors?.['required']">Potvrďte souhlas s podmínkami</p>
+      <p class="text-danger my-5" *ngIf="termsForm.get('term').errors?.['required']">Potvrďte souhlas s podmínkami</p>
     </div>
     <div class="flex mt-3">
       <input id="gdpr"
              type="checkbox"
              formControlName="gdpr"
              class="w-4 h-4 my-auto"/>
-      <label for="gdpr" class="ml-3 text-primary-dark">
+      <label for="gdpr" class="ml-3 my-auto">
         souhlasím s
         <a href="/assets/documents/gdpr.pdf"
            target="_blank"
-           class="hover:underline text-primary-light">
+           class="hover:underline text-primary">
           Podmínkami ochrany osobních údajů.
         </a></label>
     </div>
@@ -70,15 +70,15 @@
   </form>
 
   <div class="flex flex-row justify-center">
-    <button class="px-5 sm:px-10 py-4 m-2 sm:m-5 mb-10 text-base text-primary-dark"
+    <button class="px-5 md:px-10 py-4 m-2 md:m-5 mb-10 text-base text-secondary"
             (click)="stepBack()">
       {{step===0 ? 'zpět do e-shopu' : 'zpět'}}
     </button>
     <button *ngIf="products && products.length >0"
-            class="relative border-2 border-primary-light px-2 sm:px-10 py-4 m-2 sm:m-5 mb-10 rounded"
+            class="relative border-2 border-primary px-2 md:px-10 py-4 m-2 md:m-5 mb-10 rounded"
             (click)="step===2 ? order() : nextStep()">
-      <span class="text-primary-light font-bold text-xl sm:text-2xl">{{step===2 ? 'Objednat' : 'Pokračovat'}}</span>
-      <span class="block text-primary-dark text-base sm:text-md">{{step===2 ? 's povinností platby' : ''}}</span>
+      <span class="text-primary font-bold text-xl md:text-2xl">{{step===2 ? 'Objednat' : 'Pokračovat'}}</span>
+      <span class="block text-secondary text-base md:text-md">{{step===2 ? 's povinností platby' : ''}}</span>
       <ng-container *ngIf="loading">
         <app-loading class="h-full w-full"></app-loading>
       </ng-container>
@@ -89,28 +89,28 @@
 
 <div *ngIf="step === 3" class="flex flex-col my-10">
   <ng-container *ngIf="orderResponse">
-    <span class="text-2xl font-bold text-center text-primary-light">Děkujeme za nákup</span>
-    <span class="text-xl text-center text-primary-light mt-3">
+    <h4 class="mb-5 text-center">Děkujeme za nákup</h4>
+    <p class="text-center">
       Brzy Vám příjde e-mail s potvrzením objednávky číslo: {{orderResponse.invoiceId}}.
-    </span>
+    </p>
     <div *ngIf="orderResponse.paymentCode==='PRE'"
-         class="flex flex-col text-xl text-center text-primary-dark mt-3">
-      <span class="mt-3">
+         class="flex flex-col text-center mt-3">
+      <p class="mt-3">
         Prosíme o úhradu částky {{orderResponse.totalPrice}} Kč na náš účet.
-      </span>
-      <span class="mt-3">
+      </p>
+      <p class="mt-3">
         Číslo účtu: <b>2602805796/2010</b>.
-      </span>
-      <span class="mt-3">
+      </p>
+      <p class="mt-3">
         Variabilní symbol: <b>{{orderResponse.invoiceId}}</b>.
-      </span>
+      </p>
     </div>
 
     <div class="flex justify-center">
-      <button class="border-2 border-primary-light text-primary-light text-xl px-3 py-1 m-5 mb-10 rounded"
+      <button class="border-2 border-primary text-primary text-xl px-3 py-1 m-5 mb-10 rounded"
               (click)="goToEshop()"> zpět do e-shopu
       </button>
-      <button class="border-2 border-primary-light text-primary-light text-xl px-3 py-1 m-5 mb-10 rounded"
+      <button class="border-2 border-primary text-primary text-xl px-3 py-1 m-5 mb-10 rounded"
               (click)="goToHome()"> zpět na hlavní stránku
       </button>
     </div>

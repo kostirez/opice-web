@@ -5,15 +5,17 @@ module.exports = {
   ],
   theme: {
     screens: {
-      sm: '840px',
-      md: '1260px',
+      sm: '380px',
+      md: '780px',
+      lg: '1120px',
+      xl: '1440px',
     },
     fontFamily: {
       sans: ["podkova", "sans-serif"],
     },
     fontSize: {
       'xs': '0.5rem',
-      'sm': '0.8rem',
+      'sm': '0.75rem',
       'base': '1rem',
       'lg': '1.125rem',
       'xl': '1.25rem',
@@ -26,14 +28,8 @@ module.exports = {
 
     extend: {
       colors: {
-        primary: {
-          light: '#B85C00',
-          dark: '#7C4D1A'
-        },
-        secondary: {
-          light: '#86ADBB',
-          dark: '#2B5460'
-        },
+        primary: '#B85C00',
+        secondary: '#7C4D1A',
         bg: {
           light: '#E1D7CF',
           dark: '#A69F99',

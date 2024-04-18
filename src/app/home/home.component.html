@@ -1,58 +1,66 @@
 <div *ngIf="homeData$ | async as homeData else LOADING" class="flex flex-col px-5">
-  <div *ngIf="homeData" class="grid grid-cols-1 sm:grid-cols-2 items-center my-10 text-center sm:text-left overflow-hidden">
-    <div class="flex flex-col p-5">
-      <span class="text-3xl sm:text-4xl font-bold text-primary-light mb-10">{{homeData.head}}</span>
-      <span class="text-xl sm:text-2xl text-primary-dark">{{homeData.text}}</span>
+  <article *ngIf="homeData"
+       class="grid grid-cols-1 md:grid-cols-2 items-center text-center md:text-left ">
+    <div class="flex flex-col">
+      <h2>{{homeData.head}}</h2>
+      <h5>{{homeData.text}}</h5>
     </div>
-    <img class="max-w-[100vw] sm:max-w-[500px] mx-auto" [src]="getBase() + homeData.main_pic.url">
-  </div>
-
-  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Naše produkty</span>
-  <app-eshop></app-eshop>
-
-  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center my-10">
-    Microgreens pro restaurace
-  </span>
-  <div class="flex flex-wrap justify-around gap-5 sm:gap-10 my-5">
-    <div *ngFor="let item of offers$ | async"
-         class="max-w-[200px] sm:max-w-[300px] p-5 sm:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
-      <span class="text-2xl sm:text-3xl text-primary-light">{{item.head}}</span>
-      <span class="text-xl text-primary-dark pt-3">{{item.text}}</span>
+    <div class="w-full">
+      <div class="max-w-[500px] mx-auto">
+        <img [src]="getBase() + homeData.main_pic.url">
+      </div>
     </div>
-    <div class="w-full flex justify-center">
-      <a routerLink="/pro-restaurace" class="my-10 sm:my-10">
-        <button class="mx-2 text-white text-xl sm:text-2xl font-bold rounded-md bg-primary-light py-4 px-5 sm:px-10 w-[100%] sm:w-[270px]">
-          Zjistit vice
-        </button>
-      </a>
+  </article>
+
+  <article>
+    <h3 class="text-center">Naše produkty</h3>
+    <app-eshop></app-eshop>
+  </article>
+
+  <article>
+    <h3 class="text-center">
+      Microgreens pro restaurace
+    </h3>
+    <div class="flex flex-wrap justify-around gap-5 md:gap-10">
+      <div *ngFor="let item of offers$ | async"
+           class="max-w-[200px] md:max-w-[300px] p-5 md:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
+        <h4 class="mb-0">{{item.head}}</h4>
+        <h6 class="mb-0">{{item.text}}</h6>
+      </div>
+      <div class="w-full flex justify-center">
+        <a routerLink="/pro-restaurace" class="my-10 md:my-10">
+          <button class="btn">
+            Zjistit vice
+          </button>
+        </a>
+      </div>
     </div>
-  </div>
+  </article>
 
-
-  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Jak využít microgreens</span>
-  <div class="my-10 max-h-[600px] overflow-hidden">
-    <app-carousel [delay]="4000" [showBtns]="false" [slides$]="getObsSlides(homeData.microgreens_use)"></app-carousel>
-  </div>
-
+  <article>
+    <h3 class="text-center">Jak využít microgreens</h3>
+    <div class="max-h-[600px] overflow-hidden">
+      <app-carousel [delay]="4000" [showBtns]="false" [slides$]="getObsSlides(homeData.microgreens_use)"></app-carousel>
+    </div>
+  </article>
 
 <!--  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Vlastní design a výroba</span>-->
 
 
-
-  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center mt-20 mb-10">Kontaktujte nás</span>
-  <div class="my-5 text-center flex flex-col">
-    <span class="text-xl text-primary-dark mb-3">Mail</span>
-    <span class="text-xl sm:text-2xl font-bold text-primary-light">obchod&#64;zrzavaopice.cz</span>
-  </div>
-
-  <span class="text-center text-xl text-primary-dark mb-3">Sociální sítě</span>
-  <div class="grid grid-cols-3 max-w-[500px] mx-auto gap-5 mb-10">
-    <img class="m-auto px-2 cursor-pointer min-w-[50px] sm:min-w-[100px]" src="assets/soc/ig.svg" (click)="goTo('https://www.instagram.com/zrzavaopice/')">
-    <img class="m-auto px-2 cursor-pointer min-w-[50px] sm:min-w-[100px]" src="assets/soc/fb.svg" (click)="goTo('https://www.facebook.com/profile.php?id=61557278573442')">
-    <img class="m-auto px-2 cursor-pointer min-w-[50px] sm:min-w-[100px]" src="assets/soc/pi.svg" (click)="goTo('https://cz.pinterest.com/zrzavaopice/')">
-  </div>
-
-  <app-contact-form></app-contact-form>
+  <article>
+    <h3 class="text-center">Kontaktujte nás</h3>
+    <div class="my-5 text-center flex flex-col">
+      <h6 class="mb-3">Mail</h6>
+      <h4 class="mb-5">obchod&#64;zrzavaopice.cz</h4>
+    </div>
+    <h6 class="text-center mb-3">Sociální sítě</h6>
+    <div class="grid grid-cols-3 max-w-[500px] mx-auto gap-5 mb-10">
+      <img class="m-auto px-2 cursor-pointer min-w-[50px] md:min-w-[100px]" src="assets/soc/ig.svg" (click)="goTo('https://www.instagram.com/zrzavaopice/')">
+      <img class="m-auto px-2 cursor-pointer min-w-[50px] md:min-w-[100px]" src="assets/soc/fb.svg" (click)="goTo('https://www.facebook.com/profile.php?id=61557278573442')">
+      <img class="m-auto px-2 cursor-pointer min-w-[50px] md:min-w-[100px]" src="assets/soc/pi.svg" (click)="goTo('https://cz.pinterest.com/zrzavaopice/')">
+    </div>
+    <app-contact-form></app-contact-form>
+  </article>
 </div>
 
 

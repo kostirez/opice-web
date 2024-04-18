@@ -12,3 +12,154 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+
+@layer base {
+  p {
+    // font size
+    @apply text-sm;
+    @apply sm:text-base;
+    @apply md:text-lg;
+    @apply lg:text-xl;
+    @apply xl:text-2xl;
+
+    // font weight
+    @apply font-normal;
+
+    // text color
+    @apply text-secondary;
+  }
+
+  h1 {
+    // font size
+    @apply text-3xl;
+    @apply sm:text-4xl;
+    @apply md:text-4xl;
+    @apply lg:text-5xl;
+    @apply xl:text-6xl;
+
+    // font weight
+    @apply font-bold;
+
+    // text color
+    @apply text-primary;
+    // margin
+    @apply mb-5 md:mb-12 lg:mb-16 xl:mb-20;
+  }
+  h2 {
+    // font size
+    @apply text-3xl;
+    @apply md:text-4xl;
+    @apply xl:text-5xl;
+
+    // font weight
+    @apply font-bold;
+
+    // text color
+    @apply text-primary;
+    // margin
+    @apply mb-5 md:mb-12 lg:mb-16 xl:mb-20;
+  }
+  h3 {
+    // font size
+    @apply text-2xl;
+    @apply md:text-3xl;
+    @apply xl:text-4xl;
+
+    // font weight
+    @apply font-bold;
+
+    // text color
+    @apply text-primary;
+
+    // margin
+    @apply mb-5 md:mb-12 lg:mb-16 xl:mb-20;
+  }
+  h4 {
+    // font size
+    @apply text-lg;
+    @apply sm:text-xl;
+    @apply md:text-2xl;
+    @apply lg:text-2xl;
+    @apply xl:text-3xl;
+
+    // font weight
+    @apply font-semibold;
+
+    // text color
+    @apply text-primary;
+
+    // margin
+    @apply mb-5 md:mb-12 lg:mb-16 xl:mb-20;
+  }
+  h5 {
+    // font size
+    @apply text-base;
+    @apply sm:text-lg;
+    @apply md:text-xl;
+    @apply lg:text-2xl;
+
+    // font weight
+    @apply font-semibold;
+
+    // text color
+    @apply text-secondary;
+    // margin
+    @apply mb-3 md:mb-5 lg:mb-8 xl:mb-10;
+  }
+  h6 {
+    // font size
+    @apply text-base;
+    @apply sm:text-lg;
+    @apply md:text-lg;
+    @apply lg:text-xl;
+    @apply xl:text-xl;
+
+    // font weight
+    @apply font-semibold;
+
+    // text color
+    @apply text-secondary;
+    // margin
+    @apply mb-3 md:mb-5 lg:mb-8 xl:mb-10;
+  }
+
+  article {
+    @apply overflow-hidden;
+    @apply mt-10;
+    @apply md:mt-12;
+    @apply lg:mt-16;
+    @apply xl:mt-20;
+  }
+
+  label {
+    @apply text-secondary;
+    @apply mb-1 md:mb-3;
+  }
+
+  input {
+    @apply px-3 py-1;
+    @apply border-2 border-secondary;
+    @apply rounded;
+    @apply focus:ring-primary;
+  }
+
+  textarea {
+    @apply px-3 py-1;
+    @apply border-2 border-secondary;
+    @apply rounded;
+    @apply focus:ring-primary;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply mx-auto px-5 md:px-8 ;
+    @apply my-2 py-4 lg:py-5;
+    @apply text-white;
+    @apply text-lg sm:text-xl lg:text-2xl;
+    @apply font-bold;
+    @apply rounded-md;
+    @apply bg-primary;
+  }
+}

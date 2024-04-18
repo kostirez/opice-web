@@ -1,24 +1,22 @@
 <div class="mx-5">
-  <div class="relative flex flex-col bg-gradient-to-t sm:bg-gradient-to-l from-bg-light  via-white shadow-2xl rounded-xl sm:rounded-b-none p-5">
-    <div class="flex flex-col sm:flex-row text-center ">
+  <div class="relative flex flex-col bg-gradient-to-t md:bg-gradient-to-l from-bg-light  via-white shadow-2xl rounded-xl md:rounded-b-none p-5">
+    <div class="flex flex-col md:flex-row text-center ">
       <div class="min-w-[50%] flex flex-col justify-between overflow-hidden">
         <app-carousel [delay]="0" [showBtns]="true" [slides$]="getObsSlides(slides)"></app-carousel>
       </div>
-      <div class="flex flex-col text-center sm:text-left sm:pl-10 w-full">
-        <h1 class="text-2xl sm:text-3xl text-primary-light font-bold mt-3">{{productInfo.name}}</h1>
-        <h4 class="text-sm sm:text-xl text-primary-dark mt-3">{{productInfo.description}}</h4>
-        <div class="sm:hidden">
-        </div>
+      <div class="flex flex-col text-center md:text-left md:pl-10 w-full">
+        <h3 class="mt-3 mb-0">{{productInfo.name}}</h3>
+        <h5 class="mt-3 mb-0">{{productInfo.description}}</h5>
 
         <!--         size       -->
         <ng-container *ngIf="productInfo.sizeLabel">
-          <span class="text-xl text-primary-light mt-5">{{productInfo.sizeLabel}}</span>
-          <div class="flex justify-center sm:justify-start mt-3">
+          <h4 class="mt-5 mb-0">{{productInfo.sizeLabel}}</h4>
+          <div class="flex justify-center md:justify-start mt-3">
             <div *ngFor="let size of productInfo.sizes"
-                 class="mx-2 sm:ml-0 sm:mr-3 p-2 max-w-[40%] border-2 border-primary-dark relative cursor-pointer"
-                 [ngClass]="size.name === selectedSize ? 'border-success border-4' : 'border-primary-dark'"
+                 class="mx-2 md:ml-0 md:mr-3 p-2 max-w-[40%] border-2 relative cursor-pointer"
+                 [ngClass]="size.name === selectedSize ? 'border-success border-4' : 'border-secondary'"
                  (click)="selectSize(size.name)">
-              <span class="text-center text-primary-dark text-base sm:text-xl ">{{size.name}}</span>
+              <h5 class="mb-0">{{size.name}}</h5>
               <img class="absolute top-0" [src]="size.picSrc">
             </div>
           </div>
@@ -27,38 +25,39 @@
 
         <!--         color       -->
         <ng-container *ngIf="productInfo.colors.length > 0">
-          <h3 class="text-xl text-primary-light mt-5">Barevné varianty:</h3>
-          <div  class="flex justify-center sm:justify-start mt-3">
+          <h4 class="mt-5 mb-0">Barevné varianty:</h4>
+          <div  class="flex justify-center md:justify-start mt-3">
             <div *ngFor="let color of productInfo.colors"
-                 class="mx-2 sm:ml-0 sm:mr-3 w-[40px] h-[40px] mx-2 border-2 rounded-md cursor-pointer"
+                 class="mx-2 md:ml-0 md:mr-3 w-[40px] h-[40px] mx-2 border-2 rounded-md cursor-pointer"
                  [ngStyle]="{'background-color': color.code}"
-                 [ngClass]="color.name === selectedColor ? 'border-success border-4' : 'border-primary-dark'"
+                 [ngClass]="color.name === selectedColor ? 'border-success border-4' : 'border-secondary'"
                  (click)="selectColor(color.name)"></div>
           </div>
           <span class="text-danger">{{colorErr}}</span>
         </ng-container>
 
-        <div class="flex justify-center sm:justify-between mt-5 sm:mt-auto sm:pt-5 w-full h-[5rem]">
-          <span class="text-xl sm:text-2xl text-center text-primary-light mx-1 sm:mx-5 my-auto">{{productInfo.price}} Kč</span>
+        <div class="flex justify-center md:justify-between mt-5 md:mt-auto md:pt-5 w-full">
+          <h3 class="text-center mx-1 md:mx-5  my-auto">{{productInfo.price}} Kč</h3>
           <button (click)="addToBasket(productInfo)"
-                  class="mx-2 text-md text-primary-dark hover:text-primary-light font-bold border-2 hover:border-4 border-primary-dark rounded-xl py-4 w-[150px]">Přidat do košíku</button>
+                  class="mx-2 my-auto border-2 hover:border-4 border-secondary rounded-xl">
+            <h5 class="mb-0 hover:text-primary px-5 md:px-8 py-4">Přidat do košíku</h5></button>
         </div>
       </div>
 
     </div>
     <div *ngIf="selectedDetail"
          class="">
-      <div class="w-full my-5 flex justify-center border-y-2 border-primary-dark border-dotted">
+      <div class="w-full my-5 flex justify-center border-y-2 border-secondary border-dotted">
         <button (click)="closeDetail()"
-                class="w-[200px] text-primary-dark text-sm sm:text-base my-2">zavřít detail</button>
+                class="w-[200px] text-secondary text-sm md:text-base my-2">zavřít detail</button>
       </div>
-      <div class="mt-5 flex flex-col sm:flex-row">
-        <div class="w-full sm:w-[50%]">
+      <div class="mt-5 flex flex-col md:flex-row">
+        <div class="w-full md:w-[50%]">
           <img *ngIf="selectedDetail.pics[0]" [src]="getBase()+selectedDetail.pics[0].url">
         </div>
-        <div class="w-full sm:w-[50%] overflow-x-auto">
-          <h2 class="mt-5 mx-2 text-primary-light text-xl sm:text-2xl font-bold">{{selectedDetail.name}}</h2>
-          <div class="mt-5 mx-2 text-primary-dark text-sm sm:text-base" [innerHTML]="selectedDetail.text"></div>
+        <div class="w-full md:w-[50%] overflow-x-auto">
+          <h4 class="mx-2 mb-0">{{selectedDetail.name}}</h4>
+          <p class="mt-5 mx-2" [innerHTML]="selectedDetail.text"></p>
         </div>
       </div>
     </div>
@@ -68,21 +67,21 @@
       <div class="absolute top-0 left-0 w-full h-full bg-success opacity-70 rounded-xl"></div>
       <div class="absolute top-[45%] left-0 w-full text-center text-3xl font-bold text-white">Přidáno do košíku</div>
     </div>
-    <div class="flex flex-wrap mt-3 sm:hidden w-full justify-around">
+    <div class="flex flex-wrap mt-3 md:hidden w-full justify-around">
       <button *ngFor="let btn of productInfo.details"
               (click)="detailBtnClick(btn)"
-              class="px-1 py-3 m-[1%] min-w-[46%] text-white text-xs font-bold"
-              [ngClass]="selectedDetail && btn.name === selectedDetail.name ? 'bg-primary-light' : 'bg-primary-dark'">
-        {{btn.name}}
+              class="px-1 py-3 m-[1%] min-w-[46%]"
+              [ngClass]="selectedDetail && btn.name === selectedDetail.name ? 'bg-primary' : 'bg-secondary'">
+        <p class="text-white">{{btn.name}}</p>
       </button>
     </div>
   </div>
-  <div class="hidden sm:flex w-full justify-end gap-3">
+  <div class="hidden md:flex w-full justify-end gap-3">
     <button *ngFor="let btn of productInfo.details"
             (click)="detailBtnClick(btn)"
-            class="px-5 py-3 mt-0 mx-0 text-white text-base md:text-xl font-bold rounded-b-xl shadow-2xl"
-            [ngClass]="selectedDetail && btn.name === selectedDetail.name ? 'bg-primary-light' : 'bg-primary-dark'">
-      {{btn.name}}
+            class="px-5 py-3 mt-0 mx-0 rounded-b-xl shadow-2xl"
+            [ngClass]="selectedDetail && btn.name === selectedDetail.name ? 'bg-primary' : 'bg-secondary'">
+      <p class="text-white">{{btn.name}}</p>
     </button>
   </div>
 </div>

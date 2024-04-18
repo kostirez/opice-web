@@ -1,32 +1,32 @@
-<div class="grid grid-cols-3 pt-2 bg-gradient-to-b from-bg-light via-white sm:px-[15%] sm:py-5">
-  <div class="text-center flex flex-col col-span-3 sm:col-span-1 mt-3">
+<div class="grid grid-cols-3 pt-2 bg-gradient-to-b from-bg-light via-white md:px-[15%] md:py-5">
+  <div class="text-center flex flex-col col-span-3 md:col-span-1 mt-3">
     <a routerLink="/">
-      <img class="mx-auto w-[50%] sm:hidden" src="assets/logo/logo_text.svg">
+      <img class="mx-auto w-[50%] md:hidden" src="assets/logo/logo_text.svg">
     </a>
-    <h2 class="text-primary-light text-2xl font-bold cursor-pointer hidden sm:block" routerLink="/">Zrzavá opice</h2>
-    <a class="p-1 text-primary-dark" routerLink="/">Úvod</a>
-    <a class="p-1 text-primary-dark" routerLink="/eshop">E-shop</a>
-    <a class="p-1 text-primary-dark" routerLink="/pro-restaurace">Pro restaurace</a>
+    <h4 class="cursor-pointer mb-0 hidden md:block" routerLink="/">Zrzavá opice</h4>
+    <a class="p-1" routerLink="/"><p>Úvod</p></a>
+    <a class="p-1" routerLink="/eshop"><p>E-shop</p></a>
+    <a class="p-1" routerLink="/pro-restaurace"><p>Pro restaurace</p></a>
   </div>
-  <div class="text-center flex flex-col col-span-3 sm:col-span-1 mt-3">
-    <h2 class="text-primary-light text-2xl font-bold cursor-pointer" routerLink="/kontakty" >Kontakt</h2>
-    <span class="p-1 text-primary-dark">obchod&#64;zrzavaopice.cz</span>
-    <span class="p-1 text-primary-dark">IČO: 13969200</span>
+  <div class="text-center flex flex-col col-span-3 md:col-span-1 mt-3">
+    <h4 class="mb-0 cursor-pointer" routerLink="/kontakty" >Kontakt</h4>
+    <p class="p-1">obchod&#64;zrzavaopice.cz</p>
+    <p class="p-1">IČO: 13969200</p>
     <div class="flex justify-center p-1">
       <img class="px-2 cursor-pointer" src="assets/soc/ig.svg" (click)="goToIg()">
       <img class="px-2 cursor-pointer" src="assets/soc/fb.svg" (click)="goToFb()">
       <img class="px-2 cursor-pointer" src="assets/soc/pi.svg" (click)="goToPi()">
     </div>
   </div>
-  <div class="text-center flex flex-col col-span-3 sm:col-span-1 mt-3 pb-2 ">
-    <h2 class="text-primary-light font-bold text-2xl cursor-pointer"  routerLink="/dokumenty">Dokumenty</h2>
-    <a class="p-1 text-primary-dark cursor-pointer"
+  <div class="text-center flex flex-col col-span-3 md:col-span-1 mt-3 pb-2 ">
+    <h4 class="cursor-pointer mb-0"  routerLink="/dokumenty">Dokumenty</h4>
+    <a class="p-1 cursor-pointer"
        href="/assets/documents/obchodni_podminky.pdf"
-       target="_blank">Obchodní podmínky</a>
-    <a class="p-1 text-primary-dark cursor-pointer"
+       target="_blank"><p>Obchodní podmínky</p></a>
+    <a class="p-1 cursor-pointer"
        href="/assets/documents/gdpr.pdf"
-       target="_blank">GDPR</a>
-    <a class="p-1 text-primary-dark" routerLink="/dokumenty">reklamace</a>
+       target="_blank"><p>GDPR</p></a>
+    <a class="p-1" routerLink="/dokumenty"><p>reklamace</p></a>
   </div>
-  <img class="col-span-3 sm:hidden" src="assets/footer.jpg">
+  <img class="col-span-3 md:hidden" src="assets/footer.jpg">
 </div>

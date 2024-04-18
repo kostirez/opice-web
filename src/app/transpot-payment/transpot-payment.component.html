@@ -1,34 +1,34 @@
-<div class="flex flex-col my-5 sm:my-10 px-5 mb-10 sm:mb-20">
-  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center my-3 sm:my-10">
-    Platba
-  </span>
-  <div class="relative flex flex-wrap justify-around gap-5 sm:gap-10 my-5">
+<div class="flex flex-col">
+  <article>
+  <h2 class="text-center">Platba</h2>
+  <div class="relative flex flex-wrap justify-around gap-5 md:gap-10 my-5">
     <ng-container *ngIf="payment$ | async as payments; else LOADING">
       <div *ngFor="let item of payments"
-           class="max-w-[200px] sm:max-w-[300px] p-5 sm:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
-        <span class="text-2xl sm:text-3xl text-primary-light">{{item.head}}</span>
-        <span class="text-xl text-primary-dark pt-3">{{item.text}}</span>
-        <span class="text-xl text-primary-light pt-3">{{item.price==0 ? 'zdarma' : item.price + ' Kč'}}</span>
+           class="max-w-[200px] md:max-w-[300px] p-5 md:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-xl">
+        <h4 class="mb-5">{{item.head}}</h4>
+        <p class="mb-5">{{item.text}}</p>
+        <h5 class="mb-0 text-primary mt-auto">{{item.price==0 ? 'zdarma' : item.price + ' Kč'}}</h5>
       </div>
     </ng-container>
   </div>
+  </article>
 
-  <span class="text-3xl sm:text-4xl font-bold text-primary-light text-center my-3 sm:my-10">
-    Doprava
-  </span>
-  <div class="relative flex flex-wrap justify-around gap-5 sm:gap-10 my-5">
-    <ng-container *ngIf="transport$ | async as transports; else LOADING">
-      <div *ngFor="let item of transports"
-           class="max-w-[200px] sm:max-w-[300px] p-5 sm:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-2xl">
-        <span class="text-2xl sm:text-3xl text-primary-light">{{item.head}}</span>
-        <span class="text-xl text-primary-dark pt-3">{{item.text}}</span>
-        <span class="text-xl text-primary-light pt-3">{{item.price==0 ? 'zdarma' : item.price + ' Kč'}}</span>
-      </div>
-    </ng-container>
-  </div>
-  <span class="sm:text-xl text-primary-dark text-center my-5 sm:my-10">
-    Při balení produktů recyklujeme již použité materiály, abychom  zbytečně nevytvářeli další odpad. Objednávka Vám tak může přijí v krabici od jiného výrobce (například v obalu od filamentů, ze kterých tiskneme).
-  </span>
+  <article>
+    <h2 class="text-center">Doprava</h2>
+    <div class="relative flex flex-wrap justify-around gap-5 md:gap-10 my-5">
+      <ng-container *ngIf="transport$ | async as transports; else LOADING">
+        <div *ngFor="let item of transports"
+             class="max-w-[200px] md:max-w-[300px] p-5 md:p-12 bg-bg-light rounded-xl flex flex-col items-center text-center shadow-xl">
+          <h4 class="mb-5">{{item.head}}</h4>
+          <p class="mb-5">{{item.text}}</p>
+          <h5 class="mb-0 text-primary mt-auto">{{item.price==0 ? 'zdarma' : item.price + ' Kč'}}</h5>
+        </div>
+      </ng-container>
+    </div>
+    <p class="text-center my-5 md:my-10">
+      Při balení produktů recyklujeme již použité materiály, abychom  zbytečně nevytvářeli další odpad. Objednávka Vám tak může přijí v krabici od jiného výrobce (například v obalu od filamentů, ze kterých tiskneme).
+    </p>
+  </article>
 </div>
 
 <ng-template #LOADING>
