@@ -35,7 +35,7 @@
           </li>
           <li class="flex justify-center"
               *ngIf="itemsCount!==0">
-            <a class="relative p-2 m-2 font-bold text-secondary" routerLink="/kosik">
+            <a class="relative p-2 m-2 font-bold text-secondary" (click)="toggleNavbar()" routerLink="/kosik">
               <h2 class="mb-0">košík</h2>
               <div class="absolute top-[25%] left-[-30%] w-[20px] h-[20px] bg-danger rounded-full text-center text-warning">
                 <span class="text-[13px]">{{itemsCount}}</span>

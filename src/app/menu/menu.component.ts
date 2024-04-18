@@ -9,12 +9,12 @@ const DEFAULT_LABEL = "Zrzavá opice";
 
 const MENU_ITEMS: MenuItem[] = [
   {head: DEFAULT_LABEL, url: '/'},
-  {head: 'eshop', url: '/eshop'},
+  {head: 'E-shop', url: '/eshop'},
   {head: 'Jak klíčit', url: '/navody'},
-  {head: 'pro restaurace', url: '/pro-restaurace'},
-  {head: 'doprava a platba', url: '/doprava-a-platba'},
-  {head: 'kontakty', url: '/kontakty'},
-  {head: 'dokumenty', url: '/dokumenty'},
+  {head: 'Pro restaurace', url: '/pro-restaurace'},
+  {head: 'Doprava a platba', url: '/doprava-a-platba'},
+  {head: 'Kontakty', url: '/kontakty'},
+  {head: 'Dokumenty', url: '/dokumenty'},
 ];
 
 const SUB_ITEMS: MenuItem[] = [
