@@ -122,6 +122,7 @@ export const PAYMENT: QueryParams = {
         'text',
         'code',
         'price',
+        'freeFrom',
         {
           colection: 'icon',
           filtr: '',
@@ -144,6 +145,7 @@ export const TRANSPORT: QueryParams = {
         'text',
         'code',
         'price',
+        'freeFrom',
         {
           colection: 'icon',
           filtr: '',

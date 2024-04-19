@@ -4,7 +4,7 @@
       <div class="relative flex flex-col justify-center border-2 border-secondary">
         <ng-container *ngIf="transportMethods$ | async as transportMethods; else LOADING">
         <div *ngFor="let t of transportMethods"
-             (click)="setTransportPrice(t.price)"
+             (click)="setTransportPrice(totalProductsPrice<t.freeFrom ? t.price: 0)"
              class="flex cursor-pointer  border-2 border-secondary">
           <input type="radio"
                  [id]="t.code"
@@ -16,9 +16,10 @@
               <h4 class="mb-0">{{t.head}}</h4>
               <p class="">{{t.text}}</p>
             </div>
-            <div class="my-3 mr-5">
+            <div class="my-3 mr-5 flex flex-col items-end">
               <img class="w-[100px] h-[30px] object-contain" [src]="getBase()+t.icon.url">
-              <h4 class="my-2 w-max ml-auto">{{getPriceText(t.price)}}</h4>
+              <h4 class="my-2 w-max ml-auto">{{getPriceText(t.price, t.freeFrom)}}</h4>
+              <p *ngIf="t.freeFrom!=0">Zdarma od útraty nad: {{t.freeFrom}} Kč</p>
             </div>
           </label>
 
@@ -73,7 +74,7 @@
     <div class="relative flex flex-col justify-center border-2 border-secondary">
       <ng-container *ngIf="paymentMethods$ | async as paymentMethods; else LOADING">
         <div *ngFor="let p of paymentMethods"
-             (click)="setPaymentPrice(p.price)"
+             (click)="setPaymentPrice(totalProductsPrice<p.freeFrom ? p.price: 0)"
              class="flex border-2 border-secondary">
           <input type="radio"
                  [id]="p.code"
@@ -85,9 +86,10 @@
               <h4 class="mb-0">{{p.head}}</h4>
               <p class="">{{p.text}}</p>
             </div>
-            <div class="my-3 mr-5">
+            <div class="my-3 mr-5 flex flex-col items-end">
               <img class="w-[30px] mx-auto" [src]="getBase()+p.icon.url">
-              <p class="my-2">{{getPriceText(p.price)}}</p>
+              <h4 class="my-2 w-max ml-auto">{{getPriceText(p.price, p.freeFrom)}}</h4>
+              <p class="my-0" *ngIf="p.freeFrom!=0">Zdarma od útraty nad: {{p.freeFrom}} Kč</p>
             </div>
           </label>
         </div>

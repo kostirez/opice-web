@@ -11,6 +11,7 @@ export interface PayTransMethod {
   iconSrc: string;
   price: number;
   code: string;
+  freeFrom: number;
 }
 
 @Component({
@@ -20,6 +21,7 @@ export interface PayTransMethod {
 export class BasketPayTransComponent implements OnInit {
 
   openModal = false;
+  totalProductsPrice = 0;
 
   @HostListener('window:message', ['$event.data.point'])
   onClick(data) {
@@ -51,6 +53,7 @@ export class BasketPayTransComponent implements OnInit {
     private imageService: ImageService,
   ) {
     this.payTransForm = this.basketService.setPayTransForm(this.payTransForm);
+    this.totalProductsPrice = this.basketService.getPrice();
   }
 
   ngOnInit(): void {
@@ -70,8 +73,9 @@ export class BasketPayTransComponent implements OnInit {
     return this.payTransForm.get('transportPlaceArray') as FormArray;
   }
 
-  getPriceText(price: number): string {
-    return price > 0 ? price + ' Kč' : 'Zdarma';
+  getPriceText(price: number, freeFrom: number): string {
+    const finalPrice = this.totalProductsPrice < freeFrom ? price : 0;
+    return finalPrice > 0 ? finalPrice + ' Kč' : 'Zdarma';
   }
 
   setPaymentPrice(price): void {
