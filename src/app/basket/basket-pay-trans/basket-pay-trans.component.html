@@ -87,7 +87,7 @@
               <p class="">{{p.text}}</p>
             </div>
             <div class="my-3 mr-5 flex flex-col items-end">
-              <img class="w-[30px] mx-auto" [src]="getBase()+p.icon.url">
+              <img class="w-[100px] h-[30px] object-contain" [src]="getBase()+p.icon.url">
               <h4 class="my-2 w-max ml-auto">{{getPriceText(p.price, p.freeFrom)}}</h4>
               <p class="my-0" *ngIf="p.freeFrom!=0">Zdarma od útraty nad: {{p.freeFrom}} Kč</p>
             </div>
