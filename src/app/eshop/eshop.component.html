@@ -21,5 +21,9 @@
     <h4 class="mx-auto mb-0">{{item.head}}</h4>
   </div>
 </div>
+<div *ngIf="promotion"
+     class="mx-5 my-10 lg:my-20 p-3 md:p-10 w-100 border-4 border-success rounded-lg"
+     [innerHTML]="promotion">
+</div>
 <app-loading *ngIf="loading"></app-loading>
 <router-outlet></router-outlet>

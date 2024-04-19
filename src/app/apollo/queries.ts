@@ -29,6 +29,7 @@ export const ESHOP_MAIN: QueryParams = {
   filtr: '',
   items: [
     'head',
+    'promotion',
     {
       compName: 'items',
       params: [

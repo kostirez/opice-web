@@ -9,7 +9,8 @@ import { fadeIn, fadeOut } from "../carousel/carousel.animation";
 
 export interface EshopData {
   items: MenuPicItem[];
-  head: string
+  head: string;
+  promotion: string;
 }
 
 @Component({
@@ -29,6 +30,7 @@ export class EshopComponent {
   errors: any;
   actualUrl = 'eshop';
   productsOpen = false;
+  promotion = '';
 
   items: MenuPicItem[] = []
 
@@ -49,6 +51,7 @@ export class EshopComponent {
       .subscribe(result => {
         this.loading = result.loading;
         this.eshopItems = result.data.items;
+        this.promotion = result.data.promotion
       }));
     this.subscription.push(this.router.events
       .subscribe((event) => {
