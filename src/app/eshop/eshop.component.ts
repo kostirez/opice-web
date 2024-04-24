@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Directive, EventEmitter, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from "@angular/router";
 import { SingleTypesService } from "../apollo/single-types.service";
 import { MenuPicItem } from "../model/view";
@@ -13,6 +13,17 @@ export interface EshopData {
   promotion: string;
 }
 
+@Directive({
+  selector: '[rendered]'
+})
+export class RenderedDirective {
+  @Output() rendered:EventEmitter<any> = new EventEmitter();
+
+  ngAfterViewInit() {
+    this.rendered.emit()
+  }
+}
+
 @Component({
   selector: 'app-eshop',
   templateUrl: './eshop.component.html',
@@ -23,7 +34,7 @@ export interface EshopData {
     ])
   ]
 })
-export class EshopComponent {
+export class EshopComponent implements OnInit{
   eshopItems: MenuPicItem[] = [];
   data: any = {};
   loading = true;
@@ -44,7 +55,7 @@ export class EshopComponent {
 
   ngOnInit() {
     this.actualUrl = this.router.url;
-    if (this.actualUrl === '/eshop/sklenice' || this.actualUrl === '/eshop/misky') {
+    if (this.actualUrl.includes('sklenice') || this.actualUrl.includes('misky')) {
       this.productsOpen = true;
     }
     this.subscription.push(this.singleTypesService.getEshopData<EshopData>()

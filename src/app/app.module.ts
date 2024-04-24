@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { FooterComponent } from './footer/footer.component';
-import { EshopComponent } from './eshop/eshop.component';
+import { EshopComponent, RenderedDirective } from './eshop/eshop.component';
 import { HomeComponent } from './home/home.component';
 import { SkleniceComponent } from './sklenice/sklenice.component';
 import { MiskyComponent } from './misky/misky.component';
@@ -58,6 +58,7 @@ import { InstructionComponent } from './instruction/instruction.component';
     BasketPayTransComponent,
     BasketSummaryComponent,
     InstructionComponent,
+    RenderedDirective,
   ],
   imports: [
     BrowserModule,

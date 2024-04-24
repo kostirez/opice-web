@@ -47,6 +47,10 @@ export interface ProductSummary {
 })
 export class ProductComponent implements OnInit{
   @Input({ required: true }) productInfo!: ProductInfo;
+  @Input() set preselectColor(code: string) {
+    const color = this.productInfo.colors.find(c => c.code==='#'+code)
+    this.selectedColor = color ? color.name: null;
+  }
 
   slides: PicArray = [];
 
