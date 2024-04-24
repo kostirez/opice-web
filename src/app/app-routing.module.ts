@@ -5,7 +5,7 @@ import { EshopComponent } from "./eshop/eshop.component";
 import { SkleniceComponent } from "./sklenice/sklenice.component";
 import { MiskyComponent } from "./misky/misky.component";
 import { MicrogreensComponent } from "./microgreens/microgreens.component";
-import { ForRestaurantsComponent } from "./for-restaurants/for-restaurants.component";
+// import { ForRestaurantsComponent } from "./for-restaurants/for-restaurants.component";
 import { ContactComponent } from "./contact/contact.component";
 import { TranspotPaymentComponent } from "./transpot-payment/transpot-payment.component";
 import { DocumentsComponent } from "./documents/documents.component";
@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   { path: 'kosik', component: BasketComponent,},
   { path: 'navody', component: InstructionComponent,},
-  { path: 'pro-restaurace', component: ForRestaurantsComponent},
+  // { path: 'pro-restaurace', component: ForRestaurantsComponent},
   { path: 'kontakty', component: ContactComponent},
   { path: 'doprava-a-platba', component: TranspotPaymentComponent},
   { path: 'dokumenty', component: DocumentsComponent},

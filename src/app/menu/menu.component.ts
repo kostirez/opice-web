@@ -11,7 +11,7 @@ const MENU_ITEMS: MenuItem[] = [
   {head: DEFAULT_LABEL, url: '/'},
   {head: 'E-shop', url: '/eshop'},
   {head: 'Jak klíčit', url: '/navody'},
-  {head: 'Pro restaurace', url: '/pro-restaurace'},
+  // {head: 'Pro restaurace', url: '/pro-restaurace'},
   {head: 'Doprava a platba', url: '/doprava-a-platba'},
   {head: 'Kontakty', url: '/kontakty'},
   {head: 'Dokumenty', url: '/dokumenty'},
