@@ -21,6 +21,7 @@ export interface ProductDetail {
 }
 
 export interface ProductInfo {
+  id?: string;
   name: string;
   description: string;
   detail: string;

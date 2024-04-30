@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from "apollo-angular";
 import { map, Observable } from "rxjs";
-import { ApolloQueryResult, DocumentNode } from "@apollo/client/core";
 import gql from "graphql-tag";
-import { environment } from "../../environments/environment";
 
 interface SingleDataStructure {
   [key: string]: {
@@ -38,113 +36,13 @@ export class StrapiGraphqlService {
 
   constructor(private apollo: Apollo,) { }
 
-  private createQuery(
-    colection: string,
-    attributes: string,
-    component?: string,
-    filter: string = '',
-  ): DocumentNode {
-    return gql`
-      query Query {
-        ${colection}${filter} {
-          data {
-            attributes {
-              ${component? component + ' {': ''}
-              ${attributes}
-              ${component? '}' : ''}
-            }
-          }
-        }
-      }`;
-  }
-
-  private mapResult<DATA>(
-    data: ApolloQueryResult<SingleDataStructure>,
-    colection: string,
-    singleImages: string[] = [],
-    multipleImages: string[] = [],
-    component?: string,
-  ): StrapiResult<DATA> {
-    let result = {
-      data: component ?
-        this.getComponentData(data.data[colection].data.attributes, component):
-        Object.assign({}, data.data[colection].data.attributes),
-      loading: data.loading,
-    };
-
-    if (singleImages.length !== 0) {
-      singleImages.forEach(image => {
-        if (component) {
-          for (let item of result.data) {
-            item[image] = environment.url + this.getImageUrl(item[image])
-          }
-        } else {
-          result.data[`${image}`] = environment.url +this.getImageUrl(result.data[image])
-        }
-      })
-    }
-    if (multipleImages.length !== 0) {
-      multipleImages.forEach(images => {
-        const array:string[] = [];
-        result.data[`${images}`].data.forEach((image: any) => {
-          array.push(environment.url + image.attributes.url)
-        });
-        result.data[`${images}`] = array;
-      });
-    }
-    return result;
-  }
-
-  private getImageUrl(data: any): string {
-    return data.data.attributes.url;
-  }
-
-  getSingleData<DATA>(
-    colection: string,
-    attributes: string,
-    singleImages: string[] = [],
-    multipleImages: string[] = [],
-    component?: string,
-    filter?: string,
-    ): Observable<StrapiResult<DATA>> {
-    return this.apollo.watchQuery<SingleDataStructure>(
-      {
-        query: this.createQuery(
-          colection,
-          attributes,
-          component,
-          filter,
-        )
-      }
-    ).valueChanges
-      .pipe(
-        map(data=> {
-          return this.mapResult<DATA>(
-            data,
-            colection,
-            singleImages,
-            multipleImages,
-            component,
-          )
-        })
-      )
-  }
-
-  private getComponentData(attributes: any, component: string) {
-    const result = [];
-    for (let item of attributes[component]) {
-      result.push(Object.assign({}, item))
-    }
-    return result
-  }
-
   //////////////////////////////////
 
   fetch<T>(queryParams: QueryParams): Observable<StrapiResult<T>> {
-    const a = this.getSimpleQuery(queryParams)
+    const q = this.getSimpleQuery(queryParams)
     const query = gql`
       query Query {
-        ${a}
+        ${q}
       }`;
     return this.apollo.watchQuery<SingleDataStructure>(
       {query}
@@ -165,6 +63,7 @@ export class StrapiGraphqlService {
     return `
       ${query.colection}${query.filtr } {
         data {
+          id
           attributes {
             ${this.getQueryItems(query.items)}
           }
@@ -196,17 +95,18 @@ export class StrapiGraphqlService {
     if(Array.isArray(data.data)) {
       const arr = [];
       data.data.forEach(item => {
-        arr.push(this.mapResultItems(query.items, item.attributes))
+        arr.push(this.mapResultItems(query.items, item.attributes, item.id))
       })
       return arr
     } else {
-      const d = data.data.attributes
-      return this.mapResultItems(query.items, d)
+      const d = data.data.attributes;
+     return this.mapResultItems(query.items, d, data.data.id)
     }
   }
 
-  mapResultItems(items: (string | QueryParams | ComponentParams)[], data: {}): any {
-    let ret = {};
+  mapResultItems(items: (string | QueryParams | ComponentParams)[], data: {}, id?: any): any {
+    let ret = {id: id};
+
     items.forEach(item => {
       if (typeof item === "string") {
         ret[item] = data[item]
