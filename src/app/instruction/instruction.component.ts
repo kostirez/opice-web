@@ -23,7 +23,6 @@ export class InstructionComponent {
   instruction$: Observable<InstructionData> =
     this.singleTypesService.getInstructionData<InstructionData>()
       .pipe(
-        tap(d => console.log('data', d.data)),
         map(d => d.data),
       );
 
