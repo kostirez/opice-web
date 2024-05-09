@@ -16,7 +16,7 @@ export class BasketSummaryComponent {
     postCode: [ '', [Validators.required, Validators.pattern("^[0-9]*$"),
       Validators.minLength(4), Validators.maxLength(6)]],
     email: [ '', [Validators.required,  Validators.email]],
-    name: [ '', [Validators.required, Validators.pattern("[a-zA-ZÀ-ž]*")]],
+    name: [ '', [Validators.required, Validators.pattern("[a-zA-ZÀ-ž ]*")]],
     tel: [ '', [Validators.required, Validators.pattern("^[0-9]*$"),
       Validators.minLength(8), Validators.maxLength(12)]],
     note: [''],
