@@ -27,11 +27,14 @@ export interface Order {
 }
 
 export interface OrderResponse {
-  id: number;
-  transportCode: string;
-  paymentCode: string;
-  totalPrice: number;
-  invoiceId: number;
+  data: {
+    id: number;
+    transportCode: string;
+    paymentCode: string;
+    totalPrice: number;
+    invoiceId: number;
+  };
+  image: any;
 }
 
 const BASKET_URLS = ['prehled', 'doprava-a-platba', 'souhrn'];

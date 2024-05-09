@@ -91,19 +91,20 @@
   <ng-container *ngIf="orderResponse">
     <h4 class="mb-5 text-center">Děkujeme za nákup</h4>
     <p class="text-center">
-      Brzy Vám příjde e-mail s potvrzením objednávky číslo: {{orderResponse.invoiceId}}.
+      Brzy Vám příjde e-mail s potvrzením objednávky číslo: {{orderResponse.data.invoiceId}}.
     </p>
-    <div *ngIf="orderResponse.paymentCode==='PRE'"
+    <div *ngIf="orderResponse.data.paymentCode==='PRE'"
          class="flex flex-col text-center mt-3">
       <p class="mt-3">
-        Prosíme o úhradu částky {{orderResponse.totalPrice}} Kč na náš účet.
+        Prosíme o úhradu částky {{orderResponse.data.totalPrice}} Kč na náš účet.
       </p>
       <p class="mt-3">
         Číslo účtu: <b>2602805796/2010</b>.
       </p>
       <p class="mt-3">
-        Variabilní symbol: <b>{{orderResponse.invoiceId}}</b>.
+        Variabilní symbol: <b>{{orderResponse.data.invoiceId}}</b>.
       </p>
+      <img *ngIf="pngDataUrl" [src]="pngDataUrl" alt="Generated PNG">
     </div>
 
     <div class="flex justify-center">

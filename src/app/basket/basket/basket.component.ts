@@ -26,7 +26,7 @@ export class BasketComponent {
   basketSteps = BASKET_STEPS;
   orderResponse: OrderResponse | null;
   loading = false;
-
+  pngDataUrl = '';
   termsForm =  this.formBuilder.group({
     term: [ ,[ Validators.required ]],
     gdpr: [],
@@ -115,6 +115,7 @@ export class BasketComponent {
           behavior: 'smooth'
         });
         this.orderResponse = orderResponse;
+        this.pngDataUrl = 'data:image/png;base64,' + orderResponse.image;
         this.basketService.moveForward();
         this.basketService.deleteBasket()
       })
