@@ -21,9 +21,9 @@ export class StrapiApiService {
   }
 
 
-  sendOrder(order: Order): Observable<OrderResponse> {
+  sendOrder(order: Order): Observable<{orderResponse: OrderResponse, image: string}> {
     return this.http
-      .post<OrderResponse>(
+      .post<{orderResponse: OrderResponse, image: string}>(
         environment.apiUrl + "/orders",
         {data: order},
         {headers: this.headers}

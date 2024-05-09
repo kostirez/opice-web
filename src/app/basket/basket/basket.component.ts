@@ -107,15 +107,15 @@ export class BasketComponent {
     const order$ = this.basketService.order();
     if (order$){
       this.loading = true;
-      order$.subscribe(orderResponse => {
+      order$.subscribe(response => {
         this.loading = false;
         window.scroll({
           top: 0,
           left: 0,
           behavior: 'smooth'
         });
-        this.orderResponse = orderResponse;
-        this.pngDataUrl = 'data:image/png;base64,' + orderResponse.image;
+        this.orderResponse = response.orderResponse;
+        this.pngDataUrl = 'data:image/png;base64,' + response.image;
         this.basketService.moveForward();
         this.basketService.deleteBasket()
       })

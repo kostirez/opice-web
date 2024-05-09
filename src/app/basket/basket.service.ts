@@ -27,14 +27,11 @@ export interface Order {
 }
 
 export interface OrderResponse {
-  data: {
-    id: number;
-    transportCode: string;
-    paymentCode: string;
-    totalPrice: number;
-    invoiceId: number;
-  };
-  image: any;
+  id: number;
+  transportCode: string;
+  paymentCode: string;
+  totalPrice: number;
+  invoiceId: number;
 }
 
 const BASKET_URLS = ['prehled', 'doprava-a-platba', 'souhrn'];
@@ -153,7 +150,7 @@ export class BasketService implements OnDestroy{
   }
 
 
-  order(): Observable<OrderResponse> | null {
+  order(): Observable<{orderResponse: OrderResponse, image: string}> | null {
     let error = false;
 
     if(!this.payTransForm || !this.payTransForm.valid){
