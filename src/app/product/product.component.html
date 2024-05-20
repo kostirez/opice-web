@@ -6,11 +6,11 @@
       </div>
       <div class="flex flex-col text-center md:text-left md:pl-10 w-full">
         <h4 class="mt-3 mb-0">{{productInfo.name}}</h4>
-        <h6 class="mt-3 mb-0">{{productInfo.description}}</h6>
+        <p class="mt-3 mb-0">{{productInfo.description}}</p>
 
         <!--         size       -->
-        <div *ngIf="productInfo.sizeLabel" [ngClass]="sizeErr ? 'border-danger border-4 px-2 mt-2' : ''">
-          <h4 class="mt-5 mb-0">{{productInfo.sizeLabel}}</h4>
+        <div *ngIf="productInfo.sizeLabel" [ngClass]="sizeErr ? 'border-danger border-dashed border-4 px-2 mt-2 bg-warning2' : ''">
+          <h5 class="mt-5 mb-0 text-primary">{{productInfo.sizeLabel}}</h5>
           <div class="flex justify-center md:justify-start mt-3">
             <div *ngFor="let size of productInfo.sizes"
                  class="mx-2 md:ml-0 md:mr-3 p-2 max-w-[40%] border-2 relative cursor-pointer"
@@ -24,8 +24,8 @@
         </div>
 
         <!--         color       -->
-        <div *ngIf="productInfo.colors.length > 0" [ngClass]="colorErr ? 'border-danger border-4 px-2 mt-2' : ''">
-          <h4 class="mt-5 mb-0">Barevné varianty:</h4>
+        <div *ngIf="productInfo.colors.length > 0" [ngClass]="colorErr ? 'border-danger border-dashed border-4 px-2 mt-2 bg-warning2' : ''">
+          <h5 class="mt-5 mb-0 text-primary">Barevné varianty:</h5>
           <div  class="flex justify-center md:justify-start mt-3">
             <div *ngFor="let color of productInfo.colors"
                  class="mx-2 md:ml-0 md:mr-3 w-[40px] h-[40px] mx-2 border-2 rounded-md cursor-pointer"
@@ -37,7 +37,7 @@
         </div>
 
         <div class="flex justify-center md:justify-between mt-5 md:mt-auto md:pt-5 w-full">
-          <h3 class="text-center  my-auto">{{productInfo.price}} Kč</h3>
+          <h3 class="text-center my-auto">{{productInfo.price}} Kč</h3>
           <button (click)="addToBasket(productInfo)"
                   [disabled]="colorErr || sizeErr"
                   class="mx-2 my-auto border-2 border-secondary rounded-xl"

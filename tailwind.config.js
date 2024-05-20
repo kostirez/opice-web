@@ -37,6 +37,7 @@ module.exports = {
         success: '#ffaf43',
         success2: '#ffcca1',
         warning: "#f6be73",
+        warning2: "#fdd7a5",
         danger: "#a60303",
       },
     },

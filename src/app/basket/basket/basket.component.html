@@ -18,19 +18,19 @@
   <ng-container *ngIf="step==2"><app-basket-summary></app-basket-summary></ng-container>
 
   <div class="border-4 border-primary mt-10 m-5">
-    <div class="flex justify-between py-2 px-5 ">
+    <div class="flex justify-between px-1 md:px-5 ">
       <h5 class="mb-0">Cena celkem za zboží</h5>
       <h4 class="mb-0">{{getProductsPrice()}} Kč</h4>
     </div>
-    <div *ngIf="step>0" class="flex justify-between py-2 px-5">
+    <div *ngIf="step>0" class="flex justify-between px-1 md:px-5">
       <h5 class="mb-0">Cena dopravy</h5>
       <h4 class="mb-0">{{getTransportPrice() ?? ' - '}} Kč</h4>
     </div>
-    <div *ngIf="step>0" class="flex justify-between py-2 px-5">
+    <div *ngIf="step>0" class="flex justify-between px-1 md:px-5">
       <h5 class="mb-0">Cena platby</h5>
       <h4 class="mb-0">{{getPaymentPrice() ?? ' - '}} Kč</h4>
     </div>
-    <div *ngIf="step>0" class="flex justify-between py-2 px-5 border-t-2 border-secondary bg-bg-light">
+    <div *ngIf="step>0" class="flex justify-between px-1 md:px-5 border-t-2 border-secondary bg-bg-light">
       <h5 class="mb-0">Cena celkem</h5>
       <h4 class="mb-0">{{getPrice()}} Kč</h4>
     </div>

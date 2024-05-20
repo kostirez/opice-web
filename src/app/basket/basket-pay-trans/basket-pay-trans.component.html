@@ -2,7 +2,7 @@
   <form [formGroup]="payTransForm" class="flex flex-col px-5">
     <div class="flex flex-col"
          [ngClass]="payTransForm.get('transportCode').touched && payTransForm.get('transportCode').errors ?
-          'border-8 border-danger p-4 my-4': ''">
+          'border-8 border-danger border-dashed bg-warning2 p-4 my-4': ''">
       <h3 class="mx-auto my-3">Doprava</h3>
       <ng-container *ngIf="transportMethods$ | async as transportMethods; else LOADING">
         <div class="relative flex flex-col justify-center border-2 border-secondary">
@@ -16,13 +16,13 @@
                    class="hidden peer"/>
             <label [for]="t.code" class="mb-0 w-full flex justify-between items-center peer-checked:bg-success2 cursor-pointer">
               <div class="mx-1 md:mx-5">
-                <h4 class="mb-0">{{t.head}}</h4>
-                <p class="">{{t.text}}</p>
+                <h5 class="mb-0 text-primary">{{t.head}}</h5>
+                <p class="hidden md:block">{{t.text}}</p>
               </div>
-              <div class="my-3 mr-5 flex flex-col items-end">
-                <img class="w-[100px] h-[30px] object-contain" [src]="getBase()+t.icon.url">
-                <h4 class="my-2 w-max ml-auto">{{getPriceText(t.price, t.freeFrom)}}</h4>
-                <p *ngIf="t.freeFrom!=0">Zdarma od útraty nad: {{t.freeFrom}} Kč</p>
+              <div class="my-1 mr-1 md:mr-5 flex flex-col items-end">
+                <img class="w-[70px] h-[25px] object-contain" [src]="getBase()+t.icon.url">
+                <h5 class="my-1 w-max ml-auto text-primary">{{getPriceText(t.price, t.freeFrom)}}</h5>
+                <p class="hidden md:block" *ngIf="t.freeFrom!=0"><small>Zdarma od útraty nad: {{t.freeFrom}} Kč</small></p>
               </div>
             </label>
            </div>
@@ -35,7 +35,10 @@
       </ng-container>
     </div>
 
-    <ng-container *ngIf="transportPlaceArray.controls.length!==0" >
+    <div *ngIf="transportPlaceArray.controls.length!==0"
+         class="flex flex-col"
+         [ngClass]="transportPlaceArray.controls[0].touched && transportPlaceArray.controls[0].errors ?
+            'border-8 border-danger border-dashed bg-warning2 p-4 my-4': ''">
       <h3 class="mx-auto my-3">Místo doručení</h3>
       <div class="w-full border-4 border-secondary flex justify-around items-center">
         <div *ngIf="transportPlaceArray.controls[0] && transportPlaceArray.controls[0].value">
@@ -51,8 +54,8 @@
       </div>
       <div class="text-center w-full"
            *ngIf="transportPlaceArray.controls[0].touched">
-        <p class="text-danger my-5"
-           *ngIf="transportPlaceArray.controls[0].errors?.['required']">Vyberte místo doručení</p>
+        <h4 class="text-danger my-5"
+           *ngIf="transportPlaceArray.controls[0].errors?.['required']">Vyberte místo doručení</h4>
       </div>
 
 
@@ -70,11 +73,11 @@
             allow="geolocation"></iframe>
         </div>
       </div>
-    </ng-container>
+    </div>
 
     <div class="flex flex-col"
          [ngClass]="payTransForm.get('paymentCode').touched && payTransForm.get('paymentCode').errors ?
-          'border-8 border-danger p-4 my-4': ''">
+          'border-8 border-danger border-dashed bg-warning2 p-4 my-4': ''">
       <h3 class="mx-auto my-3">Platba</h3>
       <ng-container *ngIf="paymentMethods$ | async as paymentMethods; else LOADING">
 
@@ -88,14 +91,14 @@
                    formControlName="paymentCode"
                    class="hidden peer"/>
             <label [for]="p.code" class="mb-0 w-full flex justify-between items-center peer-checked:bg-success2 cursor-pointer">
-              <div class="mx-5">
-                <h4 class="mb-0">{{p.head}}</h4>
-                <p class="">{{p.text}}</p>
+              <div class="mx-1 md:mx-5">
+                <h5 class="mb-0 text-primary">{{p.head}}</h5>
+                <p class="hidden md:block">{{p.text}}</p>
               </div>
-              <div class="my-3 mr-5 flex flex-col items-end">
+              <div class="my-1 mr-1 md:mr-5 flex flex-col items-end">
                 <img class="w-[100px] h-[30px] object-contain" [src]="getBase()+p.icon.url">
-                <h4 class="my-2 w-max ml-auto">{{getPriceText(p.price, p.freeFrom)}}</h4>
-                <p class="my-0" *ngIf="p.freeFrom!=0">Zdarma od útraty nad: {{p.freeFrom}} Kč</p>
+                <h5 class="my-1 w-max ml-auto text-primary">{{getPriceText(p.price, p.freeFrom)}}</h5>
+                <p class="hidden md:block" *ngIf="p.freeFrom!=0"><small>Zdarma od útraty nad: {{p.freeFrom}} Kč</small></p>
               </div>
             </label>
           </div>

@@ -19,9 +19,9 @@ input::-webkit-inner-spin-button {
     // font size
     @apply text-sm;
     @apply sm:text-base;
-    @apply md:text-lg;
-    @apply lg:text-xl;
-    @apply xl:text-2xl;
+    @apply md:text-base;
+    @apply lg:text-lg;
+    @apply xl:text-xl;
 
     // font weight
     @apply font-normal;
@@ -149,6 +149,14 @@ input::-webkit-inner-spin-button {
     @apply border-2 border-secondary;
     @apply rounded;
     @apply focus:ring-primary;
+  }
+
+  small {
+    @apply text-xs;
+    @apply sm:text-sm;
+    @apply md:text-sm;
+    @apply lg:text-base;
+    @apply xl:text-base;
   }
 }
 
