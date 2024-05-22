@@ -63,7 +63,7 @@ export class EshopComponent implements OnInit {
     this.metaTagService.addTags(META_DATA['eshop'].tags);
 
     this.actualUrl = this.router.url;
-    if (this.actualUrl.includes('sklenice') || this.actualUrl.includes('misky')) {
+    if (this.actualUrl.includes('sklenice') || this.actualUrl.includes('misky') || this.actualUrl.includes('seminka')) {
       this.productsOpen = true;
     }
     this.subscription.push(this.singleTypesService.getEshopData<EshopData>()

@@ -10,6 +10,7 @@ import { ContactComponent } from "./contact/contact.component";
 import { TranspotPaymentComponent } from "./transpot-payment/transpot-payment.component";
 import { BasketComponent } from "./basket/basket/basket.component";
 import { InstructionComponent } from "./instruction/instruction.component";
+import { SeedsComponent } from "./seeds/seeds.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
     children: [
       {path: 'sklenice', component: SkleniceComponent},
       {path: 'misky', component: MiskyComponent},
-      {path: 'microgreens', component: MicrogreensComponent}
+      {path: 'microgreens', component: MicrogreensComponent},
+      {path: 'seminka', component: SeedsComponent}
     ]
   },
   { path: 'kosik', component: BasketComponent,},

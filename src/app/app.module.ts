@@ -31,6 +31,7 @@ import { BasketOverviewComponent } from './basket/basket-overview/basket-overvie
 import { BasketPayTransComponent } from './basket/basket-pay-trans/basket-pay-trans.component';
 import { BasketSummaryComponent } from './basket/basket-summary/basket-summary.component';
 import { InstructionComponent } from './instruction/instruction.component';
+import { SeedsComponent } from './seeds/seeds.component';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from "ngx-google-analytics";
 
 @NgModule({
@@ -58,6 +59,7 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from "ngx-go
     BasketSummaryComponent,
     InstructionComponent,
     RenderedDirective,
+    SeedsComponent,
   ],
   imports: [
     BrowserModule,
