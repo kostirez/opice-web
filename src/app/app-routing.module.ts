@@ -8,7 +8,6 @@ import { MicrogreensComponent } from "./microgreens/microgreens.component";
 // import { ForRestaurantsComponent } from "./for-restaurants/for-restaurants.component";
 import { ContactComponent } from "./contact/contact.component";
 import { TranspotPaymentComponent } from "./transpot-payment/transpot-payment.component";
-import { DocumentsComponent } from "./documents/documents.component";
 import { BasketComponent } from "./basket/basket/basket.component";
 import { InstructionComponent } from "./instruction/instruction.component";
 
@@ -26,7 +25,6 @@ const routes: Routes = [
   // { path: 'pro-restaurace', component: ForRestaurantsComponent},
   { path: 'kontakty', component: ContactComponent},
   { path: 'doprava-a-platba', component: TranspotPaymentComponent},
-  { path: 'dokumenty', component: DocumentsComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent },
 

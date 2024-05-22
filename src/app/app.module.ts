@@ -17,7 +17,6 @@ import { BasketIconComponent } from './basket/basket-icon/basket-icon.component'
 import { ForRestaurantsComponent } from './for-restaurants/for-restaurants.component';
 import { ContactComponent } from './contact/contact.component';
 import { TranspotPaymentComponent } from './transpot-payment/transpot-payment.component';
-import { DocumentsComponent } from './documents/documents.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { StepsComponent } from './steps/steps.component';
@@ -50,7 +49,6 @@ import { InstructionComponent } from './instruction/instruction.component';
     ForRestaurantsComponent,
     ContactComponent,
     TranspotPaymentComponent,
-    DocumentsComponent,
     ContactFormComponent,
     StepsComponent,
     LoadingComponent,

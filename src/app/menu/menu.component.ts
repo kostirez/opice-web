@@ -14,7 +14,6 @@ const MENU_ITEMS: MenuItem[] = [
   // {head: 'Pro restaurace', url: '/pro-restaurace'},
   {head: 'Doprava a platba', url: '/doprava-a-platba'},
   {head: 'Kontakty', url: '/kontakty'},
-  {head: 'Dokumenty', url: '/dokumenty'},
 ];
 
 const SUB_ITEMS: MenuItem[] = [
