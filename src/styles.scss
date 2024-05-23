@@ -158,6 +158,42 @@ input::-webkit-inner-spin-button {
     @apply lg:text-base;
     @apply xl:text-base;
   }
+
+  th {
+    @apply bg-bg-light;
+    // font size
+    @apply text-sm;
+    @apply md:text-xl;
+    @apply lg:text-2xl;
+
+    // font weight
+    @apply font-semibold;
+
+    // text color
+    @apply text-primary;
+
+    @apply md:p-2;
+    @apply border md:border-2 border-secondary;
+  }
+  td {
+    // font size
+    @apply text-sm;
+    @apply sm:text-base;
+    @apply md:text-lg;
+    @apply lg:text-xl;
+    @apply xl:text-xl;
+
+    // font weight
+    @apply font-semibold;
+
+    // text color
+    @apply text-secondary;
+
+
+    @apply md:p-2;
+    @apply border md:border-2 border-secondary;
+  }
+
 }
 
 @layer components {

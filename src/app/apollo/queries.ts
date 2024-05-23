@@ -206,10 +206,27 @@ export const INSTRUCTIONS = {
   items: [
     'head',
     'text',
-    'head_2',
-    'text_2',
     'headSklenice',
     'headMisky',
+    'table_1',
+    'table_2',
+    'toSprout',
+    'toNotSprout',
+    {
+      colection: 'main_pic',
+      filtr: '',
+      items: ['url']
+    },
+    {
+      colection: 'skleniceImg',
+      filtr: '',
+      items: ['url']
+    },
+    {
+      colection: 'miskaImg',
+      filtr: '',
+      items: ['url']
+    },
     {
       compName: 'steps_sklenice',
       params: [
