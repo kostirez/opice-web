@@ -24,6 +24,21 @@
     </div>
   </article>
 
+  <article class="flex flex-col md:flex-row text-center md:text-left pt-5 md:pt-10">
+    <div class="md:w-[50%] flex flex-col px-5 md:px-20">
+      <h3 class="">{{restaurantData.head_2}}</h3>
+      <ul class="md:list-disc text-secondary font-semibold text-base sm:text-lg md:text-xl lg:text-2xl"
+          [innerHTML]="restaurantData.text_2"></ul>
+    </div>
+    <div class="w-full md:w-[50%] mt-5 md:mt-0 md:order-first">
+      <app-carousel  class="m-auto"
+                     [delay]="4000"
+                     [showBtns]="false"
+                     [slides$]="getObsSlides(restaurantData.meals)">
+      </app-carousel>
+    </div>
+  </article>
+
   <article>
     <h3 class="text-center">Co pěstujeme</h3>
     <div class="flex flex-wrap justify-around gap-5 md:gap-10 my-5 max-h-[60vh] md:max-h-fit overflow-y-scroll">
@@ -34,21 +49,6 @@
       </div>
     </div>
   </article>
-
-    <article class="flex flex-col md:flex-row text-center md:text-left">
-      <div class="md:w-[50%] flex flex-col px-5 md:px-20">
-        <h3 class="">{{restaurantData.head_2}}</h3>
-        <ul class="md:list-disc text-secondary font-semibold text-base sm:text-lg md:text-xl lg:text-2xl"
-            [innerHTML]="restaurantData.text_2"></ul>
-      </div>
-      <div class="w-full md:w-[50%] mt-5 md:mt-0 md:order-first">
-        <app-carousel  class="m-auto"
-                       [delay]="4000"
-                       [showBtns]="false"
-                       [slides$]="getObsSlides(restaurantData.meals)">
-        </app-carousel>
-      </div>
-    </article>
 
   <article>
     <h3 class="text-center">Kontaktujte nás</h3>
