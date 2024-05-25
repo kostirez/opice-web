@@ -17,6 +17,21 @@
     <app-eshop></app-eshop>
   </article>
 
+  <article class="grid grid-cols-1 md:grid-cols-2 items-center text-center md:text-left">
+    <div class="flex flex-col mb-10 md:ml-10 max-w-[400px] md:max-w-[600px] mx-auto">
+      <h4 >{{homeData.instruction_label}}</h4>
+      <button  (click)="navigateToInstruction()"
+               class="btn m-auto md:ml-0">
+        Přejít na návod
+      </button>
+    </div>
+    <div class="w-full md:order-first">
+      <div class="max-w-[500px] mx-auto ">
+        <img [src]="getBase() + homeData.instruction_pic.url">
+      </div>
+    </div>
+  </article>
+
 <!--  <article>-->
 <!--    <h3 class="text-center">-->
 <!--      Microgreens pro restaurace-->

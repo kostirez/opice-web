@@ -4,12 +4,15 @@ import { SingleTypesService } from "../apollo/single-types.service";
 import { map, Observable, of, tap } from "rxjs";
 import { PicArray, Picture, TextItem } from "../model/view";
 import { ImageService } from "../image.service";
+import { Router } from "@angular/router";
 
 export type HomeData = {
   head: string;
   text: string;
   main_pic: Picture;
   microgreens_use: PicArray;
+  instruction_label:string;
+  instruction_pic: Picture;
 }
 
 @Component({
@@ -36,6 +39,7 @@ export class HomeComponent {
     @Inject(DOCUMENT) private document: Document,
     private singleTypesService: SingleTypesService,
     private imageService: ImageService,
+    private router: Router,
   ) {
   }
 
@@ -51,5 +55,8 @@ export class HomeComponent {
     return of(slides);
   }
 
+  navigateToInstruction() {
+    this.router.navigate(['/navody']);
+  }
 }
 

@@ -11,6 +11,7 @@ export const HOME: QueryParams = {
   items: [
     'head',
     'text',
+    'instruction_label',
     {
       colection: 'main_pic',
       filtr: '',
@@ -18,6 +19,12 @@ export const HOME: QueryParams = {
     },
     {
       colection: 'microgreens_use',
+      filtr: '',
+      items: ['url', 'name']
+    },
+
+    {
+      colection: 'instruction_pic',
       filtr: '',
       items: ['url', 'name']
     },
