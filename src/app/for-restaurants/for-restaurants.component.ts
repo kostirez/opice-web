@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map, Observable, of, tap } from "rxjs";
 import { SingleTypesService } from "../apollo/single-types.service";
 import { PicArray, PicItem, TextItem } from "../model/view";
 import { ImageService } from "../image.service";
+import { META_DATA } from "../meta/metadata";
+import { Meta, Title } from "@angular/platform-browser";
 
 
 export type RestaurantData = {
@@ -20,7 +22,7 @@ export type RestaurantData = {
   selector: 'app-for-restaurants',
   templateUrl: './for-restaurants.component.html',
 })
-export class ForRestaurantsComponent {
+export class ForRestaurantsComponent implements OnInit {
 
   loading = true;
 
@@ -45,7 +47,15 @@ export class ForRestaurantsComponent {
   constructor(
     private singleTypesService: SingleTypesService,
     private imageService: ImageService,
+    private titleService: Title,
+    private metaTagService: Meta,
   ) {}
+
+  ngOnInit() {
+    // metadata
+    this.titleService.setTitle(META_DATA.restaurants.title);
+    this.metaTagService.addTags(META_DATA.restaurants.tags);
+  }
 
 
   getBase(): string {

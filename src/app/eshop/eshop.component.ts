@@ -6,6 +6,8 @@ import { Subscription } from "rxjs";
 import { ImageService } from "../image.service";
 import { transition, trigger, useAnimation } from "@angular/animations";
 import { fadeIn, fadeOut } from "../carousel/carousel.animation";
+import { META_DATA } from "../meta/metadata";
+import { Meta, Title } from "@angular/platform-browser";
 
 export interface EshopData {
   items: MenuPicItem[];
@@ -34,7 +36,7 @@ export class RenderedDirective {
     ])
   ]
 })
-export class EshopComponent implements OnInit{
+export class EshopComponent implements OnInit {
   eshopItems: MenuPicItem[] = [];
   data: any = {};
   loading = true;
@@ -51,9 +53,15 @@ export class EshopComponent implements OnInit{
     private singleTypesService: SingleTypesService,
     private router: Router,
     private imageService: ImageService,
+    private titleService: Title,
+    private metaTagService: Meta,
     ) {}
 
   ngOnInit() {
+    // metadata
+    this.titleService.setTitle(META_DATA.eshop.title);
+    this.metaTagService.addTags(META_DATA.eshop.tags);
+
     this.actualUrl = this.router.url;
     if (this.actualUrl.includes('sklenice') || this.actualUrl.includes('misky')) {
       this.productsOpen = true;

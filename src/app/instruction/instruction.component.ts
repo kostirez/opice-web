@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map, Observable } from "rxjs";
 import { Picture, TextItem } from "../model/view";
 import { SingleTypesService } from "../apollo/single-types.service";
 import { ImageService } from "../image.service";
+import { Meta, Title } from "@angular/platform-browser";
+import { META_DATA } from "../meta/metadata";
 
 interface InstructionData {
   head: string;
@@ -26,7 +28,7 @@ interface InstructionData {
   selector: 'app-instruction',
   templateUrl: './instruction.component.html',
 })
-export class InstructionComponent {
+export class InstructionComponent implements OnInit {
 
   selectedSklenice = 0;
   selectedMiska = 0;
@@ -40,7 +42,15 @@ export class InstructionComponent {
   constructor(
     private singleTypesService: SingleTypesService,
     private imageService: ImageService,
+    private titleService: Title,
+    private metaTagService: Meta,
   ) {}
+
+  ngOnInit() {
+    // metadata
+    this.titleService.setTitle(META_DATA.navod.title);
+    this.metaTagService.addTags(META_DATA.navod.tags);
+  }
 
   moveSklenice(step: number, length: number) {
     this.selectedSklenice += step;
