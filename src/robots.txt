@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /assets/documents
+Disallow: /kosik/
+
+Sitemap: https://www.zrzavaopice.cz/sitemap.xml
