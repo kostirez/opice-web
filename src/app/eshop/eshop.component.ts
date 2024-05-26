@@ -59,8 +59,8 @@ export class EshopComponent implements OnInit {
 
   ngOnInit() {
     // metadata
-    this.titleService.setTitle(META_DATA.eshop.title);
-    this.metaTagService.addTags(META_DATA.eshop.tags);
+    this.titleService.setTitle(META_DATA['eshop'].title);
+    this.metaTagService.addTags(META_DATA['eshop'].tags);
 
     this.actualUrl = this.router.url;
     if (this.actualUrl.includes('sklenice') || this.actualUrl.includes('misky')) {

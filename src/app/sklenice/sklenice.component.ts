@@ -36,8 +36,8 @@ export class SkleniceComponent implements OnInit {
 
   ngOnInit() {
     // metadata
-    this.titleService.setTitle(META_DATA.sklenice.title);
-    this.metaTagService.addTags(META_DATA.sklenice.tags);
+    this.titleService.setTitle(META_DATA['sklenice'].title);
+    this.metaTagService.addTags(META_DATA['sklenice'].tags);
   }
 
   scrollToElement(id) {

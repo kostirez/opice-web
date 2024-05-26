@@ -36,8 +36,8 @@ export class MiskyComponent implements OnInit{
 
   ngOnInit() {
     // metadata
-    this.titleService.setTitle(META_DATA.misky.title);
-    this.metaTagService.addTags(META_DATA.misky.tags);
+    this.titleService.setTitle(META_DATA['misky'].title);
+    this.metaTagService.addTags(META_DATA['misky'].tags);
   }
 
   scrollToElement(id) {

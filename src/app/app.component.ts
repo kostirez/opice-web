@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle(META_DATA.home.title);
-    this.metaTagService.addTags(META_DATA.home.tags);
+    this.titleService.setTitle(META_DATA['home'].title);
+    this.metaTagService.addTags(META_DATA['home'].tags);
   }
 
 }

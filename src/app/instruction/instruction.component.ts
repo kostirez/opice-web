@@ -48,8 +48,8 @@ export class InstructionComponent implements OnInit {
 
   ngOnInit() {
     // metadata
-    this.titleService.setTitle(META_DATA.navod.title);
-    this.metaTagService.addTags(META_DATA.navod.tags);
+    this.titleService.setTitle(META_DATA['navod'].title);
+    this.metaTagService.addTags(META_DATA['navod'].tags);
   }
 
   moveSklenice(step: number, length: number) {

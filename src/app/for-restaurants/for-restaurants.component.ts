@@ -53,8 +53,8 @@ export class ForRestaurantsComponent implements OnInit {
 
   ngOnInit() {
     // metadata
-    this.titleService.setTitle(META_DATA.restaurants.title);
-    this.metaTagService.addTags(META_DATA.restaurants.tags);
+    this.titleService.setTitle(META_DATA['restaurants'].title);
+    this.metaTagService.addTags(META_DATA['restaurants'].tags);
   }
 
 
