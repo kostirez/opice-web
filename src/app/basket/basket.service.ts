@@ -188,7 +188,7 @@ export class BasketService implements OnDestroy{
       person: {
         name: this.infoForm.value.name,
         email: this.infoForm.value.email,
-        tel: 0,
+        tel: this.infoForm.value.tel,
       },
       note: this.infoForm.value.note,
     }
