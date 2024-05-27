@@ -28,7 +28,7 @@ export class BasketComponent {
   loading = false;
   pngDataUrl = '';
   termsForm =  this.formBuilder.group({
-    term: [ ,[ Validators.required ]],
+    term: [ ,[ Validators.required, Validators.requiredTrue ]],
     gdpr: [],
   });
 
