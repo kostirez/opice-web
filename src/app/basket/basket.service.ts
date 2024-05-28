@@ -4,6 +4,7 @@ import { Observable, Subject, Subscription } from "rxjs";
 import { FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { StrapiApiService } from "../strapi-api.service";
+import { GoogleAnalyticsService } from "ngx-google-analytics";
 
 export interface Order {
     invoice_id: number;
@@ -61,6 +62,7 @@ export class BasketService implements OnDestroy{
   constructor(
     private router: Router,
     private strapiApiService: StrapiApiService,
+    private $gaService: GoogleAnalyticsService
   ) {
     this.productsSubject.next([]);
     this.subs.push(this.state$.subscribe(s => this.state = s));
@@ -68,6 +70,7 @@ export class BasketService implements OnDestroy{
   }
 
   addProduct(product: ProductSummary) {
+    this.$gaService.event('add_to_cart', 'basket', 'product added');
     const index = this.products.findIndex(p => p.name==product.name && p.color == product.color && p.size == product.size);
     if (index < 0) {
       this.products.push(product);
@@ -87,6 +90,7 @@ export class BasketService implements OnDestroy{
 
 
   removeOneProdctSummary(product: ProductSummary) {
+    this.$gaService.event('remove_from_cart', 'basket', 'product removed');
     const index = this.products.findIndex(p => p.name==product.name && p.color == product.color && p.size == product.size);
     this.products.splice(index, 1);
     this.productsSubject.next(this.products);

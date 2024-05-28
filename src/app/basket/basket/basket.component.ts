@@ -3,6 +3,7 @@ import { BasketService, OrderResponse } from "../basket.service";
 import { ProductSummary } from "../../product/product.component";
 import { Router } from "@angular/router";
 import { FormBuilder, Validators } from "@angular/forms";
+import { GoogleAnalyticsService } from "ngx-google-analytics";
 
 interface BasketStep {
   label: string;
@@ -36,6 +37,7 @@ export class BasketComponent {
     private basketService: BasketService,
     private router: Router,
     private formBuilder: FormBuilder,
+    private $gaService: GoogleAnalyticsService,
   ) {}
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class BasketComponent {
     this.basketService.state$.subscribe(s => this.step = s);
     this.basketService.setTermForm(this.termsForm);
     this.orderResponse = this.basketService.orderResponse;
+    this.$gaService.event('view_cart', 'user_register_form', 'Name');
   }
 
   menuClick(step:number) {
