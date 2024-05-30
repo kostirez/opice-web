@@ -12,7 +12,7 @@ import { BasketComponent } from "./basket/basket/basket.component";
 import { InstructionComponent } from "./instruction/instruction.component";
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'eshop', component: EshopComponent,
     children: [
       {path: 'sklenice', component: SkleniceComponent},
@@ -25,8 +25,7 @@ const routes: Routes = [
   { path: 'pro-restaurace', component: ForRestaurantsComponent},
   { path: 'kontakty', component: ContactComponent},
   { path: 'doprava-a-platba', component: TranspotPaymentComponent},
-  { path: '',   redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', component: HomeComponent },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 
 ];
 
