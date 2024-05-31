@@ -5,6 +5,7 @@ import { FormGroup } from "@angular/forms";
 import { Router } from "@angular/router";
 import { StrapiApiService } from "../strapi-api.service";
 import { GoogleAnalyticsService } from "ngx-google-analytics";
+import { LocalService } from "../local.service";
 
 export interface Order {
     invoice_id: number;
@@ -62,11 +63,16 @@ export class BasketService implements OnDestroy{
   constructor(
     private router: Router,
     private strapiApiService: StrapiApiService,
-    private $gaService: GoogleAnalyticsService
+    private $gaService: GoogleAnalyticsService,
+    private localService: LocalService,
   ) {
+    this.products = localService.getData('products') || [];
     this.productsSubject.next([]);
     this.subs.push(this.state$.subscribe(s => this.state = s));
-    this.subs.push(this.productsObs.subscribe(p => this.products = p));
+    this.subs.push(this.productsObs.subscribe(p => {
+      this.products = p;
+      this.localService.saveData('products', this.products);
+    }));
   }
 
   addProduct(product: ProductSummary) {
