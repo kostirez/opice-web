@@ -13,6 +13,7 @@
                    [id]="t.code"
                    [value]="t.code"
                    formControlName="transportCode"
+                   gaEvent gaAction="add_shipping_info"
                    class="hidden peer"/>
             <label [for]="t.code" class="mb-0 w-full flex justify-between items-center peer-checked:bg-success2 cursor-pointer">
               <div class="mx-1 md:mx-5">
@@ -89,6 +90,7 @@
                    [id]="p.code"
                    [value]="p.code"
                    formControlName="paymentCode"
+                   gaEvent gaAction="add_payment_info"
                    class="hidden peer"/>
             <label [for]="p.code" class="mb-0 w-full flex justify-between items-center peer-checked:bg-success2 cursor-pointer">
               <div class="mx-1 md:mx-5">

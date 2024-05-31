@@ -46,7 +46,7 @@ export class BasketComponent {
     this.basketService.state$.subscribe(s => this.step = s);
     this.basketService.setTermForm(this.termsForm);
     this.orderResponse = this.basketService.orderResponse;
-    this.$gaService.event('view_cart', 'user_register_form', 'Name');
+    this.$gaService.event('view_cart', 'cart', 'enter cart view');
   }
 
   menuClick(step:number) {
@@ -110,6 +110,7 @@ export class BasketComponent {
     const order$ = this.basketService.order();
     if (order$){
       this.loading = true;
+      this.$gaService.event('purchase', 'cart', 'purchase cart');
       order$.subscribe(response => {
         this.loading = false;
         window.scroll({

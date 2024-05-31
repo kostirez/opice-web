@@ -1,4 +1,4 @@
-<div class="mx-5">
+<div class="mx-5" gaCategory="product-selection">
   <div class="relative flex flex-col bg-gradient-to-t md:bg-gradient-to-l from-bg-light  via-white shadow-2xl rounded-xl md:rounded-b-none p-5">
     <div class="flex flex-col md:flex-row text-center ">
       <div class="min-w-[50%] flex flex-col justify-between overflow-hidden">
@@ -15,7 +15,8 @@
             <div *ngFor="let size of productInfo.sizes"
                  class="mx-2 md:ml-0 md:mr-3 p-2 max-w-[40%] border-2 relative cursor-pointer"
                  [ngClass]="size.name === selectedSize ? 'border-success border-4' : 'border-secondary'"
-                 (click)="selectSize(size.name)">
+                 (click)="selectSize(size.name)"
+                 gaEvent gaAction="select_size">
               <h6 class="mb-0">{{size.name}}</h6>
               <img class="absolute top-0" [src]="size.picSrc">
             </div>
@@ -31,7 +32,8 @@
                  class="mx-2 md:ml-0 md:mr-3 w-[40px] h-[40px] mx-2 border-2 rounded-md cursor-pointer"
                  [ngStyle]="{'background-color': color.code}"
                  [ngClass]="color.name === selectedColor ? 'border-success border-4' : 'border-secondary'"
-                 (click)="selectColor(color.name)"></div>
+                 (click)="selectColor(color.name)"
+                 gaEvent gaAction="select_color"></div>
           </div>
           <h5 *ngIf="colorErr" class="text-danger my-1">{{colorErr}}</h5>
         </div>
@@ -81,6 +83,7 @@
   <div class="hidden md:flex w-full justify-end gap-3">
     <button *ngFor="let btn of productInfo.details"
             (click)="detailBtnClick(btn)"
+            gaEvent gaAction="click_detail"
             class="px-5 py-3 mt-0 mx-0 rounded-b-xl shadow-2xl"
             [ngClass]="selectedDetail && btn.name === selectedDetail.name ? 'bg-primary' : 'bg-secondary'">
       <p class="text-white">{{btn.name}}</p>

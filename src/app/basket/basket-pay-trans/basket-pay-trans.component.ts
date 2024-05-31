@@ -4,6 +4,7 @@ import { BasketService } from "../basket.service";
 import { map, Observable } from "rxjs";
 import { SingleTypesService } from "../../apollo/single-types.service";
 import { ImageService } from "../../image.service";
+import { GoogleAnalyticsService } from "ngx-google-analytics";
 
 export interface PayTransMethod {
   name: string;
@@ -51,12 +52,14 @@ export class BasketPayTransComponent implements OnInit {
     private basketService: BasketService,
     private singleTypesService: SingleTypesService,
     private imageService: ImageService,
+    private $gaService: GoogleAnalyticsService,
   ) {
     this.payTransForm = this.basketService.setPayTransForm(this.payTransForm);
     this.totalProductsPrice = this.basketService.getPrice();
   }
 
   ngOnInit(): void {
+    this.$gaService.event('begin_checkout', 'cart', 'enter transport and payment');
     const a = this.payTransForm.controls['transportCode']
       .valueChanges.subscribe(val => {
         if (val === 'BAL_B') {
