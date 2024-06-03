@@ -30,4 +30,9 @@ export type Picture = {
   name?: string,
 }
 
+export type ProductOption = {
+  label: string,
+  price: number,
+}
+
 export type PicArray = Picture[];

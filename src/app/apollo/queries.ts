@@ -172,18 +172,13 @@ export const PRODUCTS = {
   items: [
     'name',
     'description',
-    'sizeLabel',
     'price',
     'category',
+    'optionLabel',
     {
       colection: 'colors',
       filtr: '',
       items: ['code', 'name']
-    },
-    {
-      colection: 'sizes',
-      filtr: '',
-      items: ['name']
     },
     {
       colection: 'pictures',
@@ -200,6 +195,13 @@ export const PRODUCTS = {
           filtr: '',
           items: ['url']
         },
+      ]
+    },
+    {
+      compName: 'productOptions',
+      params: [
+        'label',
+        'price'
       ]
     },
   ]

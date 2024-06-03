@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BasketService } from "../basket/basket.service";
-import { PicArray } from "../model/view";
+import { PicArray, ProductOption } from "../model/view";
 import { Observable, of } from "rxjs";
 import { ImageService } from "../image.service";
 
@@ -26,8 +26,8 @@ export interface ProductInfo {
   description: string;
   detail: string;
   colors: Color[];
-  sizes: Size[];
-  sizeLabel: string;
+  productOptions: ProductOption[];
+  optionLabel: string;
   price: number;
   pictures: PicArray;
   details: ProductDetail[];
@@ -56,11 +56,11 @@ export class ProductComponent implements OnInit{
   slides: PicArray = [];
 
   selectedColor: string | null = null;
-  selectedSize: string | null = null;
+  selectedOption: ProductOption | null = null;
   selectedDetail: ProductDetail | null = null;
 
   colorErr: string = '';
-  sizeErr: string = '';
+  optionErr: string = '';
   justAdded = false;
 
   constructor(
@@ -75,22 +75,22 @@ export class ProductComponent implements OnInit{
 
 
   addToBasket(product: ProductInfo) {
-    if(!this.selectedColor) {
+    if(!this.selectedColor && this.productInfo.colors.length > 0) {
       this.colorErr = 'Vyberte barvu';
     }
-    if(!this.selectedSize && this.productInfo.sizeLabel) {
-      this.sizeErr = 'Vyberte velikost';
+    if(!this.selectedOption && this.productInfo.optionLabel) {
+      this.optionErr = 'Vyberte možnost';
     }
-    if (this.colorErr || this.sizeErr) {
+    if (this.colorErr || this.optionErr) {
       return;
     } else {
       this.basketService.addProduct(
         {
           name: product.name,
-          size: this.selectedSize!,
+          size: this.selectedOption ? this.selectedOption.label! : null,
           color: this.selectedColor!,
           count: 1,
-          priceForOne: product.price,
+          priceForOne: this.getPrice(),
         }
       );
       this.justAddedAnimation()
@@ -102,9 +102,9 @@ export class ProductComponent implements OnInit{
     this.colorErr = '';
   }
 
-  selectSize(sizeName: string) {
-    this.selectedSize = sizeName;
-    this.sizeErr = '';
+  selectOption(option: ProductOption) {
+    this.selectedOption = option;
+    this.optionErr = '';
   }
 
   getObsSlides(slides: PicArray): Observable<PicArray> {
@@ -128,5 +128,11 @@ export class ProductComponent implements OnInit{
 
   getBase(): string {
     return this.imageService.getImageBase();
+  }
+
+  getPrice() {
+    let price = this.productInfo.price ?? this.productInfo.productOptions[0].price;
+    return this.selectedOption && this.selectedOption.price ?
+      this.selectedOption.price : price;
   }
 }
