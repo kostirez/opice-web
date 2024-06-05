@@ -14,7 +14,7 @@
 <div *ngIf="productsOpen" class="w-full flex justify-around my-10 md:my-20">
   <div *ngFor="let item of eshopItems"
        (click)="goTo(item.url)"
-       class="min-w-[100px] py-3 md:py-5 px-5 md:px-10 cursor-pointer border-4 rounded-xl "
+       class="sm:min-w-[100px] py-1 sm:py-3 md:py-5 px-2 sm:px-5 md:px-10 cursor-pointer border-4 rounded-xl "
        [ngClass]="actualUrl === item.url ?
                   'border-primary text-primary':
                   'border-secondary text-secondary'">
