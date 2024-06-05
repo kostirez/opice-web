@@ -104,7 +104,7 @@
         <div *ngFor="let p of products" class="flex justify-between">
           <div class="flex flex-col">
               <h4 class="mr-2 mb-0">{{p.count}} x {{p.name}}</h4>
-              <p class="mr-2 mb-0">Barva: {{p.color}}, Velikost {{p.size}}</p>
+              <p class="mr-2 mb-0">{{p.color ? 'Barva: '+ p.color + ',' : ''}} {{p.size ? 'Velikost: '+ p.size + ',' : ''}}</p>
           </div>
           <h4 class="mb-0 align-self-end">{{p.count * p.priceForOne}} Kč</h4>
         </div>

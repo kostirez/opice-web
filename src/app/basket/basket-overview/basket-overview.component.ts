@@ -20,4 +20,10 @@ export class BasketOverviewComponent {
   removeProduct(product: ProductSummary) {
     this.basketService.removeOneProdctSummary(product)
   }
+  addProduct(num: number, product: ProductSummary) {
+    product.count += num;
+    if (product.count === 0) {
+      this.removeProduct(product);
+    }
+  }
 }
