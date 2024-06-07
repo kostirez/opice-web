@@ -3,6 +3,7 @@ import { NavigationEnd, NavigationError, Router } from "@angular/router";
 import { MenuItem } from "../model/view";
 import { BasketService } from "../basket/basket.service";
 import { ProductSummary } from "../product/product.component";
+import { animate, style, transition, trigger } from "@angular/animations";
 
 
 const DEFAULT_LABEL = "Zrzavá opice";
@@ -25,7 +26,18 @@ const SUB_ITEMS: MenuItem[] = [
 @Component({
   selector: 'menu',
   templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss'
+  animations: [
+    trigger('openClose', [
+      transition(':enter', [
+        style({transform: 'translateY(-90%)'}),
+        animate('0.4s ease-out', style({transform: 'translateY(0%)'}))
+        ]),
+      transition(':leave', [
+        style({transform: 'translateY(0%)'}),
+        animate('0.4s ease-out', style({transform: 'translateY(-90%)'}))
+      ]),
+    ])
+  ],
 })
 export class MenuComponent {
   menuItems = MENU_ITEMS;

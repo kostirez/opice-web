@@ -33,6 +33,7 @@ import { BasketSummaryComponent } from './basket/basket-summary/basket-summary.c
 import { InstructionComponent } from './instruction/instruction.component';
 import { SeedsComponent } from './seeds/seeds.component';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from "ngx-google-analytics";
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from "ngx-go
   ],
   providers: [
       importProvidersFrom(HttpClientModule),
+      provideAnimationsAsync(),
       {
         provide: APOLLO_OPTIONS,
         useFactory: (

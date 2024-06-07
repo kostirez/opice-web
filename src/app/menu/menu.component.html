@@ -26,7 +26,7 @@
   </div>
   <div class="w-100 flex justify-center ">
     <div class="absolute top-0 h-dvh flex z-[-10] ">
-      <div *ngIf="navbarOpen" class="flex flex-col pt-[80px]">
+      <div *ngIf="navbarOpen" @openClose class="flex flex-col pt-[80px]">
         <ul class="mx-auto">
           <li *ngFor="let item of menuItems" class="flex justify-center">
             <a class="p-2 m-2" (click)="toggleNavbar()" [routerLink]="item.url">

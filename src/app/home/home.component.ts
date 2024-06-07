@@ -5,6 +5,7 @@ import { map, Observable, of, tap } from "rxjs";
 import { PicArray, Picture, TextItem } from "../model/view";
 import { ImageService } from "../image.service";
 import { Router } from "@angular/router";
+import { animate, style, transition, trigger } from "@angular/animations";
 
 export type HomeData = {
   head: string;
@@ -18,7 +19,15 @@ export type HomeData = {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  animations: [
+    trigger('openClose', [
+      transition(':enter', [
+        style({transform: 'translateY(10%)'}),
+        animate('0.6s ease-out', style({transform: 'translateY(0%)'}))
+      ]),
+    ])
+  ],
 })
 export class HomeComponent {
   loading = true;
