@@ -159,6 +159,10 @@ input::-webkit-inner-spin-button {
     @apply xl:text-base;
   }
 
+  strong {
+    @apply font-extrabold;
+  }
+
   th {
     @apply bg-bg-light;
     // font size
