@@ -3,6 +3,7 @@ import { BasketService } from "../basket/basket.service";
 import { PicArray, ProductOption } from "../model/view";
 import { Observable, of } from "rxjs";
 import { ImageService } from "../image.service";
+import { animate, style, transition, trigger } from "@angular/animations";
 
 export interface Color {
   name: string;
@@ -45,6 +46,29 @@ export interface ProductSummary {
 @Component({
   selector: 'product-box',
   templateUrl: './product.component.html',
+  animations: [
+    trigger(
+      'inOutAnimation',
+      [
+        transition(
+          ':enter',
+          [
+            style({ height: 0, opacity: 0 }),
+            animate('0.5s ease-out',
+              style({ height: '*', opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave',
+          [
+            style({ height: '*', opacity: 1 }),
+            animate('0.5s ease-in',
+              style({ height: 0, opacity: 0 }))
+          ]
+        )
+      ]
+    )
+  ]
 })
 export class ProductComponent implements OnInit{
   @Input({ required: true }) productInfo!: ProductInfo;
@@ -52,6 +76,8 @@ export class ProductComponent implements OnInit{
     const color = this.productInfo.colors.find(c => c.code==='#'+code)
     this.selectedColor = color ? color.name: null;
   }
+
+  openDetail = false;
 
   slides: PicArray = [];
 
