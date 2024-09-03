@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Message } from "./contact-form/contact-form.component";
+import { Message } from "./components/contact-form/contact-form.component";
 import { Order, OrderResponse } from "./basket/basket.service";
 import { Observable } from "rxjs";
 import { environment } from "../environments/environment";

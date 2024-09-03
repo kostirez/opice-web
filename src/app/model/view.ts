@@ -36,3 +36,16 @@ export type ProductOption = {
 }
 
 export type PicArray = Picture[];
+
+export type Card = {
+  head: string,
+  text: string,
+  link: string,
+  pic: Picture,
+}
+
+export type BtnData = {
+  text: string,
+  link: string,
+  style?: string,
+}

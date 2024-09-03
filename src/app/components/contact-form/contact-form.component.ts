@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { StrapiApiService } from "../strapi-api.service";
+import { Component, Input } from '@angular/core';
+import { StrapiApiService } from "../../strapi-api.service";
 import { Validators } from "@angular/forms";
 import { FormBuilder } from '@angular/forms';
 import { catchError, Observable, throwError } from "rxjs";
 import { HttpErrorResponse } from "@angular/common/http";
+import { BaseComponent } from "../base/base.component";
 
 export interface Message {
   mail: string;
@@ -15,7 +16,10 @@ export interface Message {
   selector: 'app-contact-form',
   templateUrl: './contact-form.component.html',
 })
-export class ContactFormComponent {
+export class ContactFormComponent extends BaseComponent{
+  @Input() override data: {
+    type: string,
+  }
   sent = false;
   loading = false;
   sentMessage = 'Dotaz byl odeslán';
@@ -28,7 +32,8 @@ export class ContactFormComponent {
   constructor(
     private strapiApi: StrapiApiService,
     private formBuilder: FormBuilder
-) {}
+) {
+    super();}
 
   onSubmit() {
     this.send({
@@ -49,8 +54,7 @@ export class ContactFormComponent {
       .pipe(
         catchError(this.handleError)
       )
-      .subscribe((response) => {
-        console.log(response);
+      .subscribe((_) => {
         this.sent = true;
         this.loading = false;
       });

@@ -1,0 +1,12 @@
+<article class="my-10 md:my-20">
+  <div class="grid grid-cols-1 md:grid-cols-2 items-center text-center md:text-left">
+    <div class="flex flex-col mb-10 md:ml-10 max-w-[400px] md:max-w-[600px] mx-auto">
+      <h3>{{data.head}}</h3>
+    </div>
+    <div class="w-full md:order-first">
+      <div class="max-w-[500px] mx-auto ">
+        <img [src]="getBase() + data.pics[0].url">
+      </div>
+    </div>
+  </div>
+</article>

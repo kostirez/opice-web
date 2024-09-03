@@ -1,0 +1,11 @@
+<button *ngIf="data.text"
+        class="btn m-auto md:ml-0"
+        [ngClass]="{
+          'btn-primary': data.style=='primary',
+          'btn-secondary': data.style=='secondary',
+          'btn-link': data.style=='link'
+          }"
+        [routerLink]="'/' + data.link">
+  {{data.text}}
+</button>
+

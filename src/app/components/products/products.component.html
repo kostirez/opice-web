@@ -1,0 +1,33 @@
+<article class="my-10 md:my-20">
+  <div id="'id'" class="flex flex-col gap-10 mb-10 min-h-[100vh]">
+    <h2 class="text-center mb-0">{{data.head}}</h2>
+    <ng-container *ngIf="products$ | async as products else LOADING">
+      <product-box *ngFor="let product of products"
+                   [id]="product.id"
+                   (rendered)="scrollToElement(product.id)"
+                   class="scroll-mt-10 md:scroll-mt-20"
+                   [productInfo]="product"
+                   [preselectColor]="productId == product.id ? productColor: null">
+      </product-box>
+    </ng-container>
+    <div class="m-auto flex flex-row gap-5" *ngIf="pageCount>1">
+      <button class="p-2 md:px-5 rounded-xl  btn-primary"
+              [ngClass]="{'cursor-not-allowed': selectedPage===1}"
+              (click)="movePage(-1)">&larr;</button>
+      <div *ngFor="let page of pages"
+           class="my-auto p-2 md:p-5 bg-bg-light rounded-xl "
+           (click)="goToPage(page)"
+           [ngClass]="page==selectedPage ? 'border-2 border-primary text-primary cursor-not-allowed': 'cursor-pointer text-secondary'">
+        {{page}}
+      </div>
+      <button class="p-2 md:px-5 rounded-xl  btn-primary"
+              [ngClass]="{'cursor-not-allowed': selectedPage===pages.length}"
+              (click)="movePage(1)">&rarr;</button>
+    </div>
+    </div>
+</article>
+
+<ng-template #LOADING>
+  <app-loading class="min-h-full"></app-loading>
+</ng-template>
+

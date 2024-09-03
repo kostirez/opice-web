@@ -1,0 +1,23 @@
+<article class="my-10 md:my-20">
+  <h4 class="text-center">{{data.head}}</h4>
+  <div class="grid grid-cols-1 md:grid-cols-2 items-center text-center md:text-left gap-10 md:gap-20">
+    <div class="flex flex-col gap-y-5 md:gap-y-10">
+      <div class="max-w-[400px] mx-auto min-h-64 md:min-h-96 p-5 bg-bg-light rounded-xl flex flex-col items-center text-center">
+        <h4 class="mb-5">{{data.steps[selectedStep].head}}</h4>
+        <p class="mb-0">{{data.steps[selectedStep].text}}</p>
+        <div class="flex flex-row mx-auto gap-5 md:gap-10 mt-auto">
+          <button class="bg-primary py-2 px-5 rounded-lg text-white text-sm md:text-base"
+                  *ngIf="0!==selectedStep"
+                  (click)="move(-1, data.steps.length)">O krok zpět</button>
+          <button class="bg-primary py-2 px-5 rounded-lg text-white text-sm md:text-base"
+                  *ngIf="data.steps.length-1!==selectedStep"
+                  (click)="move(1, data.steps.length)">Další krok</button>
+        </div>
+      </div>
+    </div>
+    <div class="h-full">
+      <img class="h-full object-cover mx-auto "
+           [src]="getBase() + data.pics[selectedStep < data.pics.length? selectedStep : 0].url">
+    </div>
+  </div>
+</article>

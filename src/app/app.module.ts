@@ -33,6 +33,19 @@ import { InstructionComponent } from './instruction/instruction.component';
 import { SeedsComponent } from './seeds/seeds.component';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from "ngx-google-analytics";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
+import { CardsComponent } from './components/cards/cards.component';
+import { PageComponent } from './components/page/page.component';
+import { BaseComponent } from './components/base/base.component';
+import { CardsWithTextComponent } from './components/cards-with-text/cards-with-text.component';
+import { BtnComponent } from './components/btn/btn.component';
+import { PicAndTextComponent } from './components/pic-and-text/pic-and-text.component';
+import { TitleAndPicComponent } from './components/title-and-pic/title-and-pic.component';
+import { ProductsComponent } from './components/products/products.component';
+import { InfoCardsComponent } from './components/info-cards/info-cards.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { StepsComponent } from "./components/steps/steps.component";
+import { TextAndInnerHTMLComponent } from './components/text-and-inner-html/text-and-inner-html.component';
+import { EshopMenuComponent } from './components/eshop-menu/eshop-menu.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +72,19 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
     InstructionComponent,
     RenderedDirective,
     SeedsComponent,
+    CardsComponent,
+    PageComponent,
+    BaseComponent,
+    CardsWithTextComponent,
+    BtnComponent,
+    PicAndTextComponent,
+    TitleAndPicComponent,
+    ProductsComponent,
+    InfoCardsComponent,
+    NotFoundComponent,
+    StepsComponent,
+    TextAndInnerHTMLComponent,
+    EshopMenuComponent,
   ],
   imports: [
     BrowserModule,

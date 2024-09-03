@@ -1,0 +1,9 @@
+sadfk;sdg
+<article>
+  <div class="flex flex-wrap justify-center gap-y-10 sm:gap-x-10 md:gap-x-20 mt-10 md:mt-20">
+    <div *ngFor="let item of data.items" class="flex-1 flex-grow max-w-[600px]">
+      <h4 class="text-center">{{item.text}}</h4>
+      <div class="w-max-fit overflow-x-scroll" [innerHTML]="item.html"></div>
+    </div>
+  </div>
+</article>

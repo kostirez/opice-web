@@ -1,0 +1,14 @@
+<article class="flex flex-col my-10 md:my-20">
+  <h3 class="text-center">{{data.head}}</h3>
+  <h5 class="text-center">{{data.text}}</h5>
+  <div class="flex flex-wrap justify-around gap-2 my-10 mx-10 md:mx-0 md:my-20">
+    <a *ngFor="let card of data.cards"
+         [routerLink]="'/' + card.link"
+         class="md:w-[400px] cursor-pointer border-4 rounded-xl ">
+      <h3 class="text-center my-5 mx-10">{{card.head}}</h3>
+      <h6 class="text-center my-5 mx-10">{{card.text}}</h6>
+      <img class="w-[300px] md:mx-auto z-[-10] p-1" [src]="getBase() + card.pic.url">
+    </a>
+  </div>
+  <app-btn class="mx-auto" [data]="data.btn"></app-btn>
+</article>
