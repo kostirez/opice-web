@@ -5,7 +5,6 @@ import { ProductSummary } from "../product/product.component";
 import { animate, style, transition, trigger } from "@angular/animations";
 import { MenuItem, PageService } from "../components/services/page.service";
 import { combineLatest, map, Observable, tap } from "rxjs";
-import { StateService } from "../state.service";
 
 
 const DEFAULT_LABEL = "Zrzavá opice";
@@ -43,7 +42,6 @@ export class MenuComponent {
 
   set navbarOpen(value: boolean) {
     this._navbarOpen = value;
-    this.stateService.navbar = value;
   }
 
   currentPage=DEFAULT_LABEL;
@@ -54,7 +52,6 @@ export class MenuComponent {
     private basketService: BasketService,
     private pageService: PageService,
     private route: ActivatedRoute,
-    private stateService: StateService,
   ) {
     combineLatest([
     this.route.url.pipe(map((segments) => segments.join('/'))),
