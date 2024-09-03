@@ -1,31 +1,31 @@
 import { ComponentParams, QueryParams } from "./strapi-graphql.service";
 
 export const addFilter = (filter: string, params:  QueryParams): QueryParams => {
-  params.filtr = filter;
+  params.filter = filter;
   return params;
 }
 
 export const HOME: QueryParams = {
   colection: 'home',
-  filtr: '',
+  filter: '',
   items: [
     'head',
     'text',
     'instruction_label',
     {
       colection: 'main_pic',
-      filtr: '',
+      filter: '',
       items: ['url', 'name']
     },
     {
       colection: 'microgreens_use',
-      filtr: '',
+      filter: '',
       items: ['url', 'name']
     },
 
     {
       colection: 'instruction_pic',
-      filtr: '',
+      filter: '',
       items: ['url', 'name']
     },
   ]
@@ -33,7 +33,7 @@ export const HOME: QueryParams = {
 
 export const ESHOP_MAIN: QueryParams = {
   colection: 'eshop',
-  filtr: '',
+  filter: '',
   items: [
     'head',
     'promotion',
@@ -44,12 +44,12 @@ export const ESHOP_MAIN: QueryParams = {
         'url',
         {
           colection: 'pic',
-          filtr: '',
+          filter: '',
           items: ['url', 'name']
         },
         {
           colection: 'icon',
-          filtr: '',
+          filter: '',
           items: ['url', 'name']
         },
       ]
@@ -60,7 +60,7 @@ export const ESHOP_MAIN: QueryParams = {
 
 export const RESTAURANT: QueryParams = {
   colection: 'forRestaurant',
-  filtr: '',
+  filter: '',
   items: [
     'head',
     'head_2',
@@ -68,17 +68,17 @@ export const RESTAURANT: QueryParams = {
     'text_2',
     {
       colection: 'main_img',
-      filtr: '',
+      filter: '',
       items: ['url']
     },
     {
       colection: 'how_it_works',
-      filtr: '',
+      filter: '',
       items: ['url']
     },
     {
       colection: 'meals',
-      filtr: '',
+      filter: '',
       items: ['url']
     },
     ],
@@ -87,7 +87,7 @@ export const RESTAURANT: QueryParams = {
 
 export const OFFERS: QueryParams = {
   colection: 'restaurantOffer',
-  filtr: '',
+  filter: '',
   items: [
     {
       compName: 'offers',
@@ -102,7 +102,7 @@ export const OFFERS: QueryParams = {
 
 export const GROW: QueryParams = {
   colection: 'plant',
-  filtr: '',
+  filter: '',
   items: [
     {
       compName: 'items',
@@ -110,7 +110,7 @@ export const GROW: QueryParams = {
         'head',
         {
           colection: 'pic',
-          filtr: '',
+          filter: '',
           items: ['url']
         },
       ]
@@ -121,7 +121,7 @@ export const GROW: QueryParams = {
 
 export const PAYMENT: QueryParams = {
   colection: 'payTransport',
-  filtr: '',
+  filter: '',
   items: [
     {
       compName: 'paymentMethods',
@@ -133,7 +133,7 @@ export const PAYMENT: QueryParams = {
         'freeFrom',
         {
           colection: 'icon',
-          filtr: '',
+          filter: '',
           items: [ 'url' ],
         },
       ]
@@ -144,7 +144,7 @@ export const PAYMENT: QueryParams = {
 
 export const TRANSPORT: QueryParams = {
   colection: 'payTransport',
-  filtr: '',
+  filter: '',
   items: [
     {
       compName: 'transportMethods',
@@ -156,7 +156,7 @@ export const TRANSPORT: QueryParams = {
         'freeFrom',
         {
           colection: 'icon',
-          filtr: '',
+          filter: '',
           items: [ 'url' ],
         },
       ]
@@ -168,7 +168,7 @@ export const TRANSPORT: QueryParams = {
 
 export const PRODUCTS = {
   colection: 'products',
-  filtr: '',
+  filter: '',
   items: [
     'name',
     'description',
@@ -177,12 +177,12 @@ export const PRODUCTS = {
     'optionLabel',
     {
       colection: 'colors',
-      filtr: '',
+      filter: '',
       items: ['code', 'name']
     },
     {
       colection: 'pictures',
-      filtr: '',
+      filter: '',
       items: ['url']
     },
     {
@@ -192,7 +192,7 @@ export const PRODUCTS = {
         'text',
         {
           colection: 'pics',
-          filtr: '',
+          filter: '',
           items: ['url']
         },
       ]
@@ -211,7 +211,7 @@ export const PRODUCTS = {
 
 export const INSTRUCTIONS = {
   colection: 'instruction',
-  filtr: '',
+  filter: '',
   items: [
     'head',
     'text',
@@ -223,17 +223,17 @@ export const INSTRUCTIONS = {
     'toNotSprout',
     {
       colection: 'main_pic',
-      filtr: '',
+      filter: '',
       items: ['url']
     },
     {
       colection: 'skleniceImg',
-      filtr: '',
+      filter: '',
       items: ['url']
     },
     {
       colection: 'miskaImg',
-      filtr: '',
+      filter: '',
       items: ['url']
     },
     {
