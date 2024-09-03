@@ -1,30 +1,17 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, NavigationError, Router } from "@angular/router";
-import { MenuItem } from "../model/view";
+import { ActivatedRoute } from "@angular/router";
 import { BasketService } from "../basket/basket.service";
 import { ProductSummary } from "../product/product.component";
 import { animate, style, transition, trigger } from "@angular/animations";
+import { MenuItem, PageService } from "../components/services/page.service";
+import { combineLatest, map, Observable, tap } from "rxjs";
+import { StateService } from "../state.service";
 
 
 const DEFAULT_LABEL = "Zrzavá opice";
 
-const MENU_ITEMS: MenuItem[] = [
-  {head: DEFAULT_LABEL, url: '/'},
-  {head: 'E-shop', url: '/eshop'},
-  {head: 'Jak klíčit', url: '/navody'},
-  {head: 'Pro restaurace', url: '/pro-restaurace'},
-  {head: 'Doprava a platba', url: '/doprava-a-platba'},
-  {head: 'Kontakty', url: '/kontakty'},
-];
-
-const SUB_ITEMS: MenuItem[] = [
-  {head: 'sklenice', url: '/eshop/sklenice'},
-  {head: 'misky', url: '/eshop/misky'},
-  {head: 'microgreens', url: '/eshop/microgreens'},
-];
-
 @Component({
-  selector: 'menu',
+  selector: 'app-menu',
   templateUrl: './menu.component.html',
   animations: [
     trigger('openClose', [
@@ -34,56 +21,69 @@ const SUB_ITEMS: MenuItem[] = [
         ]),
       transition(':leave', [
         style({transform: 'translateY(0%)'}),
-        animate('0.4s ease-out', style({transform: 'translateY(-90%)'}))
+        animate('0.4s ease-out', style({transform: 'translateY(-100%)', opacity: 0}))
       ]),
     ])
   ],
 })
 export class MenuComponent {
-  menuItems = MENU_ITEMS;
-  menuSubItems = SUB_ITEMS
+  menuItemsToShow$: Observable<MenuItem[]> = this.pageService.getMenu$()
+    .pipe(
+        map(items => items
+          .filter(item => item.showInMenu)
+          .sort((a, b) =>  a.menuOrder - b.menuOrder)
+        )
+     );
+  menuItems$: Observable<MenuItem[]> = this.pageService.getMenu$()
 
-  navbarOpen = false;
+  private _navbarOpen = false;
+  get navbarOpen() {
+    return this._navbarOpen;
+  }
+
+  set navbarOpen(value: boolean) {
+    this._navbarOpen = value;
+    this.stateService.navbar = value;
+  }
 
   currentPage=DEFAULT_LABEL;
-
-  showBasketIcon = false;
 
   itemsCount = 0;
 
   constructor(
-    private router: Router,
     private basketService: BasketService,
-  ) {}
-
-  ngOnInit() {
-    this.router.events
-    .subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.showBasketIcon =
-          event.url !== '/kosik';
-        this.currentPage = this.menuItems.find(item => item.url === event.url)?.head ?? DEFAULT_LABEL;
-        if (this.currentPage == DEFAULT_LABEL) {
-          this.currentPage = this.menuSubItems.find(item => item.url === event.url)?.head ?? DEFAULT_LABEL;
+    private pageService: PageService,
+    private route: ActivatedRoute,
+    private stateService: StateService,
+  ) {
+    combineLatest([
+    this.route.url.pipe(map((segments) => segments.join('/'))),
+    this.menuItems$
+  ]).pipe(
+      tap((result) => {
+        const currentPath = result[0] as string;
+        const found = result[1]
+          .filter(item => item.path === currentPath);
+        if (found && found[0] && found[0].id) {
+          this.currentPage = found[0].name;
+        } else {
+          this.currentPage = DEFAULT_LABEL;
         }
       }
-      if (event instanceof NavigationError) {
-        console.log(event.error);
-      }
-    });
-    this.basketService.productsObs
-      .subscribe(items => {
-        this.itemsCount = this.calculateProductCount(items);
-      });
-  }
+    )
+  ).subscribe();
+}
 
   calculateProductCount(summary: ProductSummary[]): number {
     return this.basketService.calculateProductCount(summary);
   }
 
+  setNavbar(value: boolean) {
+    this.navbarOpen = value
+  }
+
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
-    this.showBasketIcon = !this.navbarOpen;
   }
 
   closeNavBar() {

@@ -1,5 +1,5 @@
-<div class="z-30 w-100 md:hidden">
-  <div class="flex items-center justify-between h-[80px] p-5 bg-gradient-to-t from-bg-light to-white">
+<div class="z-30 w-100 sticky top-0 md:hidden">
+  <div class="z-30 flex items-center justify-between h-[80px] p-5 bg-gradient-to-t from-bg-light to-white">
     <div>
       <a routerLink="/" (click)="closeNavBar()">
         <img class="w-[60px] h-[60px]" src="assets/logo/logo.svg">
@@ -24,31 +24,29 @@
       </div>
     </div>
   </div>
-  <div class="w-100 flex justify-center ">
-    <div class="absolute top-0 h-dvh flex z-[-10] ">
-      <div *ngIf="navbarOpen" @openClose class="flex flex-col pt-[80px]">
-        <ul class="mx-auto">
-          <li *ngFor="let item of menuItems" class="flex justify-center">
-            <a class="p-2 m-2" (click)="toggleNavbar()" [routerLink]="item.url">
-              <h5 class="mb-0">{{item.head}}</h5>
-            </a>
-          </li>
-          <li class="flex justify-center"
-              *ngIf="itemsCount!==0">
-            <a class="relative p-2 m-2 font-bold text-secondary" (click)="toggleNavbar()" routerLink="/kosik">
-              <h2 class="mb-0">košík</h2>
-              <div class="absolute top-[25%] left-[-30%] w-[20px] h-[20px] bg-danger rounded-full text-center text-warning">
-                <span class="text-[13px]">{{itemsCount}}</span>
-              </div>
-            </a>
-          </li>
-        </ul>
+  <div *ngIf="menuItemsToShow$ | async as menuItems" class="w-100 flex justify-center ">
+    <div class="z-20 fixed top-[80px] h-[calc(100%-80px)] flex bg-white">
+      <div *ngIf="navbarOpen" @openClose class="flex flex-col justify-between">
+        <div>
+          <ul class="mx-auto">
+            <li *ngFor="let item of menuItems" class="flex justify-center">
+              <a class="p-2 m-2" (click)="toggleNavbar()" [routerLink]="item.path">
+                <h5 class="mb-0">{{item.name}}</h5>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="flex flex-col">
+          <a class="py-2 px-10 my-5 mx-auto w-fit font-bold text-secondary rounded-xl bg-bg-light" (click)="toggleNavbar()" routerLink="/kosik">
+            <h4 class="mb-0">košík</h4>
+          </a>
           <img class="mt-auto w-[100vw]" src="assets/footer.jpg">
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="hidden md:block">
+<div *ngIf="menuItemsToShow$ | async as menuItems" class="hidden md:block">
   <div class="flex py-5 w-fit mx-auto px-[15%]">
     <a routerLink="/" (click)="closeNavBar()">
       <img class="w-[10rem] h-[10rem]" src="assets/logo/logo.svg">
@@ -60,8 +58,8 @@
       <nav class="flex">
         <ul class="mx-auto flex flex-wrap justify-around">
           <li *ngFor="let item of menuItems.slice(1,7)">
-            <a  [routerLink]="item.url">
-              <h6 class="mx-2 mb-0">{{item.head}}</h6>
+            <a [routerLink]="item.path">
+              <h6 class="mx-2 mb-0">{{item.name}}</h6>
             </a>
           </li>
         </ul>
@@ -69,15 +67,3 @@
     </div>
   </div>
 </div>
-
-<ng-container *ngIf="!navbarOpen">
-  <div class="absolute top-0 md:static z-[-10] min-h-[100vh] w-[100vw] flex flex-col">
-    <main class="relative pt-[80px] md:pt-0 md:px-[15%]">
-      <router-outlet></router-outlet>
-    </main>
-    <footer class="mt-auto">
-      <footer></footer>
-    </footer>
-  </div>
-</ng-container>
-<app-basket-icon *ngIf="showBasketIcon" (click)="closeNavBar()"></app-basket-icon>

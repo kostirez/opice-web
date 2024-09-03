@@ -1,10 +1,12 @@
-<div *ngIf="itemsCount!=0" class="fixed bottom-[5px] right-[5px] md:top-[50px] md:right-[50px] max-h-[100px]">
+<div *ngIf="itemsCount!=0 && !hideIcon" class="fixed bottom-[5px] right-[5px] md:top-[50px] md:right-[50px] max-h-[100px]">
   <div class="relative flex items-center bg-bg-light p-5 rounded-xl">
     <div class="absolute top-[-20px] left-[-20px] w-[40px] h-[40px] bg-danger rounded-full text-center text-warning">
       <span class="text-[25px]">{{itemsCount}}</span>
     </div>
     <a routerLink="/kosik">
-      <button class="text-primary text-xl md:text-3xl">Přejít do košíku</button>
+      <button >
+        <h5 class="text-primary m-0">Přejít do košíku</h5>
+      </button>
     </a>
   </div>
 </div>
