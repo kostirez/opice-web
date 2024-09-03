@@ -18,8 +18,7 @@ import { ForRestaurantsComponent } from './for-restaurants/for-restaurants.compo
 import { ContactComponent } from './contact/contact.component';
 import { TranspotPaymentComponent } from './transpot-payment/transpot-payment.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { ContactFormComponent } from './contact-form/contact-form.component';
-import { StepsComponent } from './steps/steps.component';
+import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { HttpClientModule  } from "@angular/common/http";
 import { Apollo, APOLLO_OPTIONS } from "apollo-angular";
 import { HttpLink } from 'apollo-angular/http';
@@ -53,7 +52,6 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
     ContactComponent,
     TranspotPaymentComponent,
     ContactFormComponent,
-    StepsComponent,
     LoadingComponent,
     BasketOverviewComponent,
     BasketPayTransComponent,
