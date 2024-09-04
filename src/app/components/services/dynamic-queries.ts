@@ -172,6 +172,16 @@ export const PAGE: QueryParams = {
       'path',
       'showInMenu',
       'menuOrder',
+      {
+        compName: 'metaData',
+        params: [
+          'title',
+          {
+            compName: 'tags',
+            params: ['name', 'content']
+          }
+          ]
+      },
       ...pageParts
     ]
 

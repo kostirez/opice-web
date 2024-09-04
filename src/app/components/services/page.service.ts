@@ -2,10 +2,16 @@ import { Injectable, Type } from '@angular/core';
 import { map, Observable, of } from "rxjs";
 import { PAGE, WEB_STRUCTURE } from "./dynamic-queries";
 import { QueryParams, StrapiGraphqlService } from "../../apollo/strapi-graphql.service";
+import { MetaDefinition } from "@angular/platform-browser";
 
 export interface ViewComponent {
   type: Type<any>;
   data: any;
+}
+
+export interface MetaData {
+  title: string;
+  tags: MetaDefinition[];
 }
 
 export interface Page {
@@ -14,6 +20,7 @@ export interface Page {
   showInMenu: boolean;
   items: any[];
   menuOrder?: number;
+  metaData: MetaData;
 }
 
 export interface MenuItem {
@@ -49,6 +56,7 @@ export class PageService {
         path: '/404',
         showInMenu: false,
         items: [{__typename: 'not-found'}],
+        metaData: null
       })
     }
     const pageQuery = {...PAGE, filter: `(id: ${id})`} as QueryParams;

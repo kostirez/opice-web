@@ -23,7 +23,7 @@ export interface DynamicParams{
 
 export interface ComponentParams {
   compName: string,
-  params: (string | QueryParams)[]
+  params: (string | QueryParams | ComponentParams)[]
 }
 
 export interface QueryParams {

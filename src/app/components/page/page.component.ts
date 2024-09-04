@@ -1,8 +1,9 @@
 import { ActivatedRoute } from "@angular/router";
 import { AfterViewInit, Component, OnDestroy, ViewChild, ViewContainerRef } from "@angular/core";
 import { combineLatest, mergeMap, map, tap } from "rxjs";
-import { Page, PageService, ViewComponent } from "../services/page.service";
+import { MetaData, Page, PageService, ViewComponent } from "../services/page.service";
 import { ComponentService } from "../services/component.service";
+import { Meta, Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-page',
@@ -19,6 +20,8 @@ export class PageComponent implements OnDestroy, AfterViewInit {
     private pageService: PageService,
     private route: ActivatedRoute,
     private componentService: ComponentService,
+    private titleService: Title,
+    private metaTagService: Meta,
   ) {
   }
 
@@ -35,6 +38,11 @@ export class PageComponent implements OnDestroy, AfterViewInit {
     if (this.container) {
       this.container.clear()
     }
+  }
+
+  initMeta(metaData: MetaData) {
+    this.titleService.setTitle(metaData.title);
+    this.metaTagService.addTags(metaData.tags);
   }
 
   ngOnDestroy(): void {
@@ -64,6 +72,7 @@ export class PageComponent implements OnDestroy, AfterViewInit {
       tap((page: Page) => {
         const components = this.componentService.mapComponents(page.items);
         this.create(components)
+        this.initMeta(page.metaData)
       })
     ).subscribe()
   }
