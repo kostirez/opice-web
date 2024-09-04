@@ -1,6 +1,6 @@
 <article class="my-10 md:my-20">
   <div id="'id'" class="flex flex-col gap-10 mb-10 min-h-[100vh]">
-    <h2 class="text-center mb-0">{{data.head}}</h2>
+    <h2 #topTitle class="text-center mb-0">{{data.head}}</h2>
     <ng-container *ngIf="products$ | async as products else LOADING">
       <product-box *ngFor="let product of products"
                    [id]="product.id"

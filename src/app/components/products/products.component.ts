@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { addFilter, PRODUCTS } from "../../apollo/queries";
 import { map, Observable, tap } from "rxjs";
 import { ProductInfo } from "../../product/product.component";
@@ -16,6 +16,8 @@ export class ProductsComponent extends BaseComponent implements OnInit{
     head: string,
     pageSize: number,
   };
+
+  @ViewChild('topTitle')  topTitle: ElementRef | undefined;
 
   products$: Observable<ProductInfo[]>;
   productId: string | undefined = undefined;
@@ -57,6 +59,12 @@ export class ProductsComponent extends BaseComponent implements OnInit{
         map(d => d.data));
   }
 
+  scrollToTop() {
+    if(this.topTitle){
+      this.topTitle.nativeElement.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+
   movePage(step): void {
     const page = step + this.selectedPage;
     if(this.pages.includes(page)) {
@@ -67,12 +75,8 @@ export class ProductsComponent extends BaseComponent implements OnInit{
   goToPage(pageIndex: number): void {
     if (pageIndex != this.selectedPage) {
       this.selectedPage = pageIndex;
-      this.fetchProducts()
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-      });
+      this.scrollToTop();
+      this.fetchProducts();
     }
   }
 
