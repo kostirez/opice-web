@@ -5,7 +5,6 @@ import { BasketComponent } from "./basket/basket/basket.component";
 import { PageComponent } from "./components/page/page.component";
 
 const routes: Routes = [
-
   { path: 'kosik', component: BasketComponent,},
   { path: 'kontakty', component: ContactComponent},
   { path: '**', component: PageComponent },
