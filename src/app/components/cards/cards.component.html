@@ -2,20 +2,28 @@
   <h3 class="text-center">{{data.head}}</h3>
   <div class="flex flex-wrap justify-around gap-5 my-10 mx-2 md:mx-0 md:my-20">
     <div *ngFor="let card of data.cards"
-                  [ngClass]="card.link ? 'cursor-pointer' : ''"
-                  class="flex flex-col justify-between w-full sm:w-[300px] md:w-[400px] hover:bg-bg-dark bg-bg-light rounded-xl">
-      <a *ngIf="card.link"
-         [routerLink]="'/' + card.link">
-        <h3 class="text-center my-5 mx-2">{{card.head}}</h3>
+         class="flex flex-col justify-between w-full bg-bg-light rounded-xl"
+         [ngClass]="{
+            'cursor-pointer hover:bg-bg-dark': card.link,
+            'cursor-auto':  !card.link,
+            'w-[120px] md:w-[200px]' : data.size==='small',
+            'w-[300px] md:w-[400px]' : data.size==='big',
+           }"
+         (click)="goTo(card.link)">
+      <ng-container *ngIf="data.size==='big'">
+        <h3  class="text-center my-5 mx-2">{{card.head}}</h3>
         <h6 class="text-center my-5 mx-2">{{card.text}}</h6>
-        <img class="h-[10rem] w-full object-cover rounded-b-xl" [src]="getBase() + card.pic.url">
-      </a>
-      <div *ngIf="!card.link">
-        <h3 class="text-center my-5 mx-2">{{card.head}}</h3>
-        <h6 class="text-center my-5 mx-2">{{card.text}}</h6>
-        <img class="h-[10rem] w-full object-cover rounded-b-xl" [src]="getBase() + card.pic.url">
-      </div>
-    </div>
+        <img class="w-full h-[10rem] object-cover rounded-b-xl"
+             [src]="getBase() + card.pic.url">
+      </ng-container>
 
+      <ng-container *ngIf="data.size==='small'">
+        <h4  class="text-center mb-1 mx-1">{{card.head}}</h4>
+        <h6 class="text-center mb-1 mx-2">{{card.text}}</h6>
+        <img class="w-full h-[5rem] object-cover rounded-b-xl"
+             [src]="getBase() + card.pic.url">
+      </ng-container>
+
+    </div>
   </div>
 </article>

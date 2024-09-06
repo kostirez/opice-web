@@ -8,6 +8,7 @@ const pageParts: DynamicParams[] = [
         compName: 'ComponentPageItemCards',
         params: [
           'head',
+          'size',
           '__typename',
           {
             compName: 'cards',
