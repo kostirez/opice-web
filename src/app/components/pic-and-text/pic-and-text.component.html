@@ -20,8 +20,8 @@
 
   <div class=""
        *ngIf="data.layout==='leftFlow'|| data.layout==='rightFlow'">
-    <div class=""
-         [style.background-image]="'url(' +getBase() + data.pic[0].url + ')'">
+    <div [style.background-image]="'url(' +getBase() + data.pic[0].url + ')'"
+         class="bg-cover">
       <div class="flex flex-col w-full bg-gradient-to-b py-20 text-center md:max-w-[50%]"
            [ngClass]="{
             'md:bg-gradient-to-l md:text-right md:pr-[10%] from-white to-transparent': data.layout=='leftFlow',
