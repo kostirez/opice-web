@@ -6,7 +6,8 @@
       <h3 class="text-center text-white my-5 mx-10">{{card.head}}</h3>
       <h6 class="text-center text-bg-light my-5 mx-10"
           *ngFor="let item of card.text.split(';')">{{item}}</h6>
-      <button [routerLink]="'/' + card.btnLink"
+      <button *ngIf="card.link"
+              [routerLink]="'/' + card.btnLink"
               class="mx-auto my-5 bg-white text-secondary hover:bg-bg-light rounded-xl py-2 px-5">
         {{card.btnText}}</button>
     </div>
