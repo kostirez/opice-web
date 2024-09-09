@@ -1,47 +1,63 @@
-<div class="relative flex flex-col w-full max-w-[1000px] mx-auto p-10 bg-bg-light rounded-2xl shadow-2xl mb-20">
-  <h4 class="text-center mb-3">Kontaktní formulář</h4>
-  <form [formGroup]="messageForm"
-        (ngSubmit)="onSubmit()"
-        class="w-full grid grid-cols-3 gap-5">
-    <div class="col-span-3 md:col-span-1">
-      <div class="mt-2 w-full flex flex-col">
-        <label for="mail">E-mail</label>
-        <input type="email"
-               id="mail"
-               formControlName="mail"/>
-        <div class="error" *ngIf="messageForm.get('mail').touched">
-          <p class="text-danger" *ngIf="messageForm.get('mail').errors?.['required']">Zadejte e-mail</p>
-          <p class="text-danger" *ngIf="messageForm.get('mail').errors?.['email']">Zadejte e-mail ve správném tvaru</p>
+<article>
+  <h3 class="text-center">{{data.head}}</h3>
+  <div *ngIf="data.showMail"
+       class="my-5 text-center flex flex-col">
+    <h6 class="mb-3">Mail</h6>
+    <h4 class="mb-5">obchod&#64;zrzavaopice.cz</h4>
+  </div>
+  <ng-container *ngIf="data.showSoc">
+    <h6 class="text-center mb-3">Sociální sítě</h6>
+    <div class="grid grid-cols-3 max-w-[500px] mx-auto gap-5 mb-10">
+      <img class="m-auto px-2 cursor-pointer min-w-[50px] md:min-w-[100px]" src="assets/soc/ig.svg" (click)="goTo('https://www.instagram.com/zrzavaopice/')">
+      <img class="m-auto px-2 cursor-pointer min-w-[50px] md:min-w-[100px]" src="assets/soc/fb.svg" (click)="goTo('https://www.facebook.com/profile.php?id=61557278573442')">
+      <img class="m-auto px-2 cursor-pointer min-w-[50px] md:min-w-[100px]" src="assets/soc/pi.svg" (click)="goTo('https://cz.pinterest.com/zrzavaopice/')">
+    </div>
+  </ng-container>
+  <div class="relative flex flex-col w-full max-w-[1000px] mx-auto p-10 bg-bg-light rounded-2xl shadow-2xl mb-20">
+    <h4 class="text-center mb-3">Kontaktní formulář</h4>
+    <form [formGroup]="messageForm"
+          (ngSubmit)="onSubmit()"
+          class="w-full grid grid-cols-3 gap-5">
+      <div class="col-span-3 md:col-span-1">
+        <div class="mt-2 w-full flex flex-col">
+          <label for="mail">E-mail</label>
+          <input type="email"
+                 id="mail"
+                 formControlName="mail"/>
+          <div class="error" *ngIf="messageForm.get('mail').touched">
+            <p class="text-danger" *ngIf="messageForm.get('mail').errors?.['required']">Zadejte e-mail</p>
+            <p class="text-danger" *ngIf="messageForm.get('mail').errors?.['email']">Zadejte e-mail ve správném tvaru</p>
+          </div>
+        </div>
+        <div class="mt-2 w-full flex flex-col">
+          <label for="name">Jméno/firma</label>
+          <input type="text"
+                 id="name"
+                 formControlName="name"/>
+          <div class="error" *ngIf="messageForm.get('name').touched">
+            <p class="text-danger" *ngIf="messageForm.get('name').errors?.['required']">Zadejte vaše jméno nebo název firmy</p>
+          </div>
         </div>
       </div>
-      <div class="mt-2 w-full flex flex-col">
-        <label for="name">Jméno/firma</label>
-        <input type="text"
-               id="name"
-               formControlName="name"/>
-        <div class="error" *ngIf="messageForm.get('name').touched">
-          <p class="text-danger" *ngIf="messageForm.get('name').errors?.['required']">Zadejte vaše jméno nebo název firmy</p>
+
+      <div class="mt-2 w-full col-span-3 md:col-span-2 flex flex-col">
+        <label for="text">Zpráva</label>
+        <textarea id="text"
+                  formControlName="text"
+                  class="h-full w-full px-3 ">
+        </textarea>
+        <div class="error" *ngIf="messageForm.get('text').touched">
+          <p class="text-danger" *ngIf="messageForm.get('text').errors?.['required']">Zadejte zprávu</p>
         </div>
       </div>
-    </div>
-
-    <div class="mt-2 w-full col-span-3 md:col-span-2 flex flex-col">
-      <label for="text">Zpráva</label>
-      <textarea id="text"
-                formControlName="text"
-                class="h-full w-full px-3 ">
-      </textarea>
-      <div class="error" *ngIf="messageForm.get('text').touched">
-        <p class="text-danger" *ngIf="messageForm.get('text').errors?.['required']">Zadejte zprávu</p>
+      <div class="col-span-3 w-full flex justify-center">
+        <button class="btn uppercase"
+                type="submit">Odeslat</button>
       </div>
-    </div>
-    <div class="col-span-3 w-full flex justify-center">
-      <button class="btn uppercase"
-              type="submit">Odeslat</button>
-    </div>
 
-  </form>
-  <div *ngIf="sent || loading" class="absolute top-0 left-0 w-full h-full flex items-center bg-bg-light opacity-80 rounded-2xl"></div>
-  <span *ngIf="sent" class="absolute top-[40%] text-center w-full h-full text-secondary text-3xl font-bold">{{sentMessage}}</span>
-  <app-loading *ngIf="loading"></app-loading>
-</div>
+    </form>
+    <div *ngIf="sent || loading" class="absolute top-0 left-0 w-full h-full flex items-center bg-bg-light opacity-80 rounded-2xl"></div>
+    <span *ngIf="sent" class="absolute top-[40%] text-center w-full h-full text-secondary text-3xl font-bold">{{sentMessage}}</span>
+    <app-loading *ngIf="loading"></app-loading>
+  </div>
+</article>

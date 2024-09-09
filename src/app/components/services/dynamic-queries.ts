@@ -128,7 +128,9 @@ const pageParts: DynamicParams[] = [
       {
         compName: 'ComponentPageItemContactForm',
         params: [
-          'type',
+          'head',
+          'showMail',
+          'showSoc',
           '__typename',
         ]
       },

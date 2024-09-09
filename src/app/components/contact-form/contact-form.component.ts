@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { StrapiApiService } from "../../strapi-api.service";
 import { Validators } from "@angular/forms";
 import { FormBuilder } from '@angular/forms';
 import { catchError, Observable, throwError } from "rxjs";
 import { HttpErrorResponse } from "@angular/common/http";
 import { BaseComponent } from "../base/base.component";
+import { DOCUMENT } from "@angular/common";
 
 export interface Message {
   mail: string;
@@ -18,7 +19,9 @@ export interface Message {
 })
 export class ContactFormComponent extends BaseComponent{
   @Input() override data: {
-    type: string,
+    head: string, // Kontaktujte nás
+    showMail: boolean,
+    showSoc: boolean,
   }
   sent = false;
   loading = false;
@@ -30,6 +33,7 @@ export class ContactFormComponent extends BaseComponent{
   });
 
   constructor(
+    @Inject(DOCUMENT) private document: Document,
     private strapiApi: StrapiApiService,
     private formBuilder: FormBuilder
 ) {
@@ -65,5 +69,9 @@ export class ContactFormComponent extends BaseComponent{
     this.sent = true;
     this.loading = false;
     return throwError(error);
+  }
+
+  goTo(link: string): void {
+    this.document.location.href = link;
   }
 }
