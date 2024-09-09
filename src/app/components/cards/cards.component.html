@@ -13,14 +13,16 @@
       <ng-container *ngIf="data.size==='big'">
         <h3  class="text-center my-5 mx-2">{{card.head}}</h3>
         <h6 class="text-center my-5 mx-2">{{card.text}}</h6>
-        <img class="w-full h-[10rem] object-cover rounded-b-xl"
+        <img *ngIf="card.pic"
+             class="w-full h-[10rem] object-cover rounded-b-xl"
              [src]="getBase() + card.pic.url">
       </ng-container>
 
       <ng-container *ngIf="data.size==='small'">
         <h4  class="text-center mb-1 mx-1">{{card.head}}</h4>
         <h6 class="text-center mb-1 mx-2">{{card.text}}</h6>
-        <img class="w-full h-[5rem] object-cover rounded-b-xl"
+        <img *ngIf="card.pic"
+             class="w-full h-[5rem] object-cover rounded-b-xl"
              [src]="getBase() + card.pic.url">
       </ng-container>
 

@@ -122,16 +122,24 @@ export class StrapiGraphqlService {
 
   mapColection(query: QueryParams, data: any): {data: any, meta: any} {
     const meta = data.meta
-    if(Array.isArray(data.data)) {
-      const arr = [];
-      data.data.forEach(item => {
-        arr.push(this.mapResultItems(query.items, item.attributes, item.id))
-      })
-      return {data: arr, meta}
+    if (!!data.data) {
+      if(Array.isArray(data.data)) {
+
+        const arr = [];
+        data.data.forEach(item => {
+          arr.push(this.mapResultItems(query.items, item.attributes, item.id))
+        })
+        return {data: arr, meta}
+      } else {
+        const d = data.data.attributes;
+        return {
+          data: this.mapResultItems(query.items, d, data.data.id),
+          meta
+        }
+      }
     } else {
-      const d = data.data.attributes;
       return {
-        data: this.mapResultItems(query.items, d, data.data.id),
+        data: null,
         meta
       }
     }

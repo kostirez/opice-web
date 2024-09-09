@@ -5,7 +5,8 @@
     </div>
     <div class="w-full md:order-first">
       <div class="max-w-[500px] mx-auto ">
-        <img [src]="getBase() + data.pics[0].url">
+        <img *ngIf="data.pics"
+             [src]="getBase() + data.pics[0].url">
       </div>
     </div>
   </div>
