@@ -13,7 +13,7 @@
           }">
       <div class="w-full h-full mx-auto ">
         <img *ngIf="data.pic[0]"
-             class="object-cover h-full w-full max-h-[400px] md:max-h-[500px]"
+             class="object-cover object-right-bottom h-full w-full max-h-[400px] md:max-h-[500px]"
              [src]="getBase() + data.pic[0].url">
       </div>
     </div>
@@ -23,8 +23,8 @@
   <div class=""
        *ngIf="data.layout==='leftFlow'|| data.layout==='rightFlow'">
     <div [style.background-image]="'url(' +getBase() + (data.pic[0] ? data.pic[0].url : '') + ')'"
-         class="bg-cover">
-      <div class="flex flex-col w-full bg-gradient-to-b py-20 text-center md:max-w-[50%]"
+         class="bg-cover bg-right md:bg-right-bottom">
+      <div class="flex flex-col w-full bg-gradient-to-b pb-[50%] md:py-20 text-center md:max-w-[50%]"
            [ngClass]="{
             'md:bg-gradient-to-l md:text-right md:pr-[10%] from-white to-transparent': data.layout=='leftFlow',
             'md:bg-gradient-to-r md:text-left md:pl-[10%] from-white to-transparent': data.layout=='rightFlow',
