@@ -5,7 +5,7 @@
           'btn-secondary': data.style=='secondary',
           'btn-link': data.style=='link'
           }"
-        [routerLink]="'/' + data.link">
+        (click)="goTo()">
   {{data.text}}
 </button>
 
