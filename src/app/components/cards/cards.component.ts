@@ -25,6 +25,9 @@ export class CardsComponent extends BaseComponent {
   }
 
   goTo(link: string): void {
+    if(!link){
+      return;
+    }
     this.router.navigate([ '/', ...link.split('/') ])
   }
 

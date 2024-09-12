@@ -30,6 +30,9 @@ export class CardsWithTextComponent extends BaseComponent {
   }
 
   goTo(link: string): void {
+    if(!link){
+      return;
+    }
     this.router.navigate([ '/', ...link.split('/') ])
   }
 
