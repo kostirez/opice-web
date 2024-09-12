@@ -163,7 +163,7 @@ export class OrderMicrogreensComponent extends BaseComponent {
       }
     })
 
-    this.getNextDay([1,4],7)
+    this.getNextDay([0,4],7)
       .forEach(day => {
         for(let box of selectedBoxes) {
           if(!box.availableBoxes.some(b => (new Date(b.sinceWhen)).toDateString()===day.toDateString())){
@@ -211,7 +211,7 @@ export class OrderMicrogreensComponent extends BaseComponent {
     const today = new Date();
     const earliestDateToBeGrown = new Date();
     earliestDateToBeGrown.setDate(today.getDate() + box.growDuration);
-    return this.getNextDay([1,4],3, earliestDateToBeGrown)
+    return this.getNextDay([0,4],3, earliestDateToBeGrown)
       .map(day => ({
         sinceWhen: day.toDateString(),
         count: 10,
