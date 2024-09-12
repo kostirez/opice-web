@@ -231,6 +231,7 @@ export class OrderMicrogreensComponent extends BaseComponent {
   }
 
   goToStep(step: number, withError: boolean = false) {
+    this.scrollToTop();
     if(!withError){
       this.errorMessage = '';
     }
@@ -276,5 +277,12 @@ export class OrderMicrogreensComponent extends BaseComponent {
       total+=(box.price*box.count);
     });
     return total;
+  }
+
+  scrollToTop() {
+    const element = document.querySelector('.order-container');  // Ensure to have an identifier for your component container
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 }
