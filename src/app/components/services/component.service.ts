@@ -11,6 +11,8 @@ import { ContactFormComponent } from "../contact-form/contact-form.component";
 import { NotFoundComponent } from "../not-found/not-found.component";
 import { TextAndInnerHTMLComponent } from "../text-and-inner-html/text-and-inner-html.component";
 import { EshopMenuComponent } from "../eshop-menu/eshop-menu.component";
+import { OrderMicrogreensComponent } from "../order-microgreens/order-microgreens.component";
+import { FaqComponent } from "../faq/faq.component";
 
 interface ComponentDef {
   type: Type<any>;
@@ -61,6 +63,14 @@ const COMPONENTS_TABLE: ComponentDef[] = [
   {
     type: EshopMenuComponent,
     strapiName: 'ComponentPageItemEshopMenu',
+  },
+  {
+    type: OrderMicrogreensComponent,
+    strapiName: 'ComponentPageItemOrderMicrogreens',
+  },
+  {
+    type: FaqComponent,
+    strapiName: 'ComponentPageItemFaq',
   },
 
 

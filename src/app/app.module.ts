@@ -37,6 +37,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { StepsComponent } from "./components/steps/steps.component";
 import { TextAndInnerHTMLComponent } from './components/text-and-inner-html/text-and-inner-html.component';
 import { EshopMenuComponent } from './components/eshop-menu/eshop-menu.component';
+import { OrderMicrogreensComponent } from './components/order-microgreens/order-microgreens.component';
+import { registerLocaleData } from "@angular/common";
+import localeCs from '@angular/common/locales/cs';
+import { FaqComponent } from './components/faq/faq.component';
+
+registerLocaleData(localeCs);
 
 @NgModule({
   declarations: [
@@ -67,6 +73,8 @@ import { EshopMenuComponent } from './components/eshop-menu/eshop-menu.component
     StepsComponent,
     TextAndInnerHTMLComponent,
     EshopMenuComponent,
+    OrderMicrogreensComponent,
+    FaqComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { Message } from "./components/contact-form/contact-form.component";
 import { Order, OrderResponse } from "./basket/basket.service";
 import { Observable } from "rxjs";
 import { environment } from "../environments/environment";
+import { MicrogreensOrder, MicrogreensOrderResponse } from "./components/order-microgreens/microgreens-order.service";
 
 
 
@@ -25,6 +26,15 @@ export class StrapiApiService {
     return this.http
       .post<{orderResponse: OrderResponse, image: string}>(
         environment.apiUrl + "/orders",
+        {data: order},
+        {headers: this.headers}
+      );
+  }
+
+  sendMicrogreensOrder(order: MicrogreensOrder): Observable<{orderResponse: MicrogreensOrderResponse, image: string}> {
+    return this.http
+      .post<{orderResponse: MicrogreensOrderResponse, image: string}>(
+        environment.apiUrl + "/microgreens-orders",
         {data: order},
         {headers: this.headers}
       );

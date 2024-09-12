@@ -1,0 +1,195 @@
+<article class="my-10 md:my-20 flex flex-col">
+  <h4 class="text-center mb-5 md:mb-10">{{data.head}}</h4>
+  <div class="bg-bg-light rounded-xl my-5 md:my-10">
+    <div *ngIf="step<4" class="grid grid-cols-4 w-full justify-around mb-5">
+      <div *ngFor="let s of steps"
+           (click)="goToStep(s.index)"
+           class="grow m-0 px-2 md:px-10 py-2 md:py-5 text-primary text-center cursor-pointer"
+           [ngClass]="step===s.index ? 'bg-bg-light' : 'bg-bg-dark'">
+        <p class="my-auto">{{s.head}}</p>
+      </div>
+    </div>
+    <div *ngIf="step==0" class="flex flex-wrap w-full ">
+      <div *ngFor="let box of microgreensBoxes"
+           class="flex flex-col md:flex-row justify-between bg-bg-dark  w-full mb-2 mx-2">
+          <div class="flex flex-row">
+            <img *ngIf="box.pic"
+                 class="w-24 md:w-40 h-24 md:h-40 object-cover"
+                 [src]="getBase() + box.pic.url">
+            <div class="mx-2 md:mx-5 flex flex-col max-w-64 text-left">
+              <h3 class="mb-2 text-white">{{box.name}}</h3>
+              <p>{{box.description}}</p>
+            </div>
+          </div>
+          <div class="hidden lg:block mx-5 max-w-96">
+            <h6 class="text-white mb-0">Kolik Krabiček je k dispozici</h6>
+            <div class="flex flex-wrap">
+              <div *ngFor="let boxDate of box.availableBoxes"
+                   class="flex flex-row bg-secondary rounded-xl px-2 mr-2 my-1">
+                <h4 class="my-auto mx-4">{{boxDate.count}}</h4>
+                <div class="flex flex-col text-center text-white">
+                  <span>{{boxDate.sinceWhen | date:'EEEE':'':'cs-CZ' }}</span>
+                  <span>{{boxDate.sinceWhen | date:'mediumDate':'':'cs-CZ' }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-row md:flex-col justify-between mr-2 md:mr-5">
+            <div class="flex flex-col">
+              <p class="mb-0 md:text-right mx-2">množství</p>
+              <div class="flex flex-row py-2 px-2 md:py-5">
+                <button class="p-2 md:px-5 rounded-xl btn-primary"
+                        [ngClass]="{'cursor-not-allowed': box.count == 0}"
+                        (click)="changeBoxCount(-1, box)">-</button>
+                <h5 class="my-auto mx-5">{{box.count}}</h5>
+                <button class="p-2 md:px-5 rounded-xl btn-primary"
+                        [ngClass]="{'cursor-not-allowed': box.count == 5}"
+                        (click)="changeBoxCount(1, box)">+</button>
+              </div>
+            </div>
+            <h4 class="mb-0 ml-auto text-white justify-self-end mx-2 text-right"><p>cena</p>{{box.price}}Kč</h4>
+          </div>
+      </div>
+    </div>
+    <div *ngIf="step==1">
+      <h4 class="text-center my-5 md:my-10">Kdy si krabičky chcete vyzvednout</h4>
+      <div class="flex flex-wrap justify-around">
+        <div *ngFor="let d of pickUpDates"
+             class="p-5 rounded-xl relative text-center mb-5"
+             [ngClass]="selectedDate && selectedDate.toDateString() == d.toDateString() ?
+             'bg-bg-dark': 'border-4 border-bg-dark cursor-pointer'"
+             (click)="selectDate(d)">
+          <h5 class="mb-2">{{d | date:'EEEE':'':'cs-CZ' }}</h5>
+          <h6 class="mb-2">{{d | date:'mediumDate':'':'cs-CZ' }}</h6>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="step==2">
+      <div class="flex flex-col md:flex-row justify-around">
+        <div>
+          <h4 class="text-center my-5">Platba</h4>
+          <div class="flex flex-wrap justify-around md:min-w-96">
+            <div *ngFor="let method of paymentMethods"
+                 class="p-5 rounded-xl"
+                 [ngClass]="selectedPayment && selectedPayment.value == method.value ?
+                 'bg-bg-dark': 'border-4 border-bg-dark cursor-pointer'"
+                 (click)="selectPayment(method)">
+              <h6>{{method.text}}</h6>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-col md:w-80 justify-around mx-auto md:mx-0">
+          <h4 class="text-center my-5">Osobní údaje</h4>
+          <form [formGroup]="personForm">
+            <div class="mt-2 w-full flex flex-col justify-between">
+              <label for="name" class="my-auto">Jméno a příjmení:</label>
+              <input type="text"
+                     id="name"
+                     formControlName="name"
+                     class="px-3 py-1"
+                     placeholder=""/>
+              <div class="error" *ngIf="personForm.get('name').touched">
+                <p class="text-danger" *ngIf="personForm.get('name').errors?.['required']">Zadejte Vaše jméno</p>
+                <p class="text-danger" *ngIf="personForm.get('name').errors?.['pattern']">Nepoužívejte speciální znaky ani čísla</p>
+              </div>
+            </div>
+            <div class="mt-2 w-full flex flex-col justify-between">
+              <label for="email" class="my-auto">E-mail:</label>
+              <input type="email"
+                     id="email"
+                     formControlName="email"
+                     class="px-3 py-1 "
+                     placeholder=""/>
+              <div class="error" *ngIf="personForm.get('email').touched">
+                <p class="text-danger" *ngIf="personForm.get('email').errors?.['required']">Zadejte Váš e-mail</p>
+                <p class="text-danger" *ngIf="personForm.get('email').errors?.['email']">Zadejte Váš e-mail ve správném tvaru</p>
+              </div>
+            </div>
+            <div class="mt-2 w-full flex flex-col justify-between">
+              <label for="tel" class="my-auto">Telefon:</label>
+              <input type="tel"
+                     id="tel"
+                     formControlName="tel"
+                     class="px-3 py-1"
+                     placeholder="" required />
+              <div class="error" *ngIf="personForm.get('tel').touched">
+                <p class="text-danger" *ngIf="personForm.get('tel').errors?.['required']">Zadejte Váš telefon</p>
+                <p class="text-danger" *ngIf="personForm.get('tel').errors?.['pattern']">Zadejte pouze číslo bez předvolby</p>
+                <p class="text-danger" *ngIf="personForm.get('tel').errors?.['minlength']">Příliš krátké číslo</p>
+                <p class="text-danger" *ngIf="personForm.get('tel').errors?.['maxlength']">Příliš dlouhé číslo (Zadejte číslo bez předvolby)</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="step==3" class="max-w-[60rem] mx-auto">
+      <h4 class="text-center mb-5">Vybrané krabičky</h4>
+      <table class="w-full">
+        <thead >
+        <tr class="bg-bg-dark">
+          <th class="bg-bg-dark">Krabička</th>
+          <th class="bg-bg-dark">Množstvý</th>
+          <th class="bg-bg-dark">Cena za jednu</th>
+          <th class="bg-bg-dark">Cena celkem</th>
+        </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let box of microgreensBoxes">
+            <tr class="text-center" *ngIf="box.count!==0"  >
+              <td>{{box.name}}</td>
+              <td>{{box.count}}</td>
+              <td>{{box.price}}</td>
+              <td>{{box.price * box.count}}Kč</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      <div class="text-center mt-10">
+        <h6 class="mb-0">Cena celkem:</h6>
+        <h4 class="mb-0">{{getTotalPrice()}}</h4>
+      </div>
+      <div class="flex flex-row justify-around text-center mt-10">
+        <div class="w-64 flex flex-col justify-around bg-bg-dark m-2 p-2 rounded-xl">
+          <h5 class="mb-0">Platba</h5>
+          <h3 class="mb-0">{{selectedPayment.text}}</h3>
+        </div>
+        <div class="w-64 flex flex-col justify-around bg-bg-dark m-2 p-2 rounded-xl">
+          <h5 class="mb-0">Vyzvednuti</h5>
+          <h3 class="mb-0">{{selectedDate | date:'EEEE':'':'cs-CZ' }}</h3>
+          <h4 class="mb-0">{{selectedDate | date:'mediumDate':'':'cs-CZ' }}</h4>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="step==4" class="text-center py-10 px-5 md:px-20">
+      <ng-container *ngIf="loading">
+        <app-loading class="h-full w-full"></app-loading>
+      </ng-container>
+      <ng-container *ngIf="!loading">
+        <h4 class="mb-10">Děkujeme za nákup!</h4>
+        <h6>Krabičky budeme pro Vás mít připravený {{orderResponse.pickUpDate | date:'mediumDate':'':'cs-CZ'}}.
+          Přijďte si pro ně mezi 16-19 na Veletržní 41 Praha 7.
+          Po příchodu volejte na číslo 720 258 660.
+        </h6>
+        <h6>Pokud jste zvolili platbu převodem, pošlete nám prosím peníze na účet 2602805796/2010 a do poznámky zadejte své jméno. </h6>
+        <h6 class="mb-0">Den před vyzvednutím se Vám připomenem mailem.</h6>
+      </ng-container>
+    </div>
+    <div *ngIf="step==5" class="text-center text-danger py-10 px-5 md:px-20">
+      <h5>{{orderError}}</h5>
+      <p>Mrzí nás že došlo k této chybě. Vaší objednávku nám můžete poslat na mail obchod"&#64;"zrzavaopice.cz a my Vám obratem odpovíme.</p>
+      <button class="btn btn-primary col-start-2" (click)="backToStart()">Zpět na začátek</button>
+    </div>
+    <h5 *ngIf="errorMessage"
+        class="text-center text-danger my-5">
+      {{errorMessage}}
+       </h5>
+    <div *ngIf="step<4" class="grid grid-cols-3 mt-10 md:mt-20 mb-5">
+      <button *ngIf="step>0" class="btn btn-link bg-bg-light" (click)="previousStep()">Předchozí krok</button>
+      <button *ngIf="step<3" class="btn btn-primary col-start-2" (click)="nextStep()">Další krok</button>
+      <button *ngIf="step===3" class="btn btn-primary" (click)="submitOrder()">Objednat</button>
+    </div>
+  </div>
+  <h6 class="text-center p-5">{{data.text}}</h6>
+</article>

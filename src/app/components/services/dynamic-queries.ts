@@ -161,6 +161,28 @@ const pageParts: DynamicParams[] = [
           '__typename',
         ]
       },
+      {
+        compName: 'ComponentPageItemOrderMicrogreens',
+        params: [
+          'head',
+          'text',
+          '__typename',
+        ]
+      },
+      {
+        compName: 'ComponentPageItemFaq',
+        params: [
+          'head',
+          {
+            compName: 'faqs',
+            params: [
+              'question',
+              'answer',
+            ]
+          },
+          '__typename',
+        ]
+      },
     ]
   },
 ]

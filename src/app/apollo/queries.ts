@@ -209,6 +209,32 @@ export const PRODUCTS = {
 
 
 
+export const MICROGREENS_BOX = {
+  colection: 'microgreensBoxes',
+  filter: '',
+  items: [
+    'name',
+    'growDuration',
+    'price',
+    'description',
+    {
+      colection: 'pic',
+      filter: '',
+      items: ['url', 'name']
+    },
+    {
+      compName: 'availableBoxes',
+      params: [
+        'sinceWhen',
+        'count',
+      ]
+    },
+  ]
+};
+
+
+
+
 export const INSTRUCTIONS = {
   colection: 'instruction',
   filter: '',
