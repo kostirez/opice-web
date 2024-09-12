@@ -2,7 +2,7 @@
   <h3 class="text-center">{{data.head}}</h3>
   <div class="flex flex-wrap justify-around gap-5 my-10 mx-2 md:mx-0 md:my-20">
     <div *ngFor="let card of data.cards"
-         class="flex flex-col justify-between w-full bg-bg-light rounded-xl"
+         class="flex flex-col justify-between bg-bg-light rounded-xl"
          [ngClass]="{
             'cursor-pointer hover:bg-bg-dark': card.link,
             'cursor-auto':  !card.link,
