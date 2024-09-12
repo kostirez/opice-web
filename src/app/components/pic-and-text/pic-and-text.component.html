@@ -24,10 +24,10 @@
        *ngIf="data.layout==='leftFlow'|| data.layout==='rightFlow'">
     <div [style.background-image]="'url(' +getBase() + (data.pic[0] ? data.pic[0].url : '') + ')'"
          class="bg-cover bg-right md:bg-right-bottom">
-      <div class="flex flex-col w-full bg-gradient-to-b pb-[50%] md:py-20 text-center md:max-w-[50%]"
+      <div class="flex flex-col w-full bg-gradient-to-b pb-[50%] md:py-20 text-center md:max-w-[100%]"
            [ngClass]="{
-            'md:bg-gradient-to-l md:text-right md:pr-[10%] from-white to-transparent': data.layout=='leftFlow',
-            'md:bg-gradient-to-r md:text-left md:pl-[10%] from-white to-transparent': data.layout=='rightFlow',
+            'md:bg-gradient-to-l md:text-right md:pr-[10%] md:pl-[50%] from-white to-transparent': data.layout=='leftFlow',
+            'md:bg-gradient-to-r md:text-left md:pl-[10%] md:pr-[50%] from-white to-transparent': data.layout=='rightFlow',
           }">
         <h3 class="mb-5 md:mb-8 lg:mb-10 xl:mb-16;">{{data.head}}</h3>
         <p [innerHTML]="data.text"></p>
