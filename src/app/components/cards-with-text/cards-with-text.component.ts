@@ -3,6 +3,7 @@ import { BaseComponent } from "../base/base.component";
 import { BtnData, Card } from "../../model/view";
 import { DOCUMENT } from "@angular/common";
 import { ImageService } from "../../image.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-cards-with-text',
@@ -18,13 +19,18 @@ export class CardsWithTextComponent extends BaseComponent {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private router: Router,
   ) {
     super();
   }
 
   getBase(): string {
     return this.imageService.getImageBase();
+  }
+
+  goTo(link: string): void {
+    this.router.navigate([ '/', ...link.split('/') ])
   }
 
 }
