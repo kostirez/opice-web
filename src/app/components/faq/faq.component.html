@@ -1,14 +1,17 @@
 <article>
   <h3 class="text-center">{{data.head}}</h3>
-  <div class="w-full max-w-lg mx-auto">
-    <div *ngFor="let faq of data.faqs; let i = index" class="border-b">
+  <div class="w-full max-w-xl mx-auto">
+    <div *ngFor="let faq of data.faqs; let i = index"
+         class="border-b"
+         [ngClass]="{'bg-bg-light': activeIndex === i}"
+          >
       <button
-        class="w-full text-left p-4 font-medium text-lg hover:bg-bg-dark focus:outline-none"
+        class="w-full p-4 hover:bg-bg-light focus:outline-none"
         (click)="toggleAnswer(i)">
-        {{ faq.question }}
+        <h5 class="mb-0 text-left">{{ faq.question }}</h5>
       </button>
       <div *ngIf="activeIndex === i" class="p-4 text-secondary">
-        {{ faq.answer }}
+        <h6 class="mb-0 text-primary">{{ faq.answer }}</h6>
       </div>
     </div>
   </div>
