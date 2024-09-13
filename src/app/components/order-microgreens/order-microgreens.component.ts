@@ -118,6 +118,7 @@ export class OrderMicrogreensComponent extends BaseComponent {
         next: (response) => {
           this.orderResponse = response.orderResponse;
           this.step=4;
+          this.scrollToTop();
           this.loading = false;
 
         },
