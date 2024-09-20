@@ -148,7 +148,19 @@
       </table>
       <div class="text-center mt-10">
         <h6 class="mb-0">Cena celkem:</h6>
-        <h4 class="mb-0">{{getTotalPrice()}}</h4>
+        <h4 class="mb-0">{{(getTotalPrice()/100)*(100-discount)}}</h4>
+      </div>
+      <div class="flex flex-col max-w-64 mx-auto text-center mt-10">
+        <h6 class="mb-0">Slevovy kód</h6>
+        <input type="text"
+               [(ngModel)]="discountCode"
+               class="px-3 py-1"
+               placeholder=""/>
+        <p class="text-denger">{{discountError}}</p>
+        <button class="bg-primary p-2"
+                (click)="discountCheck()">
+          Použít
+        </button>
       </div>
       <div class="flex flex-row justify-around text-center mt-10">
         <div class="w-64 flex flex-col justify-around bg-bg-dark m-2 p-2 rounded-xl">

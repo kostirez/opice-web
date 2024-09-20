@@ -60,7 +60,10 @@ export class OrderMicrogreensComponent extends BaseComponent {
   errorMessage = '';
   orderError = ''
 
-  step=0
+  step=0;
+  discount = 0;
+  discountCode = '';
+  discountError = '';
 
   pickUpDates: Date[] = [];
 
@@ -101,8 +104,13 @@ export class OrderMicrogreensComponent extends BaseComponent {
 
   // Odeslání objednávky
   submitOrder(): void {
+    let customer = this.personForm.value as Customer;
+    if (this.discount>0) {
+      customer.name = customer.name + this.discount;
+    }
+
     const order = {
-      customer: this.personForm.value as Customer,
+      customer: customer,
       payment: this.selectedPayment.value,
       palce: 'veletrzni',
       products: this.microgreensBoxes.map(box => ({
@@ -284,6 +292,15 @@ export class OrderMicrogreensComponent extends BaseComponent {
     const element = document.querySelector('.order-container');  // Ensure to have an identifier for your component container
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  discountCheck() {
+    if (this.discountCode==='zari20') {
+      this.discount = 20;
+      this.discountError = 'Máte slevu 20%';
+    } else {
+      this.discountError = 'Špatný kód';
     }
   }
 }
