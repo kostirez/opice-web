@@ -41,6 +41,8 @@ import { OrderMicrogreensComponent } from './components/order-microgreens/order-
 import { registerLocaleData } from "@angular/common";
 import localeCs from '@angular/common/locales/cs';
 import { FaqComponent } from './components/faq/faq.component';
+import { DynamicArticleComponent } from './components/dynamic-article/dynamic-article.component';
+import { BlogComponent } from './components/blog/blog.component';
 
 registerLocaleData(localeCs);
 
@@ -75,6 +77,8 @@ registerLocaleData(localeCs);
     EshopMenuComponent,
     OrderMicrogreensComponent,
     FaqComponent,
+    DynamicArticleComponent,
+    BlogComponent,
   ],
   imports: [
     BrowserModule,

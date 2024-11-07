@@ -1,0 +1,28 @@
+
+@mixin transition {
+  @for $i from 0 through 10 {
+    &:nth-child(#{$i}) {
+      transform: translateX(100vw);
+      transition: opacity #{$i * .4}s ease-out, transform #{$i * .4}s ease-out;
+    }
+  }
+}
+
+
+.fade-in {
+  opacity: 0;
+  transition: opacity 1s ease-out, transform 1s ease-out;
+
+  li {
+    @include transition;
+  }
+
+}
+
+.fade-in.show {
+  opacity: 1;
+  li {
+    transform: translateX(0);
+  }
+}
+

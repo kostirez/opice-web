@@ -233,6 +233,39 @@ export const MICROGREENS_BOX = {
 };
 
 
+export const ARTICLE = {
+  colection: 'articles',
+  filter: '',
+  items: [
+    {
+      colection: 'backgroundImage',
+      filter: '',
+      items: ['url']
+    },
+    {
+      compName: 'slides',
+      params: [
+        'title',
+        'content',
+        {
+          colection: 'image',
+          filter: '',
+          items: ['url']
+        },
+      ]
+    },
+    {
+      compName: 'similar',
+      params: [
+        'name',
+        'url'
+        ]
+    }
+  ]
+};
+
+
+
 
 
 export const INSTRUCTIONS = {

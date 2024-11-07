@@ -1,0 +1,31 @@
+<article *ngIf="mode==='menu'" class="my-10 md:my-20">
+  <h3 class="text-center">{{data.head}}</h3>
+  <h6 class="text-center">{{data.text}}</h6>
+  <div class="flex flex-wrap justify-around gap-5 my-10 mx-2 md:mx-0 md:my-20">
+    <div *ngFor="let article of data.articles"
+         class="flex flex-col justify-between bg-bg-light rounded-xl cursor-pointer hover:bg-bg-dark w-[300px] md:w-[400px]"
+         (click)="goToArticle(article.id)">
+      <h3 class="text-center my-5 mx-2">{{article.name}}</h3>
+      <img *ngIf="article.mainImage"
+           class="w-full h-[10rem] object-cover rounded-b-xl"
+           [src]="getBase() + article.mainImage.url">
+    </div>
+  </div>
+</article>
+<div *ngIf="mode==='article' && article$ | async as article"
+     class="relative">
+  <div class="absolute top-[20px] left-[20px]">
+    <button class="flex flex-row justify-center items-center rounded-xl bg-bg-light px-3 py-1"
+            (click)="backToMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg"
+           class="stroke-secondary"
+           width="24" height="24"
+           viewBox="0 0 24 24" fill="stroke-secondary">
+        <path
+          d="M14 17a1 1 0 0 1-.707-.293l-4-4a1 1 0 0 1 0-1.414l4-4a1 1 0 1 1 1.414 1.414L11.414 12l3.293 3.293A1 1 0 0 1 14 17z"/>
+      </svg>
+      <span class="text-secondary md:text-xl lg:text-2xl pr-[7px]">zpátky</span>
+    </button>
+  </div>
+  <app-dynamic-article [article]="article"></app-dynamic-article>
+</div>

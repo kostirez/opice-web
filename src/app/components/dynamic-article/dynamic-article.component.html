@@ -1,0 +1,44 @@
+<div
+  class="snap-mandatory snap-y w-full h-[calc(100vh-80px)] md:h-[calc(100vh-160px)] overflow-x-hidden overflow-y-scroll bg-cover bg-center"
+  #scrollableContainer
+  [ngStyle]="{'background-image': 'url('+ getBackground() + ')'}">
+
+  <div *ngFor="let slide of article.slides"
+       class="snap-center overflow-hidden w-full h-full text-center flex flex-col justify-center p-2 mb:p-10">
+    <h2
+      *ngIf="slide.title"
+      class="fade-in ">
+      {{ slide.title }}
+    </h2>
+    <ng-container *ngIf="slide.content">
+      <h5
+        *ngIf="!isArray(slide.content)"
+        class="fade-in px-5 md:px-[20%]">
+        {{ slide.content }}
+      </h5>
+      <ul class="fade-in"
+          *ngIf="isArray(slide.content)">
+        <li *ngFor="let item of slide.content" class="text-secondary mb-3">
+          {{ item }}
+        </li>
+      </ul>
+    </ng-container>
+    <img
+      *ngIf="slide.image"
+      [src]="getImage(slide.image)"
+      class="max-h-[60%] object-cover px-2 md:px-10"
+      alt="Slide image"
+    />
+  </div>
+  <div class="snap-center w-full h-full text-center flex flex-col justify-center p-2 mb:p-10">
+    <h2 class="fade-in ">Další články:</h2>
+    <ul class="fade-in">
+      <li *ngFor="let item of article.similar"
+          class="text-secondary mb-5 underline cursor-pointer"
+          (click)="goToArticle(item.url)">
+       {{ item.name }}
+      </li>
+    </ul>
+  </div>
+</div>
+

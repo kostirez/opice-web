@@ -183,6 +183,27 @@ const pageParts: DynamicParams[] = [
           '__typename',
         ]
       },
+      {
+        compName: 'ComponentPageItemBlog',
+        params: [
+          'head',
+          'text',
+          {
+            compName: 'articles',
+            params: [
+              'name',
+              'urlParam',
+              'id',
+              {
+                colection: 'mainImage',
+                filter: '',
+                items: ['url']
+              },
+            ]
+          },
+          '__typename',
+        ]
+      },
     ]
   },
 ]

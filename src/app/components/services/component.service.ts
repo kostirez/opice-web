@@ -13,6 +13,7 @@ import { TextAndInnerHTMLComponent } from "../text-and-inner-html/text-and-inner
 import { EshopMenuComponent } from "../eshop-menu/eshop-menu.component";
 import { OrderMicrogreensComponent } from "../order-microgreens/order-microgreens.component";
 import { FaqComponent } from "../faq/faq.component";
+import { BlogComponent } from "../blog/blog.component";
 
 interface ComponentDef {
   type: Type<any>;
@@ -72,7 +73,10 @@ const COMPONENTS_TABLE: ComponentDef[] = [
     type: FaqComponent,
     strapiName: 'ComponentPageItemFaq',
   },
-
+  {
+    type: BlogComponent,
+    strapiName: 'ComponentPageItemBlog',
+  },
 
 ]
 
