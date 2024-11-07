@@ -18,8 +18,8 @@
       </h5>
       <ul class="fade-in"
           *ngIf="isArray(slide.content)">
-        <li *ngFor="let item of slide.content" class="text-secondary mb-3">
-          {{ item }}
+        <li *ngFor="let item of slide.content" class=" mb-3">
+          <h5 class="px-5 md:px-[20%]">{{ item }}</h5>
         </li>
       </ul>
     </ng-container>
@@ -36,7 +36,7 @@
       <li *ngFor="let item of article.similar"
           class="text-secondary mb-5 underline cursor-pointer"
           (click)="goToArticle(item.url)">
-       {{ item.name }}
+        <h5 class="px-5 md:px-[20%]">{{ item.name }}</h5>
       </li>
     </ul>
   </div>
